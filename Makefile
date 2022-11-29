@@ -6,14 +6,17 @@
 #    By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2022/11/29 17:01:26 by anastacia        ###   ########.fr        #
+#    Updated: 2022/11/29 17:55:21 by anastacia        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 $(VERBOSE).SILENT:
 
 NAME = minishell
+
 SRC = main\
+	  src/lexer\
+	  utils/utils\
 
 LIBFT = libft/libft.a
 LIBFT_PATH = ./libft

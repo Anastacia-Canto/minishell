@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 04:15:08 by anastacia         #+#    #+#             */
-/*   Updated: 2022/08/20 04:18:51 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/11/29 18:51:11 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-t_list	*ft_lstnew(void *content);
+t_list	*ft_lstnew(char *content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstadd_front(t_list **lst, t_list *new);

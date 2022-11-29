@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/20 05:14:54 by anastacia         #+#    #+#             */
-/*   Updated: 2022/11/29 18:51:20 by anastacia        ###   ########.fr       */
+/*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
+/*   Updated: 2022/11/29 18:55:15 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_list	*ft_lstnew(char *content)
+void	break_line(char *line)
 {
-	t_list	*new_node;
+	t_list	**words;
+	char	**arr;
+	int		i;
 
-	new_node = (t_list *)malloc(sizeof(t_list));
-	if (new_node == NULL)
-		return (NULL);
-	new_node -> content = content;
-	new_node -> next = NULL;
-	return (new_node);
+	words = NULL;
+	arr = ft_split(line, ' ');
+	i = 0;
+	while (arr[i])
+	{
+		ft_lstadd_back(words, ft_lstnew(arr[i]));
+		free (arr[i]);
+		i++;
+	}
+	free (arr);
+	print_list(words);
+	free_list(words);
 }

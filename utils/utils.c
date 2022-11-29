@@ -1,28 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 08:42:12 by anastacia         #+#    #+#             */
-/*   Updated: 2022/11/29 18:13:54 by anastacia        ###   ########.fr       */
+/*   Created: 2022/11/29 17:38:19 by anastacia         #+#    #+#             */
+/*   Updated: 2022/11/29 18:55:00 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
-{
-	char	*line;
+// t_words	*words(void)
+// {
+// 	static t_words	words;
 
-	(void)argc;
-	(void)argv;
-	(void)env;
-	line = readline("[minishell][:)]~> ");
-	add_history(line);
-	break_line(line);
-	rl_clear_history();
-	free (line);
-	return (0);
+// 	return (&words);
+// }
+
+void	print_list(t_list **list)
+{
+	t_list	*temp;
+
+	temp = *list;
+	while (temp != NULL)
+	{
+		printf("%s\n", (char *)temp->content);
+		temp = temp->next;
+	}
+}
+
+void	free_list(t_list **list)
+{
+	t_list	*temp;
+
+	if (!list || !*list)
+		return ;
+	while (list && *list)
+	{
+		temp = (*list)->next;
+		free (*list);
+		*list = temp;
+	}
 }
