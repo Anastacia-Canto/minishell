@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/02 16:43:10 by anastacia        ###   ########.fr       */
+/*   Created: 2022/12/02 15:26:37 by anastacia         #+#    #+#             */
+/*   Updated: 2022/12/02 16:20:36 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	break_line(char *line)
+void	*ft_realloc(void *ptr, size_t size)
 {
-	char	**words;
-	int		i;
+	void	*new;
 
-	check_exit(line);
-	words = ft_split_ms(line);
-	i = 0;
-	while (words[i])
-	{
-		printf("%s\n", words[i]);
-		free (words[i]);
-		i++;
-	}
-	free (words);
+	if (ptr && size == 0)
+		free (ptr);
+	new = malloc(sizeof(ptr) * size);
+	if (!ptr)
+		return (new);
+	if (!new)
+		return (ptr);
+	if (size > ft_strlen(ptr))
+		size = ft_strlen(ptr);
+	new = ft_memcpy(new, ptr, size);
+	return (new);
 }

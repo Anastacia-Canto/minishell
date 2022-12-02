@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   ft_whitespace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/02 16:43:10 by anastacia        ###   ########.fr       */
+/*   Created: 2022/12/02 16:35:51 by anastacia         #+#    #+#             */
+/*   Updated: 2022/12/02 16:37:41 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	break_line(char *line)
+int	ft_whitespace(char c)
 {
-	char	**words;
-	int		i;
-
-	check_exit(line);
-	words = ft_split_ms(line);
-	i = 0;
-	while (words[i])
-	{
-		printf("%s\n", words[i]);
-		free (words[i]);
-		i++;
-	}
-	free (words);
+	if (c == ' ' || c == '\t' || c == '\v'
+		|| c == '\n' || c == '\r' || c == '\f')
+		return (1);
+	return (0);
 }

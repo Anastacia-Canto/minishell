@@ -6,7 +6,7 @@
 #    By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2022/11/29 17:55:21 by anastacia        ###   ########.fr        #
+#    Updated: 2022/12/02 16:43:46 by anastacia        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ NAME = minishell
 SRC = main\
 	  src/lexer\
 	  utils/utils\
+	  utils/ft_split_ms\
 
 LIBFT = libft/libft.a
 LIBFT_PATH = ./libft

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_ms.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/20 05:11:14 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/02 16:30:26 by anastacia        ###   ########.fr       */
+/*   Created: 2022/12/02 16:31:53 by anastacia         #+#    #+#             */
+/*   Updated: 2022/12/02 16:46:23 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-static int	count_str(char const *s, char c)
+int	count_str_ms(char const *s)
 {
 	int	i;
 	int	count;
@@ -21,29 +21,29 @@ static int	count_str(char const *s, char c)
 	count = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
+		if (ft_whitespace(s[i]))
 			i++;
 		else
 		{
 			count++;
-			while (s[i] != c && s[i])
+			while (s[i] && !ft_whitespace(s[i]))
 				i++;
 		}
 	}
 	return (count);
 }
 
-static char	*get_str(char const *s, int	*pos, char c)
+char	*get_str_ms(char const *s, int	*pos)
 {
 	char	*str;
 	int		len;
 	int		i;
 
 	len = 0;
-	while (s[*pos] == c)
+	while (ft_whitespace(s[*pos]))
 		(*pos)++;
 	i = *pos;
-	while (s[i] != c && s[i])
+	while (s[i] && !ft_whitespace(s[i]))
 	{
 		len++;
 		i++;
@@ -54,7 +54,7 @@ static char	*get_str(char const *s, int	*pos, char c)
 	return (str);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_ms(char const *s)
 {
 	char	**arr;
 	int		count;
@@ -63,7 +63,7 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return (NULL);
-	count = count_str(s, c);
+	count = count_str_ms(s);
 	arr = malloc(sizeof(char *) * (count + 1));
 	if (!arr)
 		return (NULL);
@@ -71,7 +71,7 @@ char	**ft_split(char const *s, char c)
 	pos = 0;
 	while (i < count)
 	{
-		arr[i] = get_str(s, &pos, c);
+		arr[i] = get_str_ms(s, &pos);
 		i++;
 	}
 	arr[i] = 0;

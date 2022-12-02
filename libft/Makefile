@@ -6,7 +6,7 @@
 #    By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/20 04:19:24 by anastacia         #+#    #+#              #
-#    Updated: 2022/11/29 18:18:37 by anastacia        ###   ########.fr        #
+#    Updated: 2022/12/02 16:38:25 by anastacia        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC = ft_isalpha ft_isdigit ft_isalnum ft_isascii\
 	  ft_putstr_fd ft_putendl_fd ft_putnbr_fd\
 	  ft_lstnew ft_lstadd_front ft_lstsize\
 	  ft_lstlast ft_lstadd_back ft_lstdelone\
-	  ft_lstclear ft_lstiter ft_lstmap\
+	  ft_lstclear ft_lstiter ft_lstmap ft_realloc ft_whitespace\
 
 CC = gcc
 RM = rm -f
