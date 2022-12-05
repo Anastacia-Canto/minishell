@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/05 16:08:04 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:39:38 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@
 # include <readline/history.h>
 # include "libft/libft.h"
 
-typedef struct s_data
-{
-	t_input			*input;
-}	t_data;
-
-t_data	*data(void);
 void	break_line(char *line);
 void	check_exit(char *line);
 void	print_and_free_tokens(char **tokens);
