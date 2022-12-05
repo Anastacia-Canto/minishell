@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/04 18:44:59 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/05 16:08:04 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,15 @@
 # include <readline/history.h>
 # include "libft/libft.h"
 
-typedef struct s_input
-{
-	char	*src;
-	int		size;
-	int		pos;
-}	t_input;
-
 typedef struct s_data
 {
-	t_input	*input;
-	t_list	*tokens;
+	t_input			*input;
 }	t_data;
 
 t_data	*data(void);
-void	init_data(void);
-void	break_line(char *line);
 void	break_line(char *line);
 void	check_exit(char *line);
+void	print_and_free_tokens(char **tokens);
 //split for whitespaces
 char	**ft_split_ms(char const *s);
 char	*get_str_ms(char const *s, int	*pos);

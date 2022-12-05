@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/04 18:52:45 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/05 16:04:26 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	break_line(char *line)
 {
+	char	**tokens;
+
 	check_exit(line);
-	init_data();
-	data()->input->src = ft_strdup(line);
-	data()->input->size = ft_strlen(data()->input->src);
-	data()->input->pos = 0;
-	if (!data()->input->src)
-		return ;
-	printf("%s\n", data()->input->src);
+	tokens = ft_split_ms(line);
+	print_and_free_tokens(tokens);
 }
