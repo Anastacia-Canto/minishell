@@ -2,3 +2,4 @@ resource.txt
 minishell
 *.o
 *.a
+.vscode

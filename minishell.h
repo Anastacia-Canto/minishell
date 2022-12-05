@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/02 16:48:39 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/04 18:44:59 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,23 @@
 # include <readline/history.h>
 # include "libft/libft.h"
 
-typedef struct s_lst
+typedef struct s_input
 {
-	char			*content;
-	struct s_lst	*next;
-}	t_lst;
+	char	*src;
+	int		size;
+	int		pos;
+}	t_input;
 
-// typedef struct s_data
-// {
-// 	t_lst	*words;
-// }	t_data;
+typedef struct s_data
+{
+	t_input	*input;
+	t_list	*tokens;
+}	t_data;
 
-// t_data	*data(void);
+t_data	*data(void);
+void	init_data(void);
 void	break_line(char *line);
-void	print_list(t_lst *list);
 void	break_line(char *line);
-void	free_list(t_lst **list);
-t_lst	*new_node(char *content);
-t_lst	*add_back(t_lst **list, t_lst *new);
 void	check_exit(char *line);
 //split for whitespaces
 char	**ft_split_ms(char const *s);

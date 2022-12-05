@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/02 16:43:10 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/04 18:52:45 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 
 void	break_line(char *line)
 {
-	char	**words;
-	int		i;
-
 	check_exit(line);
-	words = ft_split_ms(line);
-	i = 0;
-	while (words[i])
-	{
-		printf("%s\n", words[i]);
-		free (words[i]);
-		i++;
-	}
-	free (words);
+	init_data();
+	data()->input->src = ft_strdup(line);
+	data()->input->size = ft_strlen(data()->input->src);
+	data()->input->pos = 0;
+	if (!data()->input->src)
+		return ;
+	printf("%s\n", data()->input->src);
 }
