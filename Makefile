@@ -6,7 +6,7 @@
 #    By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2022/12/05 16:04:50 by ansilva-         ###   ########.fr        #
+#    Updated: 2022/12/06 15:21:14 by ansilva-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = minishell
 SRC = main\
 	  src/lexer\
 	  utils/utils\
-	  utils/ft_split_ms\
+	  builtins/echo\
 
 LIBFT = libft/libft.a
 LIBFT_PATH = ./libft

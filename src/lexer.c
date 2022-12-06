@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/05 16:04:26 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/06 15:17:45 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,21 @@
 
 void	break_line(char *line)
 {
-	char	**tokens;
+	char	*new_line;
 
 	check_exit(line);
-	tokens = ft_split_ms(line);
-	print_and_free_tokens(tokens);
+	new_line = fix_spaces(line);
+	to_builtins(new_line);
+	free (new_line);
 }
+
+void	to_builtins(char *line)
+{
+	if (!line)
+		return ;
+	if (!ft_strncmp(line, "echo", 4))
+		ft_echo(line);
+}
+
+
+
