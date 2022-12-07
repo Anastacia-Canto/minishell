@@ -6,7 +6,7 @@
 #    By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2022/12/07 12:09:21 by ansilva-         ###   ########.fr        #
+#    Updated: 2022/12/07 14:21:08 by ansilva-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC = main\
 	  utils/utils\
 	  builtins/echo\
 	  builtins/exit\
+	  builtins/env\
 
 LIBFT = libft/libft.a
 LIBFT_PATH = ./libft

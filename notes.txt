@@ -2,7 +2,5 @@ BUILTINS
 
 ECHO 
 - lidar com as aspas
-- lidar com *
-
-EXIT 
-ta todo errado
+- lidar com * (bonus?)
+- implementar expansao das envs

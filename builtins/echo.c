@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/07 12:01:22 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:50:09 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,38 @@
 
 int ft_echo(char *line)
 {
-    int i;
-    int flag;
+    size_t i;
 
-    if (!line)
-        return (2);
-    flag = 0;
     i = 5;
-    if (line[i] == '-' && line[i + 1] == 'n')
+    if (line[i] && i < ft_strlen(line))
     {
-        flag = 1;
-        i = 8;
+        check_option(line, &i);
+        while (line[i])
+        {
+            if (line[i] == '$')
+            {
+                if (ft_expand_env(line, &i) == 1)
+                    break ;
+            }
+            if (line[i])
+                printf("%c", line[i++]);
+        }
     }
-    while (line[i])
-        printf("%c", line[i++]);
-    if (!flag)
+    if (check_option(line, NULL) == -1)
         printf("\n");
     return (0);
 }
 
+int check_option(char *line, size_t *pos)
+{
+    int i;
+
+    i = 5;
+    if (line[i] && line[i + 1] && line[i] == '-' && line[i + 1] == 'n')
+    {
+        if (*pos)
+            *pos = 8;
+        return (0);
+    }
+    return (-1);
+}
