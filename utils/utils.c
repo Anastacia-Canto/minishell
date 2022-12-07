@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:38:19 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/06 15:10:37 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/07 12:24:01 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,6 @@
 
 // 	return (&data);
 // }
-
-void	check_exit(char *line)
-{
-	if (!ft_strncmp(line, "exit", 4))
-	{
-		free (line);
-		rl_clear_history();
-		exit(EXIT_SUCCESS);
-	}
-}
 
 char	*fix_spaces(char *line)
 {

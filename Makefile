@@ -6,7 +6,7 @@
 #    By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2022/12/06 15:21:14 by ansilva-         ###   ########.fr        #
+#    Updated: 2022/12/07 12:09:21 by ansilva-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC = main\
 	  src/lexer\
 	  utils/utils\
 	  builtins/echo\
+	  builtins/exit\
 
 LIBFT = libft/libft.a
 LIBFT_PATH = ./libft

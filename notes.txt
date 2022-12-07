@@ -1,0 +1,8 @@
+BUILTINS  
+
+ECHO 
+- lidar com as aspas
+- lidar com *
+
+EXIT 
+ta todo errado
