@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/07 16:50:09 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/08 08:38:18 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int ft_echo(char *line)
     size_t i;
 
     i = 5;
-    if (line[i] && i < ft_strlen(line))
+    if (i < ft_strlen(line) && line[i])
     {
         check_option(line, &i);
         while (line[i])
@@ -31,7 +31,7 @@ int ft_echo(char *line)
                 printf("%c", line[i++]);
         }
     }
-    if (check_option(line, NULL) == -1)
+    if (i >= ft_strlen(line) || check_option(line, NULL) == -1)
         printf("\n");
     return (0);
 }

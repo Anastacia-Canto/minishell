@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 08:42:12 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/05 16:02:16 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/08 08:42:27 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ int	main(int argc, char **argv, char **env)
 	{
 		add_history(line);
 		break_line(line);
-		free (line);
 		line = readline("[minishell][:)]~> ");
 	}
 	rl_clear_history();
-	free (line);
 	return (0);
 }
