@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+         #
+#    By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2022/12/07 14:21:08 by ansilva-         ###   ########.fr        #
+#    Updated: 2022/12/09 17:21:10 by anastacia        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = main\
 	  builtins/echo\
 	  builtins/exit\
 	  builtins/env\
+	  builtins/pwd\
 
 LIBFT = libft/libft.a
 LIBFT_PATH = ./libft

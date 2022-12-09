@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/09 17:25:12 by anastacia        ###   ########.fr       */
+/*   Created: 2022/12/09 17:21:25 by anastacia         #+#    #+#             */
+/*   Updated: 2022/12/09 17:26:15 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	break_line(char *line)
+int	ft_pwd(void)
 {
-	char	*new_line;
+	char	*path;
 
-	new_line = fix_spaces(line);
-	free (line);
-	to_builtins(new_line);
-	free (new_line);
+	path = NULL;
+	path = getcwd(path, 0);
+	if (!path)
+		return (1);
+	printf("%s\n", path);
+	free (path);
+	return (0);
 }
-
-void	to_builtins(char *line)
-{
-	if (!ft_strncmp(line, "echo", 4))
-		ft_echo(line);
-	else if (!ft_strncmp(line, "pwd", 3))
-		ft_pwd();
-	else if (!ft_strncmp(line, "exit", 4))
-		ft_exit(line);
-}
-
-
-
