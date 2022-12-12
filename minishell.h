@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/09 17:24:25 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/12 12:06:59 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	*fix_spaces(char *line);
 //Builtins
 void	to_builtins(char *line);
 int		ft_echo(char *line);
-int		check_option(char *line, size_t *pos);
 int		ft_exit(char *line);
 int		ft_expand_env(char *line, size_t *pos);
 int		ft_pwd(void);
