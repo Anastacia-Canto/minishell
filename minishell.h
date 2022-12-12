@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/12 12:06:59 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/12 12:20:27 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ int		ft_echo(char *line);
 int		ft_exit(char *line);
 int		ft_expand_env(char *line, size_t *pos);
 int		ft_pwd(void);
+int		ft_cd(char *line);
 #endif

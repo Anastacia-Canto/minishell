@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/12 12:20:12 by ansilva-         ###   ########.fr       */
+/*   Created: 2022/12/12 12:19:09 by ansilva-          #+#    #+#             */
+/*   Updated: 2022/12/12 12:24:36 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	break_line(char *line)
+int	ft_cd(char *line)
 {
-	char	*new_line;
+	size_t	i;
+	char	*path;
 
-	new_line = fix_spaces(line);
-	free (line);
-	to_builtins(new_line);
-	free (new_line);
+	i = 3;
+	if (i < ft_strlen(line))
+	{
+		path = ft_substr(line, i, ft_strlen(line) - i + 1);
+		chdir(path);
+		free (path);
+	}
+	return (0);
 }
-
-void	to_builtins(char *line)
-{
-	if (!ft_strncmp(line, "echo", 4))
-		ft_echo(line);
-	else if (!ft_strncmp(line, "pwd", 3))
-		ft_pwd();
-	else if (!ft_strncmp(line, "cd", 2))
-		ft_cd(line);
-	else if (!ft_strncmp(line, "exit", 4))
-		ft_exit(line);
-}
-
-
-
