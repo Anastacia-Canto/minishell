@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/13 14:52:21 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/13 17:40:01 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	to_builtins(char *line)
 		ft_pwd();
 	else if (!ft_strncmp(line, "cd", 2))
 		ft_cd(line);
+	else if (!ft_strncmp(line, "env", 3))
+		print_envs(data()->env);
 	else if (!ft_strncmp(line, "exit", 4))
 		ft_exit(line);
 }

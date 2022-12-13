@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/13 15:58:30 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/13 17:59:23 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,19 @@ int	ft_echo(char *line)
 		printf("%s: command not found\n", line);
 		return (1);
 	}
-	else if (ft_strlen(line) > 8 && !ft_strncmp(line, "echo -n ", 8))
-		printer(line, 8);
-	else if (ft_strncmp(line, "echo -n ", 8) && ft_strncmp(line, "echo -n", 7))
+	if (ft_strlen(line) >= 7 && !ft_strncmp(line, "echo -n", 7))
+	{
+		if (ft_strlen(line) >= 8 && line[7] != ' ')
+		{
+			printer(line, 5);
+			printf("\n");
+		}
+		else if (ft_strlen(line) == 7 || (ft_strlen(line) == 8 && line[7] == ' '))
+			return (1);
+		else
+			printer(line, 8);
+	}
+	else
 	{
 		printer(line, 5);
 		printf("\n");

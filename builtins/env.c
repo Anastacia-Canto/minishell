@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:21:17 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/09 15:07:03 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/13 17:41:08 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,15 @@ int	ft_expand_env(char *line, size_t *pos)
 	printf("%s", value);
 	*pos = end;
 	return (0);
+}
+
+void	print_envs(char **env)
+{
+	int	i;
+
+	if (!env || !*env)
+		return ;
+	i = 0;
+	while (env[i])
+		printf("%s\n", env[i++]);
 }

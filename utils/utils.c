@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:38:19 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/07 13:06:08 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:13:53 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// t_data	*data(void)
-// {
-// 	static	*data;
+t_data	*data(void)
+{
+	static t_data	data;
 
-// 	return (&data);
-// }
+	return (&data);
+}
 
 char	*fix_spaces(char *line)
 {
@@ -54,4 +54,14 @@ char	*fix_spaces(char *line)
 	}
 	new_line[j] = '\0';
 	return (new_line);
+}
+
+void	free_array(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		free (arr[i++]);
+	free (arr);
 }
