@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/13 14:40:35 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/13 15:33:55 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*fix_spaces(char *line);
 //Builtins
 void	to_builtins(char *line);
 int		ft_echo(char *line);
+void	printer(char *line, size_t pos);
 void	ft_exit(char *line);
 void	free_exit_args(char **args);
 int		check_exit_args(char **args);
