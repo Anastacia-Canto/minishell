@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/15 13:03:48 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:49:16 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int		check_num(char *arg);
 int		check_exit_args(char **args, size_t len);
 // ------------------- env-----------------------
 int		ft_expand_env(char *line, size_t *pos);
-void	print_envs(char **env);
+void	print_envs(char **env, char *line);
 // ------------------- pwd-----------------------
-int		ft_pwd(void);
+int		ft_pwd(char *line);
 // ------------------- cd------------------------
 int		ft_cd(char *line);
 #endif

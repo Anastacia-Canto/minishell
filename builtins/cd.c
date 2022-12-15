@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:19:09 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/15 15:30:33 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:39:27 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_cd(char *line)
 	char	*user;
 
 	i = 3;
+	if (check_cmd_name(line, "cd ", 3))
+		return (1);
 	if (i < ft_strlen(line))
 	{
 		path = ft_substr(line, i, ft_strlen(line) - i + 1);

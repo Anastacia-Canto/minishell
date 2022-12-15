@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 17:21:25 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/09 17:26:15 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/15 15:47:00 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_pwd(void)
+int	ft_pwd(char *line)
 {
 	char	*path;
 
+	if (check_cmd_name(line, "cd ", 3))
+		return (1);
 	path = NULL;
 	path = getcwd(path, 0);
 	if (!path)

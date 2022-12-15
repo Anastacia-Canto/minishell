@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:21:17 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/13 17:41:08 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/15 15:49:44 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ int	ft_expand_env(char *line, size_t *pos)
 	return (0);
 }
 
-void	print_envs(char **env)
+void	print_envs(char **env, char *line)
 {
 	int	i;
 
 	if (!env || !*env)
+		return ;
+	if (check_cmd_name(line, "env ", 4))
 		return ;
 	i = 0;
 	while (env[i])
