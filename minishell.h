@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/15 15:49:16 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/15 15:57:35 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,7 @@ void	print_envs(char **env, char *line);
 int		ft_pwd(char *line);
 // ------------------- cd------------------------
 int		ft_cd(char *line);
+// -------------------export---------------------
+int		ft_export(char *line);
+void	check_export_args(char **args, size_t len);
 #endif
