@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/13 17:59:23 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/15 12:23:34 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 int	ft_echo(char *line)
 {
-	if (ft_strncmp(line, "echo ", 5) && ft_strlen(line) >= 5)
-	{
-		printf("%s: command not found\n", line);
+	if (check_cmd_name(line, "echo ", 5))
 		return (1);
-	}
 	if (ft_strlen(line) >= 7 && !ft_strncmp(line, "echo -n", 7))
 	{
 		if (ft_strlen(line) >= 8 && line[7] != ' ')

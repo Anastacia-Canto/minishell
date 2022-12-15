@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:38:19 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/13 17:13:53 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/15 12:51:46 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,21 @@ void	free_array(char **arr)
 	while (arr[i])
 		free (arr[i++]);
 	free (arr);
+}
+
+int	check_cmd_name(char *line, char *name, size_t len)
+{
+	if (ft_strncmp(line, name, len) && ft_strlen(line) >= len)
+		return (printf("%s: command not found\n", line));
+	return (0);
+}
+
+int	array_len(char **arr)
+{
+	int	len;
+
+	len = 0;
+	while (arr[len])
+		len++;
+	return (len);
 }

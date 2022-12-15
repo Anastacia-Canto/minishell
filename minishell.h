@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/13 17:41:02 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/15 13:03:48 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,17 @@ t_data	*data(void);
 void	break_line(char *line);
 char	*fix_spaces(char *line);
 void	free_array(char **arr);
+int		check_cmd_name(char *line, char *name, size_t len);
+int		array_len(char **arr);
 //Builtins
 void	to_builtins(char *line);
 // ------------------- echo----------------------
 int		ft_echo(char *line);
 void	printer(char *line, size_t pos);
 // ------------------- exit----------------------
-void	ft_exit(char *line);
-int		check_exit_args(char **args);
+int		ft_exit(char *line);
+int		check_num(char *arg);
+int		check_exit_args(char **args, size_t len);
 // ------------------- env-----------------------
 int		ft_expand_env(char *line, size_t *pos);
 void	print_envs(char **env);

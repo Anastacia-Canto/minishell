@@ -3,4 +3,6 @@ BUILTINS
 ECHO 
 - lidar com as aspas
 - lidar com * (bonus?)
-- implementar expansao das envs
+
+exit
+- alinhar retornos
