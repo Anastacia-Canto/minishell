@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/16 13:54:35 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/16 15:31:27 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,51 @@
 
 int	ft_echo(char *line)
 {
+	char	*str;
+
 	if (check_cmd_name(line, "echo ", 5))
-		return (1);
-	if (ft_strlen(line) >= 7 && !ft_strncmp(line, "echo -n", 7))
+		return (127);
+	str = ft_substr(line, 5, ft_strlen(line) - 4);
+	if (!str)
 	{
-		if (ft_strlen(line) >= 8 && line[7] != ' ')
-		{
-			printer(line, 5);
-			printf("\n");
-		}
-		else if (ft_strlen(line) == 7
-			|| (ft_strlen(line) == 8 && line[7] == ' '))
-			return (1);
-		else
-			printer(line, 8);
-	}
-	else
-	{
-		printer(line, 5);
 		printf("\n");
+		return (0);
 	}
+	printer(str);
+	printf("\n");
+	free (str);
 	return (0);
 }
 
-void	printer(char *line, size_t pos)
+int	ft_echo_n(char *line)
 {
-	if (pos >= ft_strlen(line))
-		return ;
+	char	*str;
+
+	if (check_cmd_name(line, "echo -n ", 8))
+		return (127);
+	str = ft_substr(line, 8, ft_strlen(line) - 7);
+	if (!str)
+		return (0);
+	printer(str);
+	free (str);
+	return (0);
+}
+
+void	printer(char *line)
+{
+	size_t	pos;
+
+	pos = 0;
 	while (line[pos])
 	{
 		if (line[pos] == '$')
 		{
+			if (line[pos + 1] == '?')
+			{
+				printf("%d", data()->exit_status);
+				pos += 2;
+				continue ;
+			}
 			if (ft_expand_env(line, &pos) == 1)
 				break ;
 		}

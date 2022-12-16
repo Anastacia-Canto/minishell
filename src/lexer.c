@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/16 13:53:53 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/16 15:47:57 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,18 @@ void	break_line(char *line)
 
 void	to_builtins(char *line)
 {
-	if (!ft_strncmp(line, "echo", 4))
-		ft_echo(line);
+	if (!ft_strncmp(line, "echo -n", 7))
+		data()->exit_status = ft_echo_n(line);
+	else if (!ft_strncmp(line, "echo", 4))
+		data()->exit_status = ft_echo(line);
 	else if (!ft_strncmp(line, "pwd", 3))
-		ft_pwd(line);
+		data()->exit_status = ft_pwd(line);
 	else if (!ft_strncmp(line, "cd", 2))
-		ft_cd(line);
+		data()->exit_status = ft_cd(line);
 	else if (!ft_strncmp(line, "env", 3))
-		print_envs(data()->env, line);
+		data()->exit_status = print_envs(data()->env, line);
 	else if (!ft_strncmp(line, "exit", 4))
-		ft_exit(line);
+		data()->exit_status = ft_exit(line);
 	else if (!ft_strncmp(line, "export", 6))
-		ft_export(line);
+		data()->exit_status = ft_export(line);
 }
