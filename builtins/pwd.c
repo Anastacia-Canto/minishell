@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 17:21:25 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/15 15:47:00 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:44:02 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_pwd(char *line)
 {
 	char	*path;
 
-	if (check_cmd_name(line, "cd ", 3))
+	if (check_cmd_name(line, "pwd ", 4))
 		return (1);
 	path = NULL;
 	path = getcwd(path, 0);

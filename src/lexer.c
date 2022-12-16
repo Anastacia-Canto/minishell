@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/15 15:57:51 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:53:53 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	to_builtins(char *line)
 		print_envs(data()->env, line);
 	else if (!ft_strncmp(line, "exit", 4))
 		ft_exit(line);
-	else if (!ft_strncmp(line, "export", 4))
+	else if (!ft_strncmp(line, "export", 6))
 		ft_export(line);
 }

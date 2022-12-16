@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/15 12:23:34 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:54:35 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	ft_echo(char *line)
 			printer(line, 5);
 			printf("\n");
 		}
-		else if (ft_strlen(line) == 7 || (ft_strlen(line) == 8 && line[7] == ' '))
+		else if (ft_strlen(line) == 7
+			|| (ft_strlen(line) == 8 && line[7] == ' '))
 			return (1);
 		else
 			printer(line, 8);

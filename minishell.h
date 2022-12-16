@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/15 15:57:35 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/16 13:41:47 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_data
 {
 	char	**env;
+	char	*prompt;
 }	t_data;
 
 t_data	*data(void);
@@ -47,6 +48,7 @@ void	print_envs(char **env, char *line);
 int		ft_pwd(char *line);
 // ------------------- cd------------------------
 int		ft_cd(char *line);
+void	change_prompt(void);
 // -------------------export---------------------
 int		ft_export(char *line);
 void	check_export_args(char **args, size_t len);

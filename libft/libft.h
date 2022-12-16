@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 04:15:08 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/02 16:38:08 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/16 14:11:34 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-
-/*Parts 1 and 2*/
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
@@ -54,9 +52,6 @@ int		ft_whitespace(char c);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-
-
-/*BONUS*/
 
 typedef struct s_list
 {

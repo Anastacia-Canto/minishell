@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 04:21:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/08/20 05:21:25 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/16 14:05:29 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ static int	ft_isspace(char c)
 
 int	ft_atoi(const char *str)
 {
-	int				nb;
-	/*unsigned char	*s;*/
-	int				i;
-	int				minus;
+	int	nb;
+	int	i;
+	int	minus;
 
-	/*s = (unsigned char *)str;*/
 	minus = 1;
 	nb = 0;
 	i = 0;
