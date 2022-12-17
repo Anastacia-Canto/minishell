@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/17 18:31:34 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/17 19:21:24 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ char	*fix_spaces(char *line);
 void	free_array(char **arr);
 int		check_cmd_name(char *line, char *name, size_t len);
 int		array_len(char **arr);
-//Export_utils
-char	**ft_expo_list(char **ex_list);
+//utils2
+char	**ft_list(char **ex_list);
 void	ft_alphabetic(char **copy);
 void	ft_swap_alpha(char **copy, size_t i, size_t j);
+void	init_values(char **env);
 //Builtins
 void	to_builtins(char *line);
 // ------------------- echo----------------------

@@ -1,16 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_utils.c                                     :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 17:12:33 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/17 17:31:58 by sde-mull         ###   ########.fr       */
+/*   Created: 2022/12/17 19:18:00 by sde-mull          #+#    #+#             */
+/*   Updated: 2022/12/17 19:25:21 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	init_values(char **env)
+{
+	data()->env = ft_list(env);
+	data()->expo = ft_list(env);
+	ft_alphabetic(data()->expo);
+	data()->prompt = NULL;
+	data()->exit_status = 0;
+}
 
 void	ft_swap_alpha(char **copy, size_t i, size_t j)
 {
@@ -50,7 +59,7 @@ void	ft_alphabetic(char **copy)
 	}
 }
 
-char	**ft_expo_list(char **ex_list)
+char	**ft_list(char **ex_list)
 {
 	size_t len;
 	char 	**copy;
@@ -67,6 +76,5 @@ char	**ft_expo_list(char **ex_list)
 		index++;
 	}
 	copy[index] = 0;
-	ft_alphabetic(copy);
 	return (copy);
 }
