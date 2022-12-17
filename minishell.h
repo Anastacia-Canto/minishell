@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/16 15:42:31 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/17 18:31:34 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_data
 	char	**env;
 	char	*prompt;
 	int		exit_status;
+	char 	**expo;
 }	t_data;
 
 t_data	*data(void);
@@ -33,6 +34,10 @@ char	*fix_spaces(char *line);
 void	free_array(char **arr);
 int		check_cmd_name(char *line, char *name, size_t len);
 int		array_len(char **arr);
+//Export_utils
+char	**ft_expo_list(char **ex_list);
+void	ft_alphabetic(char **copy);
+void	ft_swap_alpha(char **copy, size_t i, size_t j);
 //Builtins
 void	to_builtins(char *line);
 // ------------------- echo----------------------
@@ -54,4 +59,6 @@ void	change_prompt(void);
 // -------------------export---------------------
 int		ft_export(char *line);
 int		check_export_args(char **args, size_t len);
+void	print_export(void);
+void	add_export(char *str);
 #endif
