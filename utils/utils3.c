@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 08:42:12 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/18 02:05:10 by sde-mull         ###   ########.fr       */
+/*   Created: 2022/12/18 00:34:16 by sde-mull          #+#    #+#             */
+/*   Updated: 2022/12/18 01:16:18 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+int	ft_strcmp(char *str, char *str2)
 {
-	char	*line;
+	int index;
 
-	(void)argc;
-	(void)argv;
-	init_values(env);
-	if (env)
+	index = 0;
+	if (!str || !str2)
+		return (0);
+	while (str[index] && str2[index])
 	{
-		change_prompt();
-		line = readline(data()->prompt);
-		while (line)
-		{
-			add_history(line);
-			break_line(line);
-			line = readline(data()->prompt);
-		}
-		free (data()->prompt);
-		rl_clear_history();
+		if (str[index] != str2[index])
+			return (1);
+		index++;
 	}
 	return (0);
 }

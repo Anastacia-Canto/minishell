@@ -6,11 +6,11 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:18:00 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/17 19:25:21 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/18 01:14:45 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	init_values(char **env)
 {
@@ -77,4 +77,26 @@ char	**ft_list(char **ex_list)
 	}
 	copy[index] = 0;
 	return (copy);
+}
+
+void	add_to_list(char *str, int check, char **lista)
+{
+	int		len;
+	char 	**copy;
+	int		index;
+	
+	index = 0;
+	if (check_value_list(str, lista))
+				return ;
+	len = array_len(lista) + 2;
+	copy = malloc(sizeof(char *) * len);
+	while (lista[index])
+	{
+		copy[index] = ft_strdup(lista[index]);
+		index++;
+	}
+	copy[index] = ft_strdup(str);
+	copy[index + 1] = 0;
+	check_list(check, copy);
+	free_array(lista);
 }
