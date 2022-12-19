@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/19 13:14:15 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:54:29 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_data
 t_data	*data(void);
 // Utils
 void	break_line(char *line);
-char	*fix_spaces(char *line);
+char	*adjust_line(char *line);
 void	free_array(char **arr);
 int		check_cmd_name(char *line, char *name, size_t len);
 int		array_len(char **arr);

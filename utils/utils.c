@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:38:19 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/16 14:03:41 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/19 17:54:51 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,27 @@ t_data	*data(void)
 	return (&data);
 }
 
-char	*fix_spaces(char *line)
+char	*adjust_line(char *line)
 {
 	char	*new_line;
 	int		i;
 	int		j;
-	int		flag;
 
 	new_line = malloc(sizeof(char) * (ft_strlen(line) + 1));
 	if (!line || !new_line)
 		return (NULL);
-	flag = 0;
 	i = 0;
 	j = 0;
+	while (line[i] && ft_whitespace(line[i]))
+		i++;
+	while (line[i] && !ft_whitespace(line[i]))
+		new_line[j++] = line[i++];
+	if (line[i])
+		new_line[j++] = line[i++];
+	while (line[i] && ft_whitespace(line[i]))
+		i++;
 	while (line[i])
-	{
-		while (line[i] && ft_whitespace(line[i]))
-		{
-			if (flag == 1)
-			{
-				new_line[j] = line[i];
-				j++;
-				flag = 0;
-			}
-			i++;
-		}
-		while (line[i] && !ft_whitespace(line[i]))
-		{
-			new_line[j] = line[i];
-			j++;
-			i++;
-			flag = 1;
-		}
-	}
+		new_line[j++] = line[i++];
 	new_line[j] = '\0';
 	return (new_line);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:18:00 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/18 01:14:45 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:28:02 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void	ft_alphabetic(char **copy)
 
 char	**ft_list(char **ex_list)
 {
-	size_t len;
-	char 	**copy;
-	size_t index;
-	
+	size_t	len;
+	char	**copy;
+	size_t	index;
+
 	index = 0;
 	len = array_len(ex_list);
 	copy = malloc(sizeof(char *) * len + 1);
@@ -82,12 +82,12 @@ char	**ft_list(char **ex_list)
 void	add_to_list(char *str, int check, char **lista)
 {
 	int		len;
-	char 	**copy;
+	char	**copy;
 	int		index;
-	
+
 	index = 0;
 	if (check_value_list(str, lista))
-				return ;
+		return ;
 	len = array_len(lista) + 2;
 	copy = malloc(sizeof(char *) * len);
 	while (lista[index])

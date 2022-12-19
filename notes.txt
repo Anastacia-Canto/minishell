@@ -4,5 +4,5 @@ ECHO
 - lidar com as aspas
 - lidar com * (bonus?)
 
-exit
-- alinhar retornos
+prompt
+- não tá atualizando quando faz cd

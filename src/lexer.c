@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/16 15:47:57 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/19 17:44:34 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	break_line(char *line)
 {
 	char	*new_line;
 
-	new_line = fix_spaces(line);
+	new_line = adjust_line(line);
 	free (line);
 	to_builtins(new_line);
 	free (new_line);
