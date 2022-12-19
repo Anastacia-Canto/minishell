@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/19 17:54:29 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/19 18:08:07 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	ft_alphabetic(char **copy);
 void	ft_swap_alpha(char **copy, size_t i, size_t j);
 void	init_values(char **env);
 void	add_to_list(char *str, int check, char **lista);
-//Utils3
-int		ft_strcmp(char *str, char *str2);
 //Check
 int		check_value_list(char *str, char **lista);
 void	check_list(int check, char **lista);

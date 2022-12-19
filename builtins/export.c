@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:01 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/18 01:49:07 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/19 18:04:25 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_export(void)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (data()->expo[index])
