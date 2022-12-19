@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/18 01:31:22 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:14:15 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ void	to_builtins(char *line);
 // ------------------- echo----------------------
 int		ft_echo(char *line);
 int		ft_echo_n(char *line);
+void	echo_dollar(char *line, size_t *pos);
 void	printer(char *line);
 // ------------------- exit----------------------
 int		ft_exit(char *line);
 int		check_num(char *arg);
 int		check_exit_args(char **args, size_t len);
 // ------------------- env-----------------------
-int		ft_expand_env(char *line, size_t *pos);
+int		ft_expand_env(char *line, size_t **pos);
 int		print_envs(char **env, char *line);
 // ------------------- pwd-----------------------
 int		ft_pwd(char *line);
