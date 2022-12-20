@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+         #
+#    By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2022/12/19 18:07:31 by anastacia        ###   ########.fr        #
+#    Updated: 2022/12/20 03:10:42 by sde-mull         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = minishell
 
 SRC = main\
 	  src/lexer\
-	  utils/utils utils/utils2 utils/check\
+	  utils/utils utils/utils2 utils/utils3 utils/check\
 	  builtins/echo builtins/exit builtins/env\
 	  builtins/pwd builtins/cd builtins/export\
 

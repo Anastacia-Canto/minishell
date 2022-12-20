@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/19 18:08:07 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/20 03:14:11 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_data
 	char	*prompt;
 	int		exit_status;
 	char 	**expo;
+	int		expo_flag;
 }	t_data;
 
 t_data	*data(void);
@@ -39,7 +40,11 @@ char	**ft_list(char **ex_list);
 void	ft_alphabetic(char **copy);
 void	ft_swap_alpha(char **copy, size_t i, size_t j);
 void	init_values(char **env);
-void	add_to_list(char *str, int check, char **lista);
+char	**add_to_list(char *str, char **lista);
+//Utils3
+int	find_equal(char *str, char *lista_str);
+char	**change_list(char *str, char **lista);
+char	**remove_from_list(char *str, char **lista);
 //Check
 int		check_value_list(char *str, char **lista);
 void	check_list(int check, char **lista);
@@ -67,4 +72,6 @@ void	change_prompt(void);
 int		ft_export(char *line);
 int		check_export_args(char **args, size_t len);
 void	print_export(void);
+void	print_char(char *str);
+void	change_or_add(char *arg);
 #endif

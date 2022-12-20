@@ -6,19 +6,11 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:38:36 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/18 01:59:22 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/20 04:07:41 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	check_list(int check, char **lista)
-{
-	if (check == 1)
-		data()->expo = lista;
-	else if (check == 2)
-		data()->env = lista;
-}
 
 int	check_value_list(char *str, char **lista)
 {
@@ -39,9 +31,13 @@ int	check_str(char *str)
 	int index;
 
 	index = 0;
+	if (str[index] == '=')
+			return (0);
 	while (str[index])
 	{
-		if (!ft_isalnum(str[index]) && str[index] != '_')
+		if (str[index] == '=')
+			return (1);
+		else if (!ft_isalnum(str[index]) && str[index] != '_')
 			return (0);
 		index++;
 	}

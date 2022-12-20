@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:18:00 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/19 17:28:02 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/20 03:05:06 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_values(char **env)
 	ft_alphabetic(data()->expo);
 	data()->prompt = NULL;
 	data()->exit_status = 0;
+	data()->expo_flag = 0;
 }
 
 void	ft_swap_alpha(char **copy, size_t i, size_t j)
@@ -61,10 +62,10 @@ void	ft_alphabetic(char **copy)
 
 char	**ft_list(char **ex_list)
 {
-	size_t	len;
-	char	**copy;
-	size_t	index;
-
+	size_t len;
+	char 	**copy;
+	size_t index;
+	
 	index = 0;
 	len = array_len(ex_list);
 	copy = malloc(sizeof(char *) * len + 1);
@@ -79,17 +80,17 @@ char	**ft_list(char **ex_list)
 	return (copy);
 }
 
-void	add_to_list(char *str, int check, char **lista)
+char	**add_to_list(char *str, char **lista)
 {
 	int		len;
-	char	**copy;
+	char 	**copy;
 	int		index;
-
+	
 	index = 0;
-	if (check_value_list(str, lista))
-		return ;
 	len = array_len(lista) + 2;
 	copy = malloc(sizeof(char *) * len);
+	if (!copy)
+		return (NULL);
 	while (lista[index])
 	{
 		copy[index] = ft_strdup(lista[index]);
@@ -97,6 +98,6 @@ void	add_to_list(char *str, int check, char **lista)
 	}
 	copy[index] = ft_strdup(str);
 	copy[index + 1] = 0;
-	check_list(check, copy);
 	free_array(lista);
+	return (copy);
 }
