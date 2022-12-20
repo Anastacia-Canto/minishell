@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:19:09 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/16 14:39:27 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/20 08:52:12 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_cd(char *line)
 		path = ft_substr(line, i, ft_strlen(line) - i + 1);
 		if (chdir(path) == -1)
 			printf("minishell: cd: %s: No such file or directory\n", path);
+		change_prompt();
 		free (path);
 		return (1);
 	}
