@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:10:03 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/20 18:15:15 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:02:06 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_exit(char *line)
 	if (check_cmd_name(line, "exit ", 5))
 		return (127);
 	args = ft_split(line, ' ');
+	free (line);
 	len = array_len(args);
 	ret = 0;
 	if (check_exit_args(args, len))

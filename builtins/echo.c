@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/20 04:12:35 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:04:48 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_echo(char *line)
 		printf("\n");
 		return (0);
 	}
-	printer(str);
+	args_parser(str);
 	printf("\n");
 	free (str);
 	return (0);
@@ -33,13 +33,17 @@ int	ft_echo(char *line)
 int	ft_echo_n(char *line)
 {
 	char	*str;
+	size_t	i;
 
 	if (check_cmd_name(line, "echo -n ", 8))
 		return (127);
-	str = ft_substr(line, 8, ft_strlen(line) - 7);
+	i = 9;
+	while (line[i] && ft_whitespace(line[i]))
+		i++;
+	str = ft_substr(line, i, ft_strlen(line) - i + 1);
 	if (!str)
 		return (0);
-	printer(str);
+	args_parser(str);
 	free (str);
 	return (0);
 }
@@ -66,6 +70,6 @@ void	echo_dollar(char *line, size_t *pos)
 		*pos += 2;
 		return ;
 	}
-	if (ft_expand_env(line, &pos) == 1)
-		return ;
+	else if (data()->expand)
+		ft_expand_env(line, &pos);
 }

@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/20 08:38:47 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/20 16:28:55 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,14 @@ typedef struct s_data
 	int		exit_status;
 	char	**expo;
 	int		expo_flag;
+	int		expand;
 }	t_data;
+
+typedef struct s_args
+{
+	char			*content;
+	struct s_args	*next;
+}	t_args;
 
 t_data	*data(void);
 // Utils
@@ -56,6 +63,13 @@ int		ft_echo(char *line);
 int		ft_echo_n(char *line);
 void	echo_dollar(char *line, size_t *pos);
 void	printer(char *line);
+int		is_quote(char c);
+void	args_parser(char *line);
+char	*get_arg(char *line, size_t *pos);
+void	clear_list(t_args **list);
+void	print_list(t_args **list);
+t_args	*new_arg(char *content);
+void	add_arg(t_args **lst, t_args *new);
 // ------------------- exit----------------------
 int		ft_exit(char *line);
 int		check_num(char *arg);
