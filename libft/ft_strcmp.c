@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:05:40 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/20 03:56:01 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/20 08:42:53 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strcmp(char *str, char *str2)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	if (!str || !str2)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/20 03:14:11 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/20 08:38:47 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_data
 	char	**env;
 	char	*prompt;
 	int		exit_status;
-	char 	**expo;
+	char	**expo;
 	int		expo_flag;
 }	t_data;
 
@@ -42,12 +42,12 @@ void	ft_swap_alpha(char **copy, size_t i, size_t j);
 void	init_values(char **env);
 char	**add_to_list(char *str, char **lista);
 //Utils3
-int	find_equal(char *str, char *lista_str);
+int		find_equal(char *str, char *lista_str);
 char	**change_list(char *str, char **lista);
 char	**remove_from_list(char *str, char **lista);
 //Check
 int		check_value_list(char *str, char **lista);
-void	check_list(int check, char **lista);
+// void	check_list(int check, char **lista);
 int		check_str(char *str);
 //Builtins
 void	to_builtins(char *line);
