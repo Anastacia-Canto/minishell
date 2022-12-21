@@ -6,129 +6,109 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:17:29 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/20 16:44:20 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/21 17:51:19 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	is_quote(char c)
+int	check_args(char *line)
 {
-	if (c == '\'')
-		return (1);
-	if (c == '\"')
-		return (2);
+	size_t	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (is_quote(line[i]))
+			return (1);
+		i++;
+	}
 	return (0);
 }
 
 void	args_parser(char *line)
 {
-	char	*arg;
-	size_t	pos;
-	t_args	**list;
+	int		i;
 
-	list = NULL;
-	pos = 0;
-	while (pos < ft_strlen(line) && line[pos])
+	if (!check_args(line))
+		split_args(line);
+	else
 	{
-		arg = get_arg(line, &pos);
-		if (arg)
+		i = 0;
+		while (line[i])
 		{
-			add_arg(list, new_arg(arg));
-			free (arg);
+			if (is_quote(line[i]))
+				get_quoted_arg(line, &i);
+			else if (ft_whitespace(line[i]))
+			{
+				while (line[i] && ft_whitespace(line[i]))
+					i++;
+				if (line[i])
+					printf(" ");
+			}
+			else
+				get_arg(line, &i);
 		}
 	}
-	print_list(list);
-	clear_list(list);
 }
 
-void	clear_list(t_args **list)
+void	split_args(char *line)
 {
-	t_args	*temp;
+	int		i;
+	int		len;
+	char	**args;
 
-	if (!list || !*list)
-		return ;
-	while (*list)
+	args = ft_split(line, ' ');
+	len = array_len(args);
+	i = 0;
+	while (i < len -1)
 	{
-		temp = (*list)->next;
-		free (*list);
-		*list = temp;
+		printer(args[i++]);
+		printf(" ");
 	}
+	printer(args[i]);
+	free_array(args);
 }
 
-void	print_list(t_args **list)
+void	get_quoted_arg(char *line, int *pos)
 {
-	t_args	*temp;
+	int		i;
+	char	*arg;
 
-	if (!list || !*list)
-		return ;
-	temp = *list;
-	while (temp)
+	i = *pos + 1;
+	while (line[i] && line[i] != line[*pos])
+		i++;
+	if (i == *pos + 1)
 	{
-		printf("%s\n", temp->content);
-		temp = temp->next;
-	}
-}
-
-char	*get_arg(char *line, size_t *pos)
-{
-	char	quote;
-	size_t	i;
-	char	*str;
-
-	i = *pos;
-	if (is_quote(line[i]))
-	{
-		if (is_quote(line[i]) == 1)
-			data()->expand = 0;
-		quote = line[i++];
-		while (i < ft_strlen(line) && line[i] != quote)
-			i++;
-	}
-	else
-	{
-		while (i < ft_strlen(line) && !ft_whitespace(line[i]) && !is_quote(line[i]))
-			i++;
-	}
-	if (i - (*pos) > 1)
-	{
-		// if (ft_whitespace(line[i]))
-		// 	i++;
-		str = ft_substr(line, *pos, i - (*pos));
 		*pos = i + 1;
-		return (str);
+		return ;
+	}
+	if (line[*pos] == '\'')
+		data()->expand = 0;
+	if (line[i])
+		arg = ft_substr(line, *pos + 1, i - *pos - 1);
+	if (arg)
+	{
+		printer(arg);
+		free (arg);
 	}
 	*pos = i + 1;
-	return (NULL);
+	data()->expand = 1;
 }
 
-t_args	*new_arg(char *content)
+void	get_arg(char *line, int *pos)
 {
-	t_args	*new_node;
+	int		i;
+	char	*arg;
 
-	new_node = (t_args *)malloc(sizeof(t_args));
-	new_node->content = malloc(sizeof(char *));
-	if (new_node == NULL || new_node->content == NULL)
-		return (NULL);
-	new_node->content = content;
-	new_node->next = NULL;
-	return (new_node);
-}
-
-void	add_arg(t_args **lst, t_args *new)
-{
-	t_args	*temp;
-
-	if (lst == NULL)
+	i = *pos;
+	while (line[i] && !ft_whitespace(line[i]) && !is_quote(line[i]))
+		i++;
+	arg = ft_substr(line, *pos, i - *pos);
+	if (arg)
 	{
-		*lst = new;
-		return ;
+		printer(arg);
+		free (arg);
 	}
-	else
-	{
-		temp = *lst;
-		while (temp->next)
-			temp = temp->next;
-		temp->next = new;
-	}
+	*pos = i;
 }

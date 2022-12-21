@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/20 15:04:48 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/21 17:51:37 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,13 @@ void	echo_dollar(char *line, size_t *pos)
 	}
 	else if (data()->expand)
 		ft_expand_env(line, &pos);
+}
+
+int	is_quote(char c)
+{
+	if (c == '\'')
+		return (1);
+	if (c == '\"')
+		return (2);
+	return (0);
 }
