@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 00:34:16 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/20 08:37:58 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/22 03:45:12 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**remove_from_list(char *str, char **lista)
 		return (NULL);
 	while (lista[index2])
 	{
-		if (ft_strcmp(lista[index], str))
+		if (ft_strcmp_expo(lista[index], str))
 			index2++;	
 		copy[index] = ft_strdup(lista[index2]);
 		index++;
@@ -79,4 +79,27 @@ char	**remove_from_list(char *str, char **lista)
 	copy[index] = 0;
 	free_array(lista);
 	return (copy);
+}
+
+int	ft_strcmp_expo(char *str, char *str2)
+{
+	int	index;
+
+	index = 0;
+	if (!str || !str2)
+		return (0);
+	while (str[index] && str2[index])
+	{
+		if (str[index] != str2[index])
+			return (1);
+		else if (str[index] == '=')
+			data()->expo_flag = 1;
+		index++;
+	}
+	if (str[index] == '\0' && str2[index] == '=')
+	{
+		data()->expo_flag = 1;
+		return (1);
+	}
+	return (0);
 }

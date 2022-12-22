@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 18:05:40 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/20 08:42:53 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/22 03:42:01 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "libft.h"
 
 int	ft_strcmp(char *str, char *str2)
 {
@@ -23,14 +23,7 @@ int	ft_strcmp(char *str, char *str2)
 	{
 		if (str[index] != str2[index])
 			return (1);
-		else if (str[index] == '=')
-			data()->expo_flag = 1;
 		index++;
-	}
-	if (str[index] == '\0' && str2[index] == '=')
-	{
-		data()->expo_flag = 1;
-		return (1);
 	}
 	return (0);
 }

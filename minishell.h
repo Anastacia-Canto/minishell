@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/21 17:32:40 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/22 03:44:04 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char	**add_to_list(char *str, char **lista);
 int		find_equal(char *str, char *lista_str);
 char	**change_list(char *str, char **lista);
 char	**remove_from_list(char *str, char **lista);
+int		ft_strcmp_expo(char *str, char *str2);
 //Check
 int		check_value_list(char *str, char **lista);
 // void	check_list(int check, char **lista);
