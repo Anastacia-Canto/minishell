@@ -6,7 +6,7 @@
 #    By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2022/12/23 14:17:24 by anastacia        ###   ########.fr        #
+#    Updated: 2022/12/23 14:50:38 by anastacia        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ $(VERBOSE).SILENT:
 NAME = minishell
 
 SRC = main\
-	  src/lexer src/parser\
+	  src/lexer\
 	  utils/utils utils/utils2 utils/utils3 utils/check\
 	  builtins/echo builtins/echo2 builtins/echo3 builtins/exit builtins/env\
 	  builtins/pwd builtins/cd builtins/export\

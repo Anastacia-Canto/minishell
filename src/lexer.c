@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/23 14:30:13 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/23 15:58:23 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,6 @@ void	break_in_cmd(char *line)
 	}
 	free_array(cmds);
 }
-// void	break_line(char *line)
-// {
-// 	char	*new_line;
-
-// 	new_line = adjust_line(line);
-// 	free (line);
-// 	to_builtins(new_line);
-// 	free (new_line);
-// }
 
 void	to_builtins(char *line)
 {
@@ -55,9 +46,36 @@ void	to_builtins(char *line)
 		data()->exit_status = ft_exit(line);
 	else if (!ft_strncmp(line, "export", 6))
 		data()->exit_status = ft_export(line);
+	else if (!ft_strncmp(line, "./", 2))
+		data()->exit_status = ft_exec(line);
 	else
 	{
 		printf("%s: command not found\n", line);
 		data()->exit_status = 127;
 	}
+}
+
+int	ft_exec(char *line)
+{
+	int		ret;
+	char	*new_line;
+	char	*path;
+	char	**args;
+	size_t	i;
+
+	ret = 0;
+	i = ft_strlen(line);
+	while (line[i] != '/')
+		i--;
+	new_line = ft_substr(line, i + 1, ft_strlen(line) - i + 1);
+	args = ft_split(new_line, ' ');
+	i = 0;
+	while (!(line[i] == '.' && line[i + 1] == 's' && line[i + 2] == 'h'))
+		i++;
+	path = ft_substr(line, 0, i + 3);
+	ret = execve(path, args, data()->env);
+	free (new_line);
+	free (path);
+	free_array(args);
+	return (ret);
 }
