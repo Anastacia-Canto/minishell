@@ -1,8 +1,19 @@
-BUILTINS  
+O que falta: 
+
+UNSET
 
 ECHO 
 - lidar com * (bonus?)
 
 EXEC 
 - como verificar se o path existe?
-- como executar programas?
+- como lidar com a váriável path?
+
+PIPES
+
+REDIRECTIONS
+
+INTERACTIVES
+- ctrl-C displays a new prompt
+- ctrl-D exits the shell
+- ctrl-\ does nothing
