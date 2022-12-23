@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2022/12/22 03:45:28 by sde-mull         ###   ########.fr        #
+#    Updated: 2022/12/23 13:55:39 by anastacia        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = minishell
 SRC = main\
 	  src/lexer\
 	  utils/utils utils/utils2 utils/utils3 utils/check\
-	  builtins/echo builtins/echo2 builtins/exit builtins/env\
+	  builtins/echo builtins/echo2 builtins/echo3 builtins/exit builtins/env\
 	  builtins/pwd builtins/cd builtins/export\
 
 LIBFT = libft/libft.a

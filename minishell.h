@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/22 03:44:04 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/23 12:37:27 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	echo_dollar(char *line, size_t *pos);
 void	printer(char *line);
 int		is_quote(char c);
 void	args_parser(char *line);
+int		check_end_quote(char *line, int *pos);
 int		check_args(char *line);
 void	split_args(char *line);
 void	get_quoted_arg(char *line, int *pos);
