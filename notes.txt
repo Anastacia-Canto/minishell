@@ -1,8 +1,8 @@
 BUILTINS  
 
 ECHO 
-- lidar com as aspas
 - lidar com * (bonus?)
 
-prompt
-- não tá atualizando quando faz cd
+EXEC 
+- como verificar se o path existe?
+- como executar programas?

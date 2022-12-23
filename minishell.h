@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/23 15:00:46 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/23 16:43:38 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_args
 
 t_data	*data(void);
 int		ft_exec(char *line);
+int		exec_progm(char *line);
 //Lexer
 void	break_in_cmd(char *line);
 void	to_builtins(char *line);
