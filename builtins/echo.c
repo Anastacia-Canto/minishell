@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/21 17:51:37 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/23 14:14:54 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_echo_n(char *line)
 
 	if (check_cmd_name(line, "echo -n ", 8))
 		return (127);
-	i = 9;
+	i = 8;
 	while (line[i] && ft_whitespace(line[i]))
 		i++;
 	str = ft_substr(line, i, ft_strlen(line) - i + 1);

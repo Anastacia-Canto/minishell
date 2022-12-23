@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/20 03:03:00 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/23 13:59:36 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@ void	to_builtins(char *line)
 	else if (!ft_strncmp(line, "export", 6))
 		data()->exit_status = ft_export(line);
 	else
+	{
+		printf("%s: command not found\n", line);
 		data()->exit_status = 127;
+	}
 }
