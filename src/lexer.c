@@ -6,21 +6,38 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/23 13:59:36 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/23 14:30:13 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	break_line(char *line)
+void	break_in_cmd(char *line)
 {
-	char	*new_line;
+	char	*adjusted_line;
+	char	**cmds;
+	int		i;
 
-	new_line = adjust_line(line);
+	cmds = ft_split(line, '|');
 	free (line);
-	to_builtins(new_line);
-	free (new_line);
+	i = 0;
+	while (cmds[i])
+	{
+		adjusted_line = adjust_line(cmds[i++]);
+		to_builtins(adjusted_line);
+		free (adjusted_line);
+	}
+	free_array(cmds);
 }
+// void	break_line(char *line)
+// {
+// 	char	*new_line;
+
+// 	new_line = adjust_line(line);
+// 	free (line);
+// 	to_builtins(new_line);
+// 	free (new_line);
+// }
 
 void	to_builtins(char *line)
 {

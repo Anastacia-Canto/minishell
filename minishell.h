@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/23 14:12:13 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/23 14:24:24 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ typedef struct s_args
 }	t_args;
 
 t_data	*data(void);
+//Lexer
+// void	break_line(char *line);
+void	break_in_cmd(char *line);
+void	to_builtins(char *line);
 // Utils
-void	break_line(char *line);
 char	*adjust_line(char *line);
 void	free_array(char **arr);
 int		check_cmd_name(char *line, char *name, size_t len);
@@ -57,8 +60,6 @@ int		ft_strcmp_expo(char *str, char *str2);
 int		check_value_list(char *str, char **lista);
 // void	check_list(int check, char **lista);
 int		check_str(char *str);
-//Builtins
-void	to_builtins(char *line);
 // ------------------- echo----------------------
 int		ft_echo(char *line);
 int		ft_echo_n(char *line);
