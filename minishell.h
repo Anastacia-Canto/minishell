@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/23 16:43:38 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/24 17:16:09 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,5 @@ int		ft_export(char *line);
 int		check_export_args(char **args, size_t len);
 void	print_export(void);
 void	print_char(char *str);
-void	change_or_add(char *arg);
+void	change_or_add(char *arg, char ***str);
 #endif

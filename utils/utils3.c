@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 00:34:16 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/22 03:45:12 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/24 17:15:08 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,10 @@ int	ft_strcmp_expo(char *str, char *str2)
 		if (str[index] != str2[index])
 			return (1);
 		else if (str[index] == '=')
-			data()->expo_flag = 1;
+			return (2);
 		index++;
 	}
 	if (str[index] == '\0' && str2[index] == '=')
-	{
-		data()->expo_flag = 1;
-		return (1);
-	}
+		return (2);
 	return (0);
 }

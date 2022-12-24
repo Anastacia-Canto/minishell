@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:17:29 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/23 14:05:37 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/24 04:26:57 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	get_quoted_arg(char *line, int *pos)
 	char	*arg;
 
 	i = *pos + 1;
+	arg = NULL;
 	while (line[i] && line[i] != line[*pos])
 		i++;
 	if (i == *pos + 1)

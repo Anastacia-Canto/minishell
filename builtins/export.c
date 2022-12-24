@@ -6,26 +6,21 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:01 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/20 03:59:17 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/24 17:14:15 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	change_or_add(char *arg)
+void	change_or_add(char *arg, char ***str)
 {
-	if (!check_value_list(arg, data()->expo))
-	{
-		if (data()->expo_flag == 1)
-		{
-			data()->expo = change_list(arg, data()->expo);
-			data()->expo_flag = 0;
-		}
-		else
-		{
-			data()->expo = add_to_list(arg, data()->expo);
-		}
-	}
+	int check;
+
+	check = check_value_list(arg, *str);
+	if (check == 2)
+		*str = change_list(arg, *str);
+	else if (check == 0)
+		*str = add_to_list(arg, *str);
 }
 
 void	print_char(char *str)
@@ -82,7 +77,7 @@ int	check_export_args(char **args, size_t len)
 		}
 		else
 		{
-			change_or_add(args[index]);
+			change_or_add(args[index], &data()->expo);
 			ft_alphabetic(data()->expo);
 		}
 	}
