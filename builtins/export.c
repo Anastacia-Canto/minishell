@@ -6,21 +6,30 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:01 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/24 17:14:15 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/25 19:39:16 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	change_or_add(char *arg, char ***str)
+int	change_or_add(char *arg, int flg, char ***str)
 {
 	int check;
+	int index;
 
+	index = 0;
 	check = check_value_list(arg, *str);
-	if (check == 2)
+	if (flg && check == 0)
+	{
+		while (arg[index++])
+			if (arg[index] == '=')
+				*str = add_to_list(arg, *str);
+	}
+	else if (check == 2)
 		*str = change_list(arg, *str);
 	else if (check == 0)
 		*str = add_to_list(arg, *str);
+	return (0);
 }
 
 void	print_char(char *str)
@@ -59,6 +68,14 @@ void	print_export(void)
 		write(1, "\n", 1);
 		index++;
 	}
+	index = 0;
+	write(1, "divisionnn\n", 11);
+	while (data()->vars[index])
+	{
+		print_char(data()->vars[index]);
+		write(1, "\n", 1);
+		index++;
+	}
 }
 
 int	check_export_args(char **args, size_t len)
@@ -77,7 +94,9 @@ int	check_export_args(char **args, size_t len)
 		}
 		else
 		{
-			change_or_add(args[index], &data()->expo);
+			change_or_add(args[index], 0, &data()->expo);
+			change_or_add(args[index], 1, &data()->env);
+			change_or_add(args[index], 1, &data()->vars);
 			ft_alphabetic(data()->expo);
 		}
 	}

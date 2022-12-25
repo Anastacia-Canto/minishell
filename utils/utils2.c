@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:18:00 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/23 14:12:29 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/25 19:09:10 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_values(char **env)
 	data()->exit_status = 0;
 	data()->expo_flag = 0;
 	data()->expand = 1;
+	data()->vars = create_list("V4R14BL3S");
 }
 
 void	ft_swap_alpha(char **copy, size_t i, size_t j)

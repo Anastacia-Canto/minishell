@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/24 17:16:09 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/25 19:37:21 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_data
 	char	*prompt;
 	int		exit_status;
 	char	**expo;
+	char	**vars;
 	int		expo_flag;
 	int		expand;
 }	t_data;
@@ -57,9 +58,10 @@ int		find_equal(char *str, char *lista_str);
 char	**change_list(char *str, char **lista);
 char	**remove_from_list(char *str, char **lista);
 int		ft_strcmp_expo(char *str, char *str2);
+char	**create_list(char *str);
 //Check
 int		check_value_list(char *str, char **lista);
-// void	check_list(int check, char **lista);
+int		check_line(char *str);
 int		check_str(char *str);
 // ------------------- echo----------------------
 int		ft_echo(char *line);
@@ -90,5 +92,5 @@ int		ft_export(char *line);
 int		check_export_args(char **args, size_t len);
 void	print_export(void);
 void	print_char(char *str);
-void	change_or_add(char *arg, char ***str);
+int		change_or_add(char *arg, int flg, char ***str);
 #endif
