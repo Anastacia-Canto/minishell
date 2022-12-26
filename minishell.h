@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/25 19:37:21 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/25 23:42:41 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,6 @@ int		check_export_args(char **args, size_t len);
 void	print_export(void);
 void	print_char(char *str);
 int		change_or_add(char *arg, int flg, char ***str);
+// --------------------unset---------------------
+int	ft_unset(char *line);
 #endif

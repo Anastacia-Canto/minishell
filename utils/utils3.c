@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 00:34:16 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/25 19:14:04 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/26 00:28:14 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,19 @@ char	**remove_from_list(char *str, char **lista)
 
 	index = 0;
 	index2 = 0;
-	len = array_len(lista);
+	len = array_len(lista) + 1;
 	copy = malloc(sizeof(char *) * len);
 	if (!copy)
 		return (NULL);
 	while (lista[index2])
 	{
-		if (ft_strcmp_expo(lista[index], str))
-			index2++;	
-		copy[index] = ft_strdup(lista[index2]);
-		index++;
-		index2++;
+		if (ft_strcmp_expo(lista[index2], str) != 1)
+		{
+			if (!lista[index2 + 1])
+				break;
+			index2++;
+		}
+		copy[index++] = ft_strdup(lista[index2++]);
 	}
 	copy[index] = 0;
 	free_array(lista);

@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/25 19:34:46 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/25 19:49:04 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	to_builtins(char *line)
 		data()->exit_status = ft_exit(line);
 	else if (!ft_strncmp(line, "export", 6))
 		data()->exit_status = ft_export(line);
+	else if (!ft_strncmp(line, "unset", 5))
+		data()->exit_status = ft_unset(line);
 	else if (!ft_strncmp(line, "./", 2) || !ft_strncmp(line, "bash", 4))
 		data()->exit_status = ft_exec(line);
 	else if (check_value_list(line, data()->vars) != 1 && !check_line(line))
