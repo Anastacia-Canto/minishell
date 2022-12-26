@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/26 11:25:36 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/26 11:41:11 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ void	to_builtins(char *line)
 	else if (check_value_list(line, data()->vars) == 1 && !check_line(line))
 		data()->exit_status = change_or_add(line, 1, &data()->vars);
 	else
-	{
-	 	get_cmd_error(line);
-		data()->exit_status = 127;
-	}
+	 	data()->exit_status = get_cmd_error(line);
 }
 
 int	ft_exec(char *line)
