@@ -1,36 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/04 08:42:12 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/26 11:29:50 by sde-mull         ###   ########.fr       */
+/*   Created: 2022/12/26 11:10:51 by sde-mull          #+#    #+#             */
+/*   Updated: 2022/12/26 11:28:54 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+void	get_cmd_error(char *str)
 {
-	char	*line;
+	int index;
 
-	(void)argc;
-	(void)argv;
-	init_values(env);
-	if (env)
-	{
-		change_prompt();
-		line = readline(data()->prompt);
-		while (line)
-		{
-			add_history(line);
-			break_in_cmd(line);
-			line = readline(data()->prompt);
-		}
-		free (data()->prompt);
-		rl_clear_history();
-	}
-	return (0);
+	index = 0;
+	while (str[index] != ' ' && str[index])
+		printf("%c",str[index++]);
+	index = 0;
+	printf(": command not found\n");
 }

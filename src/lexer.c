@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/26 11:07:05 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/26 11:25:36 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	to_builtins(char *line)
 		data()->exit_status = change_or_add(line, 1, &data()->vars);
 	else
 	{
-		printf("%s: command not found\n", line);
+	 	get_cmd_error(line);
 		data()->exit_status = 127;
 	}
 }

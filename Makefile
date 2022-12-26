@@ -6,7 +6,7 @@
 #    By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2022/12/26 00:34:05 by sde-mull         ###   ########.fr        #
+#    Updated: 2022/12/26 11:11:19 by sde-mull         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = minishell
 
 SRC = main\
 	  src/lexer\
-	  utils/utils utils/utils2 utils/utils3 utils/check\
+	  utils/utils utils/utils2 utils/utils3 utils/utils4 utils/check\
 	  builtins/echo builtins/echo2 builtins/echo3 builtins/exit builtins/env\
 	  builtins/pwd builtins/cd builtins/export builtins/unset\
 
