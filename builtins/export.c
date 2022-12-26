@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:01 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/25 19:39:16 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/26 10:56:56 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,6 @@ void	print_export(void)
 	{
 		write(1, "declare -x ", 11);
 		print_char(data()->expo[index]);
-		write(1, "\n", 1);
-		index++;
-	}
-	index = 0;
-	write(1, "divisionnn\n", 11);
-	while (data()->vars[index])
-	{
-		print_char(data()->vars[index]);
 		write(1, "\n", 1);
 		index++;
 	}
