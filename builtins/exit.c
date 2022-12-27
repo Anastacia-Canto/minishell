@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:10:03 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/26 11:44:11 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:13:01 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	ft_exit(char *line)
 	if (args[1])
 		ret = ft_atoi(args[1]);
 	free_array(args);
+	free_exit();
 	clear_history();
 	exit (ret % 256);
 }
@@ -40,8 +41,9 @@ int	check_exit_args(char **args, size_t len)
 	{
 		if (check_num(args[1]))
 		{
-			rl_clear_history();
+			clear_history();
 			free_array(args);
+			free_exit();
 			exit(2);
 		}
 		if (len > 2)

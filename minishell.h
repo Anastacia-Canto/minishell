@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/27 17:03:11 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/27 17:22:55 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int		get_cmd_error(char *str);
 int		check_value_list(char *str, char **lista);
 int		check_line(char *str);
 int		check_str(char *str);
+//Free
+void	free_exit(void);
 // ------------------- echo----------------------
 int		ft_echo(char *line);
 int		ft_echo_n(char *line);

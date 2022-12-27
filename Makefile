@@ -6,7 +6,7 @@
 #    By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2022/12/27 16:30:18 by anastacia        ###   ########.fr        #
+#    Updated: 2022/12/27 17:23:31 by anastacia        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = minishell
 
 SRC = main\
 	  src/lexer\
-	  utils/utils utils/utils2 utils/utils3 utils/utils4 utils/check\
+	  utils/utils utils/utils2 utils/utils3 utils/utils4 utils/check utils/free\
 	  builtins/echo builtins/echo2 builtins/echo3 builtins/exit builtins/env\
 	  builtins/env2 builtins/pwd builtins/cd builtins/export builtins/unset\
 
