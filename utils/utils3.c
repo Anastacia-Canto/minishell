@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 00:34:16 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/26 00:28:14 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/27 10:52:11 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**remove_from_list(char *str, char **lista)
 		if (ft_strcmp_expo(lista[index2], str) != 1)
 		{
 			if (!lista[index2 + 1])
-				break;
+				break ;
 			index2++;
 		}
 		copy[index++] = ft_strdup(lista[index2++]);
@@ -105,7 +105,7 @@ int	ft_strcmp_expo(char *str, char *str2)
 
 char	**create_list(char *str)
 {
-	char 	**str2;
+	char	**str2;
 
 	str2 = malloc(sizeof(char *) * 2);
 	str2[0] = malloc(sizeof(char *) * 10);

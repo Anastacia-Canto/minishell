@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:38:36 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/26 11:05:58 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/27 10:52:47 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_value_list(char *str, char **lista)
 {
 	int	index;
-	int cmp;
+	int	cmp;
 
 	index = 0;
 	while (lista[index])
@@ -52,13 +52,13 @@ int	check_str(char *str)
 
 int	check_line(char *str)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (str[index])
 	{
 		if (str[index] == ' ')
-			return(1);
+			return (1);
 		index++;
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:23 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/26 00:25:46 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/27 10:58:20 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_unset(char *line)
 {
 	char	**args;
 	size_t	len;
-	size_t index;
+	size_t	index;
 
 	index = 1;
 	if (check_cmd_name(line, "unset ", 6))

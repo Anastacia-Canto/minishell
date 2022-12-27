@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:01 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/26 10:56:56 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/27 10:48:50 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	change_or_add(char *arg, int flg, char ***str)
 {
-	int check;
-	int index;
+	int	check;
+	int	index;
 
 	index = 0;
 	check = check_value_list(arg, *str);
@@ -34,8 +34,8 @@ int	change_or_add(char *arg, int flg, char ***str)
 
 void	print_char(char *str)
 {
-	int index;
-	int flg;
+	int	index;
+	int	flg;
 
 	index = 0;
 	flg = 0;
@@ -58,7 +58,7 @@ void	print_char(char *str)
 
 void	print_export(void)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (data()->expo[index])

@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:19:09 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/20 08:52:12 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/27 11:41:01 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	change_prompt(void)
 
 	if (data()->prompt != NULL)
 		free (data()->prompt);
-	prompt = ": minishell$ ";
+	prompt = ": \001\e[1;33mminishell$\002\001\e[0m\002 ";
 	path = NULL;
 	path = getcwd(path, 0);
 	data()->prompt = ft_strjoin(path, prompt);
