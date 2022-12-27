@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/26 11:41:11 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/27 15:58:38 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	break_in_cmd(char *line)
 	while (cmds[i])
 	{
 		adjusted_line = adjust_line(cmds[i++]);
+		adjusted_line = check_if_env(adjusted_line);
 		to_builtins(adjusted_line);
 		free (adjusted_line);
 	}
