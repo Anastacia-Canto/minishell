@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:17:29 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/24 04:26:57 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/27 15:09:12 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,16 @@ void	split_args(char *line)
 	int		i;
 	int		len;
 	char	**args;
+	int		flag;
 
 	args = ft_split(line, ' ');
 	len = array_len(args);
 	i = 0;
 	while (i < len -1)
 	{
-		printer(args[i++]);
-		printf(" ");
+		flag = printer(args[i++]);
+		if (!flag)
+			printf(" ");
 	}
 	printer(args[i]);
 	free_array(args);

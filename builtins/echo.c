@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/23 14:14:54 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/27 15:09:39 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,30 +48,31 @@ int	ft_echo_n(char *line)
 	return (0);
 }
 
-void	printer(char *line)
+int	printer(char *line)
 {
 	size_t	pos;
 
 	pos = 0;
-	while (line[pos])
+	while (pos < ft_strlen(line) && line[pos])
 	{
 		if (line[pos] == '$')
-			echo_dollar(line, &pos);
-		if (line[pos])
+			return (echo_dollar(line, &pos));
+		else if (line[pos])
 			printf("%c", line[pos++]);
 	}
+	return (0);
 }
 
-void	echo_dollar(char *line, size_t *pos)
+int	echo_dollar(char *line, size_t *pos)
 {
 	if (line[*pos + 1] == '?')
 	{
 		printf("%d", data()->exit_status);
 		*pos += 2;
-		return ;
 	}
 	else if (data()->expand)
-		ft_expand_env(line, &pos);
+		return (ft_expand_env(line, &pos));
+	return (0);
 }
 
 int	is_quote(char c)

@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:21:17 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/20 12:12:14 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/27 15:17:01 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,44 @@ int	ft_expand_env(char *line, size_t **pos)
 		end++;
 	name = ft_substr(line, **pos + 1, end - **pos - 1);
 	value = getenv(name);
+	if (!value)
+		value = get_var(name);
 	free (name);
+	**pos = end;
 	if (!value)
 		return (1);
-	printf("%s", value);
-	**pos = end;
+	print_env_value(value);
 	return (0);
+}
+
+char	*get_var(char *name)
+{
+	char	*value;
+	int		i;
+
+	value = NULL;
+	i = 0;
+	while (data()->vars[i])
+	{
+		if (!ft_strncmp(name, data()->vars[i], ft_strlen(name)))
+			value = ft_strchr(data()->vars[i], '=');
+		i++;
+	}
+	return (value);
+}
+
+void	print_env_value(char *value)
+{
+	int	i;
+
+	if (value[0] == '=')
+	{
+		i = 1;
+		while (value[i])
+			printf("%c", value[i++]);
+	}
+	else
+		printf("%s", value);
 }
 
 int	print_envs(char **env, char *line)

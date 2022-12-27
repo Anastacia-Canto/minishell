@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/27 11:31:15 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/27 14:50:48 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int		check_str(char *str);
 // ------------------- echo----------------------
 int		ft_echo(char *line);
 int		ft_echo_n(char *line);
-void	echo_dollar(char *line, size_t *pos);
-void	printer(char *line);
+int		echo_dollar(char *line, size_t *pos);
+int		printer(char *line);
 int		is_quote(char c);
 void	args_parser(char *line);
 int		check_end_quote(char *line, int *pos);
@@ -84,6 +84,8 @@ int		check_exit_args(char **args, size_t len);
 // ------------------- env-----------------------
 int		ft_expand_env(char *line, size_t **pos);
 int		print_envs(char **env, char *line);
+char	*get_var(char *name);
+void	print_env_value(char *value);
 // ------------------- pwd-----------------------
 int		ft_pwd(char *line);
 // ------------------- cd------------------------
