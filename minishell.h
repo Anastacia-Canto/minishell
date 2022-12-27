@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/27 14:50:48 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/27 17:11:40 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int		get_cmd_error(char *str);
 int		check_value_list(char *str, char **lista);
 int		check_line(char *str);
 int		check_str(char *str);
+//Free
+void	free_exit(void);
 // ------------------- echo----------------------
 int		ft_echo(char *line);
 int		ft_echo_n(char *line);
