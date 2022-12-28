@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:23 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/27 10:58:20 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/28 16:19:33 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	ft_unset(char *line)
 			data()->vars = remove_from_list(args[index], data()->vars);
 		index++;
 	}
+	free_array(args);
 	return (0);
 }

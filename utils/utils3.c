@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 00:34:16 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/27 10:52:11 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/28 16:14:29 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	**create_list(char *str)
 	char	**str2;
 
 	str2 = malloc(sizeof(char *) * 2);
-	str2[0] = malloc(sizeof(char *) * 10);
+	// str2[0] = malloc(sizeof(char *) * 10);
 	str2[0] = ft_strdup(str);
 	str2[1] = 0;
 	return (str2);
