@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/28 17:48:32 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/29 11:25:16 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,22 @@ char	*expand_cli_env(char *name, int dollars)
 	int		i;
 	char	*new_name;
 
+	new_name = "";
 	i = 0;
 	if (name[i] != '$')
 	{
 		while (name[i] && name[i] != '$' && !ft_whitespace(name[i]))
 			i++;
-		new_name = ft_substr(name, 0, i - 1);
+		new_name = ft_substr(name, 0, i);
 	}
 	while (dollars > 0)
 	{
 		i++;
-		new_name = ft_strjoin(new_name, get_value(name, &i));
+		new_name = concat_env(new_name, get_value(name, &i));
 		dollars--;
 	}
-	new_name = ft_strjoin(new_name, (char *)name + i);
-	return (ft_trim_env(new_name));
+	new_name = concat_env(new_name, (char *)name + i);
+	return (new_name);
 }
 
 char	*get_value(char *name, int *pos)
@@ -80,49 +81,27 @@ char	*get_value(char *name, int *pos)
 	return (value);
 }
 
-char	*ft_trim_env(char *line)
+char	*concat_env(char *s1, char *s2)
 {
+	char	*ret;
 	int		i;
-	char	*new_line;
+	int		j;
 
-	new_line = malloc(sizeof(char) * ft_strlen(line));
-	if (!new_line)
-		return (NULL);
-	i = 1;
-	while (line[i])
+	if (!s1)
 	{
-		new_line[i - 1] = line[i];
-		i++;
+		s1 = malloc(sizeof(char) * 1);
+		s1[0] = '\0';
 	}
-	new_line[i - 1] = '\0';
-	free (line);
-	return (new_line);
+	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!s1 || !s2 || !ret)
+		return (NULL);
+	i = -1;
+	while (s1[++i])
+		ret[i] = s1[i];
+	j = -1;
+	while (s2[++j])
+		ret[i + j] = s2[j];
+	ret[i + j] = '\0';
+	// free (s1);
+	return (ret);
 }
-
-// char	*ft_strjoin_env(char *s1, char *s2)
-// {
-// 	char	*str;
-// 	int		i;
-// 	int		j;
-
-// 	if (!s1)
-// 	{
-// 		s1 = (char *)malloc(sizeof(char) * 1);
-// 		s1[0] = '\0';
-// 	}
-// 	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-// 	if (!s1 || !s2 || !str)
-// 		return (NULL);
-// 	if (s1)
-// 	{
-// 		i = -1;
-// 		while (s1[++i])
-// 			str[i] = s1[i];
-// 		j = -1;
-// 		while (s2[++j])
-// 			str[i + j] = s2[j];
-// 		str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-// 	}
-// 	free(s1);
-// 	return (str);
-// }
