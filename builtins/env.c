@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:21:17 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/28 13:58:21 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/29 15:09:55 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ int	ft_expand_env(char *line, size_t **pos)
 	char	*value;
 	char	*name;
 
-	end = **pos;
+	end = **pos + 1;
 	while (line[end] && (!ft_whitespace(line[end])
-			&& line[end] != '\"' && line[end] != '\''))
+			&& line[end] != '\"' && line[end] != '\''
+			&& line[end] != '$'))
 		end++;
 	name = ft_substr(line, **pos + 1, end - **pos - 1);
 	value = getenv(name);
@@ -31,7 +32,7 @@ int	ft_expand_env(char *line, size_t **pos)
 	if (!value)
 		return (1);
 	print_env_value(value);
-	return (0);
+	return (1);
 }
 
 char	*get_var(char *name)
