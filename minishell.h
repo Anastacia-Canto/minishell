@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/29 11:17:58 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/29 16:43:58 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int		check_exit_args(char **args, size_t len);
 // ------------------- env-----------------------
 int		ft_expand_env(char *line, size_t **pos);
 int		print_envs(char **env, char *line);
-char	*get_var(char *name);
+char	*get_var(char *name, int id);
 void	print_env_value(char *value);
 char	*check_if_env(char *name);
 char	*expand_cli_env(char *name, int dollars);

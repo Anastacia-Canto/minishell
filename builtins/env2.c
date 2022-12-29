@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/29 14:30:11 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:00:38 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char	*expand_cli_env(char *name, int dollars)
 	{
 		while (name[i] && name[i] != '$' && !ft_whitespace(name[i]))
 			i++;
+		free (new_name);
 		new_name = ft_substr(name, 0, i);
 	}
 	while (dollars > 0)
@@ -71,12 +72,9 @@ char	*get_value(char *name, int *pos)
 	while (name[end] && name[end] != '$' && !ft_whitespace(name[end]))
 		end++;
 	key = ft_substr(name, *pos, end - *pos);
-	value = getenv(key);
+	value = get_var(key, 0);
 	if (!value)
-	{
-		value = get_var(key);
-		value++;
-	}
+		value = get_var(key, 1);
 	*pos = end;
 	free (key);
 	return (value);

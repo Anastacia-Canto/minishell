@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:21:17 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/29 15:09:55 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:53:20 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	ft_expand_env(char *line, size_t **pos)
 			&& line[end] != '$'))
 		end++;
 	name = ft_substr(line, **pos + 1, end - **pos - 1);
-	value = getenv(name);
+	value = get_var(name, 0);
 	if (!value)
-		value = get_var(name);
+		value = get_var(name, 1);
 	free (name);
 	**pos = end;
 	if (!value)
@@ -35,18 +35,38 @@ int	ft_expand_env(char *line, size_t **pos)
 	return (1);
 }
 
-char	*get_var(char *name)
+char	*get_var(char *name, int id)
 {
 	char	*value;
+	char	*ref_key;
+	char	**list;
 	int		i;
+	int		j;
 
+	list = data()->env;
+	if (id == 1)
+		list = data()->vars;
 	value = NULL;
 	i = 0;
-	while (data()->vars[i])
+	while (list[i])
 	{
-		if (!ft_strncmp(name, data()->vars[i], ft_strlen(name)))
-			value = ft_strchr(data()->vars[i], '=');
+		j = 0;
+		while (list[i][j] && list[i][j] != '=')
+			j++;
+		ref_key = ft_substr(list[i], 0, j);
+		if (ft_strlen(name) != ft_strlen(ref_key))
+		{
+			free (ref_key);
+			i++;
+			continue ;
+		}
+		if (!ft_strncmp(name, ref_key, ft_strlen(ref_key)))
+		{
+			value = ft_strchr(list[i], '=');
+			value++;
+		}
 		i++;
+		free (ref_key);
 	}
 	return (value);
 }
