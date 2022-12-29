@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/29 11:38:18 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/29 14:30:11 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ char	*expand_cli_env(char *name, int dollars)
 	int		i;
 	char	*new_name;
 
-	new_name = "";
+	new_name = malloc(sizeof(char) * 1);
+	new_name[0] = '\0';
 	i = 0;
 	if (name[i] != '$')
 	{
@@ -87,11 +88,6 @@ char	*concat_env(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	if (!s1)
-	{
-		s1 = malloc(sizeof(char) * 1);
-		s1[0] = '\0';
-	}
 	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!s1 || !s2 || !ret)
 		return (NULL);
@@ -102,6 +98,6 @@ char	*concat_env(char *s1, char *s2)
 	while (s2[++j])
 		ret[i + j] = s2[j];
 	ret[i + j] = '\0';
-	// free (s1);
+	free (s1);
 	return (ret);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:01 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/27 10:48:50 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/29 14:36:30 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,14 @@ void	print_export(void)
 	{
 		write(1, "declare -x ", 11);
 		print_char(data()->expo[index]);
+		write(1, "\n", 1);
+		index++;
+	}
+	index = 0;
+	write(1, "division\n ", 9);
+	while (data()->vars[index])
+	{
+		print_char(data()->vars[index]);
 		write(1, "\n", 1);
 		index++;
 	}
