@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/27 15:09:39 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/29 11:54:18 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_echo(char *line)
 
 	if (check_cmd_name(line, "echo ", 5))
 		return (127);
-	str = ft_substr(line, 5, ft_strlen(line) - 4);
+	str = ft_substr(line, 5, ft_strlen(line) - 5);
 	if (!str)
 	{
 		printf("\n");
@@ -56,7 +56,10 @@ int	printer(char *line)
 	while (pos < ft_strlen(line) && line[pos])
 	{
 		if (line[pos] == '$')
-			return (echo_dollar(line, &pos));
+		{
+			if (!echo_dollar(line, &pos))
+				printf("%c", line[pos++]);
+		}
 		else if (line[pos])
 			printf("%c", line[pos++]);
 	}
