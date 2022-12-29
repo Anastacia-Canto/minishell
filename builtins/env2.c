@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/28 14:23:59 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/28 17:48:32 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*expand_cli_env(char *name, int dollars)
 		dollars--;
 	}
 	new_name = ft_strjoin(new_name, (char *)name + i);
-	return (new_name);
+	return (ft_trim_env(new_name));
 }
 
 char	*get_value(char *name, int *pos)
@@ -78,6 +78,25 @@ char	*get_value(char *name, int *pos)
 	*pos = end;
 	free (key);
 	return (value);
+}
+
+char	*ft_trim_env(char *line)
+{
+	int		i;
+	char	*new_line;
+
+	new_line = malloc(sizeof(char) * ft_strlen(line));
+	if (!new_line)
+		return (NULL);
+	i = 1;
+	while (line[i])
+	{
+		new_line[i - 1] = line[i];
+		i++;
+	}
+	new_line[i - 1] = '\0';
+	free (line);
+	return (new_line);
 }
 
 // char	*ft_strjoin_env(char *s1, char *s2)

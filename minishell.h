@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/28 14:05:41 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/28 17:47:46 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ char	*get_var(char *name);
 void	print_env_value(char *value);
 char	*check_if_env(char *name);
 char	*expand_cli_env(char *name, int dollars);
-char	*concat_str(char *new_name, char *name, char *value);
 char	*get_value(char *name, int *pos);
 char	*ft_strjoin_env(char *s1, char *s2);
+char	*ft_trim_env(char *line);
 // ------------------- pwd-----------------------
 int		ft_pwd(char *line);
 // ------------------- cd------------------------
