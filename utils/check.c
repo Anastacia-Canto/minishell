@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:38:36 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/29 13:53:19 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:19:08 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,21 @@ int	check_str(char *str)
 int	check_line(char *str)
 {
 	int	index;
+	int flg;
 
 	index = 0;
+	flg = 0;
+	if (str[index] == '=' || !ft_isalpha(str[index]))
+		return (1);
 	while (str[index])
 	{
 		if (str[index] == ' ')
 			return (1);
+		if (str[index] == '=')
+			flg = 1;
 		index++;
 	}
+	if (flg == 0)
+		return (1);
 	return (0);
 }

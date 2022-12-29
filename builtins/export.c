@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:01 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/29 14:36:30 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:18:32 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	change_or_add(char *arg, int flg, char ***str)
 	{
 		while (arg[index++])
 			if (arg[index] == '=')
+			{
 				*str = add_to_list(arg, *str);
+				break;
+			}
 	}
 	else if (check == 2)
 		*str = change_list(arg, *str);
@@ -42,7 +45,7 @@ void	print_char(char *str)
 	while (str[index])
 	{
 		write(1, &str[index], 1);
-		if (str[index] == '=')
+		if (str[index] == '=' && flg == 0)
 		{
 			write(1, "\"", 1);
 			flg = 1;

@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/29 14:46:36 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:18:49 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,8 @@ void	to_builtins(char *line)
 		data()->exit_status = ft_unset(line);
 	else if (!ft_strncmp(line, "./", 2) || !ft_strncmp(line, "bash", 4))
 		data()->exit_status = ft_exec(line);
-	else if (check_value_list(line, data()->vars) == 1 && !check_line(line))
-	{
-		printf("%d\n",1);
-		data()->exit_status = change_or_add(line, 1, &data()->vars);
-	}
+	else if (!check_line(line))
+		data()->exit_status = add_var(line);
 	else
 	 	data()->exit_status = get_cmd_error(line);
 }

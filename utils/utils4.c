@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:10:51 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/27 10:50:50 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/29 17:20:20 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,14 @@ int	get_cmd_error(char *str)
 	index = 0;
 	printf(": command not found\n");
 	return (127);
+}
+
+int	add_var(char *line)
+{
+	if (check_value_list(line, data()->expo) == 2)
+		change_or_add(line, 1, &data()->expo);
+	if (check_value_list(line, data()->	env) == 2)
+		change_or_add(line, 1, &data()->env);
+	change_or_add(line, 1, &data()->vars);
+	return (0);
 }

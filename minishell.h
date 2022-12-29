@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/29 16:43:58 by ansilva-         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:19:29 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int		ft_strcmp_expo(char *str, char *str2);
 char	**create_list(char *str);
 //Utils4
 int		get_cmd_error(char *str);
+int		add_var(char *line);
 //Check
 int		check_value_list(char *str, char **lista);
 int		check_line(char *str);
