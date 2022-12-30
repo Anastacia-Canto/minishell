@@ -17,3 +17,7 @@ INTERACTIVES
 - ctrl-C displays a new prompt
 - ctrl-D exits the shell
 - ctrl-\ does nothing
+
+
+https://github.com/clemedon/Multipipe_tutor
+

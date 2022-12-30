@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/30 09:53:38 by anastacia        ###   ########.fr       */
+/*   Updated: 2022/12/30 16:59:20 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,29 @@ void	to_builtins(char *line)
 	else if (!ft_strncmp(line, "./", 2) || !ft_strncmp(line, "bash", 4))
 		data()->exit_status = ft_exec(line);
 	else
-		treat_others(line);
+		data()->exit_status = treat_others(line);
 }
 
 int	treat_others(char *line)
 {
+	char	**cmd_line;
+	int		ret;
+	char	*path;
+	char	*reset_prog[2];
+
+	ret = 0;
 	if (!check_line(line))
-		data()->exit_status = add_var(line);
-	else
-	 	data()->exit_status = get_cmd_error(line);
-	return (0);
+		return (add_var(line));
+	cmd_line = ft_split(line, ' ');
+	path = ft_strjoin("/bin/", cmd_line[0]);
+	if (execve(path, cmd_line, NULL) == -1)
+		ret = get_cmd_error(line);
+	free_array(cmd_line);
+	free (path);
+	reset_prog[0] = "/bin/minishell";
+	reset_prog[1] = NULL;
+	execve(reset_prog[0], reset_prog, NULL);
+	return (ret);
 }
 
 int	ft_exec(char *line)
