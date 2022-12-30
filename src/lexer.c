@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/29 17:18:49 by sde-mull         ###   ########.fr       */
+/*   Updated: 2022/12/30 09:53:38 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,17 @@ void	to_builtins(char *line)
 		data()->exit_status = ft_unset(line);
 	else if (!ft_strncmp(line, "./", 2) || !ft_strncmp(line, "bash", 4))
 		data()->exit_status = ft_exec(line);
-	else if (!check_line(line))
+	else
+		treat_others(line);
+}
+
+int	treat_others(char *line)
+{
+	if (!check_line(line))
 		data()->exit_status = add_var(line);
 	else
 	 	data()->exit_status = get_cmd_error(line);
+	return (0);
 }
 
 int	ft_exec(char *line)
