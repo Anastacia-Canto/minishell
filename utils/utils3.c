@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 00:34:16 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/29 14:02:57 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:13:38 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**remove_from_list(char *str, char **lista)
 		return (NULL);
 	while (lista[index2])
 	{
-		if (ft_strcmp_expo(lista[index2], str) != 1)
+		if (ft_strcmp_expo(str, lista[index2]) == 2)
 		{
 			if (!lista[index2 + 1])
 				break ;

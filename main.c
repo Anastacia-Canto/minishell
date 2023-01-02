@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 08:42:12 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/27 17:13:12 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:14:53 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **env)
 			line = readline(data()->prompt);
 		}
 		free (data()->prompt);
-		clear_history();
+		rl_clear_history();
 	}
 	return (0);
 }
