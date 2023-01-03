@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/30 16:59:20 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/03 15:17:28 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,33 @@ int	treat_others(char *line)
 	char	**cmd_line;
 	int		ret;
 	char	*path;
-	char	*reset_prog[2];
+	pid_t	pid;
 
 	ret = 0;
 	if (!check_line(line))
 		return (add_var(line));
-	cmd_line = ft_split(line, ' ');
-	path = ft_strjoin("/bin/", cmd_line[0]);
-	if (execve(path, cmd_line, NULL) == -1)
-		ret = get_cmd_error(line);
-	free_array(cmd_line);
-	free (path);
-	reset_prog[0] = "/bin/minishell";
-	reset_prog[1] = NULL;
-	execve(reset_prog[0], reset_prog, NULL);
+	pid = fork();
+	if (pid == 0)
+	{
+		cmd_line = ft_split(line, ' ');
+		path = ft_strjoin("/bin/", cmd_line[0]);
+		if (execve(path, cmd_line, NULL) == -1)
+			ft_exit(line);
+		free_array(cmd_line);
+		free (path);
+	}
+	else
+	{
+		if (waitpid(pid, &ret, 0) != pid)
+			ret = -1;
+	}
 	return (ret);
 }
 
 int	ft_exec(char *line)
 {
-	int	i;
-	int	ret;
+	int		i;
+	int		ret;
 	char	*new_line;
 
 	ret = 0;
@@ -108,6 +114,7 @@ int	exec_progm(char *line)
 	char	*path;
 	char	**args;
 	int		i;
+	pid_t	pid;
 
 	ret = 0;
 	i = ft_strlen(line);
@@ -119,9 +126,19 @@ int	exec_progm(char *line)
 	while (line[i] && !ft_whitespace(line[i]))
 		i++;
 	path = ft_substr(line, 0, i);
-	ret = execve(path, args, data()->env);
-	free (new_line);
-	free (path);
-	free_array(args);
+	pid = fork();
+	if (pid == 0)
+	{
+		if (execve(path, args, NULL) == -1)
+			ft_exit(line);
+	}
+	else
+	{
+		if (waitpid(pid, &ret, 0) != pid)
+			ret = -1;
+		free (new_line);
+		free (path);
+		free_array(args);
+	}
 	return (ret);
 }
