@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/03 15:17:28 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/03 16:24:20 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	to_builtins(char *line)
 		data()->exit_status = ft_export(line);
 	else if (!ft_strncmp(line, "unset", 5))
 		data()->exit_status = ft_unset(line);
-	else if (!ft_strncmp(line, "./", 2) || !ft_strncmp(line, "bash", 4))
-		data()->exit_status = ft_exec(line);
+	// else if (!ft_strncmp(line, "./", 2) || !ft_strncmp(line, "bash", 4))
+	// 	data()->exit_status = ft_exec(line);
 	else
 		data()->exit_status = treat_others(line);
 }
@@ -71,7 +71,10 @@ int	treat_others(char *line)
 		cmd_line = ft_split(line, ' ');
 		path = ft_strjoin("/bin/", cmd_line[0]);
 		if (execve(path, cmd_line, NULL) == -1)
-			ft_exit(line);
+		{
+			ret = get_cmd_error(line);
+			exit(127);
+		}
 		free_array(cmd_line);
 		free (path);
 	}
@@ -83,62 +86,62 @@ int	treat_others(char *line)
 	return (ret);
 }
 
-int	ft_exec(char *line)
-{
-	int		i;
-	int		ret;
-	char	*new_line;
+// int	ft_exec(char *line)
+// {
+// 	int		i;
+// 	int		ret;
+// 	char	*new_line;
 
-	ret = 0;
-	i = 0;
-	if (!ft_strncmp(line, "./", 2) || !ft_strncmp(line, "bash ./", 7))
-	{
-		while (line[i] && line[i] != '/')
-			i++;
-	}
-	else if (!ft_strncmp(line, "bash", 4))
-	{
-		while (line[i] && !ft_whitespace(line[i]))
-			i++;
-	}
-	new_line = ft_substr(line, i + 1, ft_strlen(line) - i);
-	ret = exec_progm(new_line);
-	free (new_line);
-	return (ret);
-}
+// 	ret = 0;
+// 	i = 0;
+// 	if (!ft_strncmp(line, "./", 2) || !ft_strncmp(line, "bash ./", 7))
+// 	{
+// 		while (line[i] && line[i] != '/')
+// 			i++;
+// 	}
+// 	else if (!ft_strncmp(line, "bash", 4))
+// 	{
+// 		while (line[i] && !ft_whitespace(line[i]))
+// 			i++;
+// 	}
+// 	new_line = ft_substr(line, i + 1, ft_strlen(line) - i);
+// 	ret = exec_progm(new_line);
+// 	free (new_line);
+// 	return (ret);
+// }
 
-int	exec_progm(char *line)
-{
-	int		ret;
-	char	*new_line;
-	char	*path;
-	char	**args;
-	int		i;
-	pid_t	pid;
+// int	exec_progm(char *line)
+// {
+// 	int		ret;
+// 	char	*new_line;
+// 	char	*path;
+// 	char	**args;
+// 	int		i;
+// 	pid_t	pid;
 
-	ret = 0;
-	i = ft_strlen(line);
-	while (i >= 0 && line[i] != '/')
-		i--;
-	new_line = ft_substr(line, i + 1, ft_strlen(line) - i);
-	args = ft_split(new_line, ' ');
-	i = 0;
-	while (line[i] && !ft_whitespace(line[i]))
-		i++;
-	path = ft_substr(line, 0, i);
-	pid = fork();
-	if (pid == 0)
-	{
-		if (execve(path, args, NULL) == -1)
-			ft_exit(line);
-	}
-	else
-	{
-		if (waitpid(pid, &ret, 0) != pid)
-			ret = -1;
-		free (new_line);
-		free (path);
-		free_array(args);
-	}
-	return (ret);
-}
+// 	ret = 0;
+// 	i = ft_strlen(line);
+// 	while (i >= 0 && line[i] != '/')
+// 		i--;
+// 	new_line = ft_substr(line, i + 1, ft_strlen(line) - i);
+// 	args = ft_split(new_line, ' ');
+// 	i = 0;
+// 	while (line[i] && !ft_whitespace(line[i]))
+// 		i++;
+// 	path = ft_substr(line, 0, i);
+// 	pid = fork();
+// 	if (pid == 0)
+// 	{
+// 		if (execve(path, args, NULL) == -1)
+// 			ft_exit(line);
+// 	}
+// 	else
+// 	{
+// 		if (waitpid(pid, &ret, 0) != pid)
+// 			ret = -1;
+// 		free (new_line);
+// 		free (path);
+// 		free_array(args);
+// 	}
+// 	return (ret);
+// }

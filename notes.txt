@@ -6,8 +6,8 @@ ECHO
 - lidar com * (bonus?)
 
 EXEC 
-- como verificar se o path existe?
-- como lidar com a váriável path?
+- as vezes necessita digitar exit duas vezes para funcionar.
+- ao abrir ./minishel dentro do minishell da leaks
 
 PIPES
 
@@ -21,3 +21,4 @@ INTERACTIVES
 
 https://github.com/clemedon/Multipipe_tutor
 
+https://github.com/madebypixel02/minishell
