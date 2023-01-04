@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/04 14:23:44 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:02:01 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,12 @@ int	exec_prog(char *line, int *fd)
 	close(fd[0]);
 	ret = 0;
 	cmd_line = ft_split(line, ' ');
-	path = ft_strjoin("/bin/", cmd_line[0]);
+	path = ft_strdup(cmd_line[0]);
+	if (ft_strncmp(line, "./", 2))
+	{
+		free (path);
+		path = ft_strjoin("/bin/", cmd_line[0]);
+	}
 	if (execve(path, cmd_line, NULL) == -1)
 		ret = get_cmd_error(line);
 	free_array(cmd_line);
