@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/04 15:02:01 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:16:32 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	exec_prog(char *line, int *fd)
 		free (path);
 		path = ft_strjoin("/bin/", cmd_line[0]);
 	}
-	if (execve(path, cmd_line, NULL) == -1)
+	if (execve(path, cmd_line, data()->env) == -1)
 		ret = get_cmd_error(line);
 	free_array(cmd_line);
 	free (path);
