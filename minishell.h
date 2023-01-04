@@ -6,7 +6,7 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/03 15:06:37 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:23:46 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct s_args
 }	t_args;
 
 t_data	*data(void);
-int		ft_exec(char *line);
-int		exec_progm(char *line);
 int		treat_others(char *line);
+int		ft_exec(char *line);
+int		exec_prog(char *line, int *fd);
 //Lexer
 void	break_in_cmd(char *line);
 void	to_builtins(char *line);
