@@ -6,13 +6,13 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:10:03 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/02 16:14:45 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/06 02:37:18 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_exit(char *line)
+int	ft_exit(char *line, int fd)
 {
 	char	**args;
 	int		ret;
@@ -26,7 +26,7 @@ int	ft_exit(char *line)
 	ret = 0;
 	if (check_exit_args(args, len))
 		return (1);
-	printf("%s\n", args[0]);
+	write(fd, "exit\n", 5);
 	if (args[1])
 		ret = ft_atoi(args[1]);
 	free_array(args);

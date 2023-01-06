@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/04 14:23:46 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/06 02:33:53 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		ft_exec(char *line);
 int		exec_prog(char *line, int *fd);
 //Lexer
 void	break_in_cmd(char *line);
-void	to_builtins(char *line);
+void	to_builtins(char *line, int fd);
 // Utils
 char	*adjust_line(char *line);
 void	free_array(char **arr);
@@ -73,40 +73,40 @@ int		check_str(char *str);
 //Free
 void	free_exit(void);
 // ------------------- echo----------------------
-int		ft_echo(char *line);
-int		ft_echo_n(char *line);
-int		echo_dollar(char *line, size_t *pos);
-int		printer(char *line);
+int		ft_echo(char *line, int fd);
+int		ft_echo_n(char *line, int fd);
+int		echo_dollar(char *line, size_t *pos, int fd);
+int		printer(char *line, int fd);
 int		is_quote(char c);
-void	args_parser(char *line);
+void	args_parser(char *line, int fd);
 int		check_end_quote(char *line, int *pos);
 int		check_args(char *line);
-void	split_args(char *line);
-void	get_quoted_arg(char *line, int *pos);
-void	get_arg(char *line, int *pos);
+void	split_args(char *line, int fd);
+void	get_quoted_arg(char *line, int *pos, int fd);
+void	get_arg(char *line, int *pos, int fd);
 // ------------------- exit----------------------
-int		ft_exit(char *line);
+int		ft_exit(char *line, int fd);
 int		check_num(char *arg);
 int		check_exit_args(char **args, size_t len);
 // ------------------- env-----------------------
-int		ft_expand_env(char *line, size_t **pos);
-int		print_envs(char **env, char *line);
+int		ft_expand_env(char *line, size_t **pos, int fd);
+int		print_envs(char **env, char *line, int fd);
 char	*get_var(char *name, int id);
-void	print_env_value(char *value);
+void	print_env_value(char *value, int fd);
 char	*check_if_env(char *name);
 char	*expand_cli_env(char *name, int dollars);
 char	*get_value(char *name, int *pos);
 char	*concat_env(char *s1, char *s2);
 // ------------------- pwd-----------------------
-int		ft_pwd(char *line);
+int		ft_pwd(char *line, int fd);
 // ------------------- cd------------------------
 int		ft_cd(char *line);
 void	change_prompt(void);
 // -------------------export---------------------
-int		ft_export(char *line);
+int		ft_export(char *line, int fd);
 int		check_export_args(char **args, size_t len);
-void	print_export(void);
-void	print_char(char *str);
+void	print_export(int fd);
+void	print_char(char *str, int fd);
 int		change_or_add(char *arg, int flg, char ***str);
 // --------------------unset---------------------
 int		ft_unset(char *line);

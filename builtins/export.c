@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:01 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/29 17:18:32 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/06 01:48:21 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	change_or_add(char *arg, int flg, char ***str)
 	return (0);
 }
 
-void	print_char(char *str)
+void	print_char(char *str, int fd)
 {
 	int	index;
 	int	flg;
@@ -44,39 +44,39 @@ void	print_char(char *str)
 	flg = 0;
 	while (str[index])
 	{
-		write(1, &str[index], 1);
+		write(fd, &str[index], 1);
 		if (str[index] == '=' && flg == 0)
 		{
-			write(1, "\"", 1);
+			write(fd, "\"", 1);
 			flg = 1;
 		}
 		index++;
 	}
 	if (flg == 1)
 	{
-		write(1, "\"", 1);
+		write(fd, "\"", 1);
 		flg = 0;
 	}
 }
 
-void	print_export(void)
+void	print_export(int fd)
 {
 	int	index;
 
 	index = 0;
 	while (data()->expo[index])
 	{
-		write(1, "declare -x ", 11);
-		print_char(data()->expo[index]);
-		write(1, "\n", 1);
+		write(fd, "declare -x ", 11);
+		print_char(data()->expo[index], fd);
+		write(fd, "\n", 1);
 		index++;
 	}
 	index = 0;
 	write(1, "division\n ", 9);
 	while (data()->vars[index])
 	{
-		print_char(data()->vars[index]);
-		write(1, "\n", 1);
+		print_char(data()->vars[index], fd);
+		write(fd, "\n", 1);
 		index++;
 	}
 }
@@ -108,7 +108,7 @@ int	check_export_args(char **args, size_t len)
 	return (0);
 }
 
-int	ft_export(char *line)
+int	ft_export(char *line, int fd)
 {
 	char	**args;
 	size_t	len;
@@ -128,7 +128,7 @@ int	ft_export(char *line)
 		return (1);
 	}
 	else
-		print_export();
+		print_export(fd);
 	free_array(args);
 	return (0);
 }

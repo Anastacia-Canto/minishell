@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:17:29 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/27 15:09:12 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/06 02:29:24 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,33 +26,33 @@ int	check_args(char *line)
 	return (0);
 }
 
-void	args_parser(char *line)
+void	args_parser(char *line, int fd)
 {
 	int		i;
 
 	if (!check_args(line))
-		split_args(line);
+		split_args(line, fd);
 	else
 	{
 		i = 0;
 		while (line[i])
 		{
 			if (is_quote(line[i]) && !check_end_quote(line, &i))
-				get_quoted_arg(line, &i);
+				get_quoted_arg(line, &i, fd);
 			else if (ft_whitespace(line[i]))
 			{
 				while (line[i] && ft_whitespace(line[i]))
 					i++;
 				if (line[i])
-					printf(" ");
+					write(fd, " ", 1);
 			}
 			else
-				get_arg(line, &i);
+				get_arg(line, &i, fd);
 		}
 	}
 }
 
-void	split_args(char *line)
+void	split_args(char *line, int fd)
 {
 	int		i;
 	int		len;
@@ -64,15 +64,15 @@ void	split_args(char *line)
 	i = 0;
 	while (i < len -1)
 	{
-		flag = printer(args[i++]);
+		flag = printer(args[i++], fd);
 		if (!flag)
-			printf(" ");
+			write(fd, " ", 1);
 	}
-	printer(args[i]);
+	printer(args[i], fd);
 	free_array(args);
 }
 
-void	get_quoted_arg(char *line, int *pos)
+void	get_quoted_arg(char *line, int *pos, int fd)
 {
 	int		i;
 	char	*arg;
@@ -92,14 +92,14 @@ void	get_quoted_arg(char *line, int *pos)
 		arg = ft_substr(line, *pos + 1, i - *pos - 1);
 	if (arg)
 	{
-		printer(arg);
+		printer(arg, fd);
 		free (arg);
 	}
 	*pos = i + 1;
 	data()->expand = 1;
 }
 
-void	get_arg(char *line, int *pos)
+void	get_arg(char *line, int *pos, int fd)
 {
 	int		i;
 	char	*arg;
@@ -110,7 +110,7 @@ void	get_arg(char *line, int *pos)
 	arg = ft_substr(line, *pos, i - *pos);
 	if (arg)
 	{
-		printer(arg);
+		printer(arg, fd);
 		free (arg);
 	}
 	*pos = i;

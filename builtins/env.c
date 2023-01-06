@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:21:17 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/29 16:53:20 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/06 02:34:38 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_expand_env(char *line, size_t **pos)
+int	ft_expand_env(char *line, size_t **pos, int fd)
 {
 	int		end;
 	char	*value;
@@ -31,7 +31,7 @@ int	ft_expand_env(char *line, size_t **pos)
 	**pos = end;
 	if (!value)
 		return (1);
-	print_env_value(value);
+	print_env_value(value, fd);
 	return (1);
 }
 
@@ -71,23 +71,28 @@ char	*get_var(char *name, int id)
 	return (value);
 }
 
-void	print_env_value(char *value)
+void	print_env_value(char *value, int fd)
 {
-	int	i;
+	int		i;
+	size_t	len;
 
 	if (value[0] == '=')
 	{
 		i = 1;
 		while (value[i])
-			printf("%c", value[i++]);
+			write(fd, &value[i++], 1);
 	}
 	else
-		printf("%s", value);
+	{
+		len = ft_strlen(value);
+		write(fd, value, len);
+	}
 }
 
-int	print_envs(char **env, char *line)
+int	print_envs(char **env, char *line, int fd)
 {
-	int	i;
+	int		i;
+	size_t	len;
 
 	if (!env || !*env)
 		return (1);
@@ -95,6 +100,10 @@ int	print_envs(char **env, char *line)
 		return (127);
 	i = 0;
 	while (env[i])
-		printf("%s\n", env[i++]);
+	{
+		len = ft_strlen(env[i]);
+		write(fd, env[i++], len);
+		write(fd, "\n", 1);
+	}
 	return (0);
 }

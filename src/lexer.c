@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/04 15:16:32 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/06 02:27:35 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,28 @@ void	break_in_cmd(char *line)
 	{
 		adjusted_line = adjust_line(cmds[i++]);
 		adjusted_line = check_if_env(adjusted_line);
-		to_builtins(adjusted_line);
+		to_builtins(adjusted_line, 1);
 		free (adjusted_line);
 	}
 	free_array(cmds);
 }
 
-void	to_builtins(char *line)
+void	to_builtins(char *line, int fd)
 {
 	if (!ft_strncmp(line, "echo -n", 7))
-		data()->exit_status = ft_echo_n(line);
+		data()->exit_status = ft_echo_n(line, fd);
 	else if (!ft_strncmp(line, "echo", 4))
-		data()->exit_status = ft_echo(line);
+		data()->exit_status = ft_echo(line, fd);
 	else if (!ft_strncmp(line, "pwd", 3))
-		data()->exit_status = ft_pwd(line);
+		data()->exit_status = ft_pwd(line, fd);
 	else if (!ft_strncmp(line, "cd", 2))
 		data()->exit_status = ft_cd(line);
 	else if (!ft_strncmp(line, "env", 3))
-		data()->exit_status = print_envs(data()->env, line);
+		data()->exit_status = print_envs(data()->env, line, fd);
 	else if (!ft_strncmp(line, "exit", 4))
-		data()->exit_status = ft_exit(line);
+		data()->exit_status = ft_exit(line, fd);
 	else if (!ft_strncmp(line, "export", 6))
-		data()->exit_status = ft_export(line);
+		data()->exit_status = ft_export(line, fd);
 	else if (!ft_strncmp(line, "unset", 5))
 		data()->exit_status = ft_unset(line);
 	else

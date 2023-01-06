@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 17:21:25 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/16 15:47:49 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/06 02:01:30 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_pwd(char *line)
+int	ft_pwd(char *line, int fd)
 {
 	char	*path;
+	size_t	len;
 
 	if (check_cmd_name(line, "pwd ", 4))
 		return (127);
@@ -22,7 +23,9 @@ int	ft_pwd(char *line)
 	path = getcwd(path, 0);
 	if (!path)
 		return (1);
-	printf("%s\n", path);
+	len = ft_strlen(path);
+	write(fd, path, len);
+	write(fd, "\n", 1);
 	free (path);
 	return (0);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/29 15:01:02 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/06 02:34:16 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_echo(char *line)
+int	ft_echo(char *line, int fd)
 {
 	char	*str;
 
@@ -21,16 +21,16 @@ int	ft_echo(char *line)
 	str = ft_substr(line, 5, ft_strlen(line) - 5);
 	if (!str)
 	{
-		printf("\n");
+		write(fd, "\n", 1);
 		return (0);
 	}
-	args_parser(str);
-	printf("\n");
+	args_parser(str, fd);
+	write(fd, "\n", 1);
 	free (str);
 	return (0);
 }
 
-int	ft_echo_n(char *line)
+int	ft_echo_n(char *line, int fd)
 {
 	char	*str;
 	size_t	i;
@@ -43,12 +43,12 @@ int	ft_echo_n(char *line)
 	str = ft_substr(line, i, ft_strlen(line) - i + 1);
 	if (!str)
 		return (0);
-	args_parser(str);
+	args_parser(str, fd);
 	free (str);
 	return (0);
 }
 
-int	printer(char *line)
+int	printer(char *line, int fd)
 {
 	size_t	pos;
 
@@ -57,24 +57,24 @@ int	printer(char *line)
 	{
 		if (line[pos] == '$')
 		{
-			if (!echo_dollar(line, &pos))
-				printf("%c", line[pos++]);
+			if (!echo_dollar(line, &pos, fd))
+				write(fd, &line[pos++], 1);
 		}
 		else if (line[pos])
-			printf("%c", line[pos++]);
+			write(fd, &line[pos++], 1);
 	}
 	return (0);
 }
 
-int	echo_dollar(char *line, size_t *pos)
+int	echo_dollar(char *line, size_t *pos, int fd)
 {
 	if (line[*pos + 1] == '?')
 	{
-		printf("%d", data()->exit_status);
+		ft_putnbr_fd(data()->exit_status ,fd);
 		*pos += 2;
 	}
 	else if (data()->expand)
-		return (ft_expand_env(line, &pos));
+		return (ft_expand_env(line, &pos, fd));
 	return (0);
 }
 
