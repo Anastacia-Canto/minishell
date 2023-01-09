@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/06 02:27:35 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:10:32 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,26 @@ void	break_in_cmd(char *line)
 {
 	char	*adjusted_line;
 	char	**cmds;
-	int		i;
 
+	data()->pipe_flag = 0;
 	cmds = ft_split(line, '|');
 	free (line);
-	i = 0;
-	while (cmds[i])
+	if (array_len(cmds) > 1)
 	{
-		adjusted_line = adjust_line(cmds[i++]);
-		adjusted_line = check_if_env(adjusted_line);
-		to_builtins(adjusted_line, 1);
-		free (adjusted_line);
+		ft_pipe(cmds);
+		free_array(cmds);
+		return ;
 	}
+	adjusted_line = adjust_line(cmds[0]);
+	adjusted_line = check_if_env(adjusted_line);
+	to_builtins(adjusted_line, 1);
+	free (adjusted_line);
 	free_array(cmds);
 }
 
 void	to_builtins(char *line, int fd)
 {
+	// printf("waiting 2 %s\n", line);
 	if (!ft_strncmp(line, "echo -n", 7))
 		data()->exit_status = ft_echo_n(line, fd);
 	else if (!ft_strncmp(line, "echo", 4))

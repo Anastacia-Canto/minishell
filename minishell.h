@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/06 02:33:53 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:48:45 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <fcntl.h>
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -31,6 +32,7 @@ typedef struct s_data
 	char	**vars;
 	int		expo_flag;
 	int		expand;
+	int		pipe_flag;
 }	t_data;
 
 typedef struct s_args
@@ -46,6 +48,7 @@ int		exec_prog(char *line, int *fd);
 //Lexer
 void	break_in_cmd(char *line);
 void	to_builtins(char *line, int fd);
+void	ft_pipe(char **cmds);
 // Utils
 char	*adjust_line(char *line);
 void	free_array(char **arr);
