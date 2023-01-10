@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:10:03 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/06 02:37:18 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:49:13 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_exit(char *line, int fd)
+int	ft_exit(char *line, int fd, int *pd)
 {
 	char	**args;
 	int		ret;
@@ -26,13 +26,21 @@ int	ft_exit(char *line, int fd)
 	ret = 0;
 	if (check_exit_args(args, len))
 		return (1);
-	write(fd, "exit\n", 5);
+	if (pd == NULL)
+		write(fd, "exit\n", 5);
 	if (args[1])
 		ret = ft_atoi(args[1]);
 	free_array(args);
 	free_exit();
 	rl_clear_history();
-	exit (ret % 256);
+	ret = ret % 256;
+	if (pd != NULL)
+	{
+		close(pd[0]);
+		write(pd[1], &ret, sizeof(int));
+		close(pd[1]);
+	}
+	exit (ret);
 }
 
 int	check_exit_args(char **args, size_t len)

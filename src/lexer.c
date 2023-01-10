@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/10 09:29:19 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/10 17:28:37 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,44 @@
 void	break_in_cmd(char *line)
 {
 	char	**cmds;
+	int		len;
+	int		exit;
 
 	data()->pipe_flag = 0;
 	cmds = ft_split(line, '|');
+	len = array_len(cmds);
 	free (line);
-	if (array_len(cmds) > 1)
-		data()->exit_status = ft_pipe(cmds);
+	if ( len > 1)
+		exit = ft_pipe(cmds, len);
 	else
-		data()->exit_status = prep_exec(cmds[0]);
+		exit = prep_exec(cmds[0], 1, NULL);
 	free_array(cmds);
+	data()->exit_status = exit;
 }
 
-void	to_builtins(char *line, int fd)
+void	to_builtins(char *line, int fd, int *pd)
 {
+	int	exit;
+
 	if (!ft_strncmp(line, "echo -n", 7))
-		data()->exit_status = ft_echo_n(line, fd);
+		exit = ft_echo_n(line, fd);
 	else if (!ft_strncmp(line, "echo", 4))
-		data()->exit_status = ft_echo(line, fd);
+		exit = ft_echo(line, fd);
 	else if (!ft_strncmp(line, "pwd", 3))
-		data()->exit_status = ft_pwd(line, fd);
+		exit = ft_pwd(line, fd);
 	else if (!ft_strncmp(line, "cd", 2))
-		data()->exit_status = ft_cd(line);
+		exit = ft_cd(line);
 	else if (!ft_strncmp(line, "env", 3))
-		data()->exit_status = print_envs(data()->env, line, fd);
+		exit = print_envs(data()->env, line, fd);
 	else if (!ft_strncmp(line, "exit", 4))
-		data()->exit_status = ft_exit(line, fd);
+		exit = ft_exit(line, fd, pd);
 	else if (!ft_strncmp(line, "export", 6))
-		data()->exit_status = ft_export(line, fd);
+		exit = ft_export(line, fd);
 	else if (!ft_strncmp(line, "unset", 5))
-		data()->exit_status = ft_unset(line);
+		exit = ft_unset(line);
 	else
-		data()->exit_status = treat_others(line);
+		exit = treat_others(line);
+	data()->exit_status = exit;
 }
 
 int	treat_others(char *line)

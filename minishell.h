@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/10 09:28:42 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/10 17:27:33 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <signal.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <fcntl.h>
@@ -42,14 +43,16 @@ typedef struct s_args
 }	t_args;
 
 t_data	*data(void);
+void	handler_sigint(int sig);
+void	handler_sigquit(int sig);
 int		treat_others(char *line);
 int		ft_exec(char *line);
 int		exec_prog(char *line, int *fd);
 //Lexer
 void	break_in_cmd(char *line);
-void	to_builtins(char *line, int fd);
-int		ft_pipe(char **cmds);
-int		prep_exec(char *cmd);
+void	to_builtins(char *line, int fd, int *pd);
+int		ft_pipe(char **cmds, int len);
+int		prep_exec(char *cmd, int fd, int *pd);
 // Utils
 char	*adjust_line(char *line);
 void	free_array(char **arr);
@@ -89,7 +92,7 @@ void	split_args(char *line, int fd);
 void	get_quoted_arg(char *line, int *pos, int fd);
 void	get_arg(char *line, int *pos, int fd);
 // ------------------- exit----------------------
-int		ft_exit(char *line, int fd);
+int		ft_exit(char *line, int fd, int *pd);
 int		check_num(char *arg);
 int		check_exit_args(char **args, size_t len);
 // ------------------- env-----------------------

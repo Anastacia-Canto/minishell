@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:19:09 by ansilva-          #+#    #+#             */
-/*   Updated: 2022/12/27 17:23:22 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/10 16:54:33 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ void	change_prompt(void)
 {
 	char	*path;
 	char	*prompt;
+	char	*buff;
 
 	if (data()->prompt != NULL)
 		free (data()->prompt);
 	prompt = ": \033[1;33mminishell$\033[0m ";
 	path = NULL;
 	path = getcwd(path, 0);
-	data()->prompt = ft_strjoin(path, prompt);
+	buff = ft_strjoin(path, prompt);
+	data()->prompt = buff;
 	free (path);
 }
