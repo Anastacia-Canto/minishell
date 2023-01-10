@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/09 17:48:45 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/10 09:28:42 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int		exec_prog(char *line, int *fd);
 //Lexer
 void	break_in_cmd(char *line);
 void	to_builtins(char *line, int fd);
-void	ft_pipe(char **cmds);
+int		ft_pipe(char **cmds);
+int		prep_exec(char *cmd);
 // Utils
 char	*adjust_line(char *line);
 void	free_array(char **arr);
