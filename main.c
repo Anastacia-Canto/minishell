@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 08:42:12 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 07:53:26 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/11 11:15:29 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ void	handler_sigint(int sig)
 	}
 }
 
-void	handler_sigquit(int sig)
-{
-	if (sig == SIGQUIT)
-	{
-		write(1, "HERE", 4);
-	}
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	char	*line;
@@ -42,13 +34,18 @@ int	main(int argc, char **argv, char **env)
 	if (env)
 	{
 		change_prompt();
-		signal(SIGINT, handler_sigint);
-		line = readline(data()->prompt);
-		while (line)
+		while (1)
 		{
+			signal(SIGINT, handler_sigint);
+			signal(SIGQUIT, SIG_IGN);
+			line = readline(data()->prompt);
+			if (line == NULL)
+			{
+				write(1, "exit\n", 5);
+				break ;
+			}
 			add_history(line);
 			break_in_cmd(line);
-			line = readline(data()->prompt);
 		}
 		free (data()->prompt);
 		clear_history();

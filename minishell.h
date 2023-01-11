@@ -6,16 +6,16 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 09:09:26 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/11 10:21:45 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <signal.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <fcntl.h>
