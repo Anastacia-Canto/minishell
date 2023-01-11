@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2023/01/11 03:22:37 by sde-mull         ###   ########.fr        #
+#    Updated: 2023/01/11 09:09:42 by anastacia        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ $(VERBOSE).SILENT:
 NAME = minishell
 
 SRC = main\
-	  src/lexer src/pipe\
+	  src/lexer src/pipe src/exec\
 	  utils/utils utils/utils2 utils/utils3 utils/utils4 utils/check utils/free\
 	  builtins/echo builtins/echo2 builtins/echo3 builtins/exit builtins/env\
 	  builtins/env2 builtins/pwd builtins/cd builtins/export builtins/unset\

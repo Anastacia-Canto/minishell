@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 03:11:30 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/11 09:09:26 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-#include <editline/readline.h>
+# include <editline/readline.h>
 # include "libft/libft.h"
 
 typedef struct s_data
@@ -47,13 +47,15 @@ t_data	*data(void);
 void	handler_sigint(int sig);
 void	handler_sigquit(int sig);
 int		treat_others(char *line);
-int		ft_exec(char *line);
-int		exec_prog(char *line, int *fd);
 //Lexer
 void	break_in_cmd(char *line);
 void	to_builtins(char *line, int fd, int *pd);
+//Pipe
 int		ft_pipe(char **cmds, int len);
 int		prep_exec(char *cmd, int fd, int *pd);
+//Exec
+int		ft_exec(char *line);
+int		exec_prog(char *line, int *fd);
 char	*get_path(char *cmd_line);
 // Utils
 char	*adjust_line(char *line);

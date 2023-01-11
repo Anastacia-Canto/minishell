@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 08:42:12 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 01:16:25 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/11 07:53:26 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int argc, char **argv, char **env)
 	if (env)
 	{
 		change_prompt();
-		
 		signal(SIGINT, handler_sigint);
 		line = readline(data()->prompt);
 		while (line)
