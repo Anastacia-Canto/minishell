@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 08:42:12 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 11:15:29 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/11 12:23:06 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ void	handler_sigint(int sig)
 	}
 }
 
+int	check_null_line(char *line)
+{
+	if (line == NULL)
+	{
+		write(1, "exit\n", 5);
+		return (1);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	char	*line;
@@ -39,16 +49,13 @@ int	main(int argc, char **argv, char **env)
 			signal(SIGINT, handler_sigint);
 			signal(SIGQUIT, SIG_IGN);
 			line = readline(data()->prompt);
-			if (line == NULL)
-			{
-				write(1, "exit\n", 5);
+			if (check_null_line(line))
 				break ;
-			}
 			add_history(line);
 			break_in_cmd(line);
 		}
 		free (data()->prompt);
-		clear_history();
+		rl_clear_history();
 	}
 	return (0);
 }

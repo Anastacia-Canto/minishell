@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:38:36 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/29 17:19:08 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:31:04 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	check_str(char *str)
 int	check_line(char *str)
 {
 	int	index;
-	int flg;
+	int	flg;
 
 	index = 0;
 	flg = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:01 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/06 01:48:21 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:27:41 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ int	change_or_add(char *arg, int flg, char ***str)
 	if (flg && check == 0)
 	{
 		while (arg[index++])
+		{
 			if (arg[index] == '=')
 			{
 				*str = add_to_list(arg, *str);
-				break;
+				break ;
 			}
+		}
 	}
 	else if (check == 2)
 		*str = change_list(arg, *str);

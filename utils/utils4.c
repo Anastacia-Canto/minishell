@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:10:51 by sde-mull          #+#    #+#             */
-/*   Updated: 2022/12/29 17:20:20 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:30:50 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	add_var(char *line)
 {
 	if (check_value_list(line, data()->expo) == 2)
 		change_or_add(line, 1, &data()->expo);
-	if (check_value_list(line, data()->	env) == 2)
+	if (check_value_list(line, data()->env) == 2)
 		change_or_add(line, 1, &data()->env);
 	change_or_add(line, 1, &data()->vars);
 	return (0);

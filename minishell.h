@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 10:21:45 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/11 12:21:32 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,47 +43,48 @@ typedef struct s_args
 	struct s_args	*next;
 }	t_args;
 
-t_data	*data(void);
+//Main---------------------------------------------------------------
 void	handler_sigint(int sig);
-void	handler_sigquit(int sig);
-int		treat_others(char *line);
-//Lexer
+int		check_null_line(char *line);
+//Lexer--------------------------------------------------------------
 void	break_in_cmd(char *line);
 void	to_builtins(char *line, int fd, int *pd);
-//Pipe
+int		treat_others(char *line);
+//Pipe---------------------------------------------------------------
 int		ft_pipe(char **cmds, int len);
 int		prep_exec(char *cmd, int fd, int *pd);
-//Exec
+//Exec---------------------------------------------------------------
 int		ft_exec(char *line);
 int		exec_prog(char *line, int *fd);
 char	*get_path(char *cmd_line);
-// Utils
+// Utils-------------------------------------------------------------
+t_data	*data(void);
 char	*adjust_line(char *line);
 void	free_array(char **arr);
 int		check_cmd_name(char *line, char *name, size_t len);
 int		array_len(char **arr);
-//Utils2
+//Utils2-------------------------------------------------------------
 char	**ft_list(char **ex_list);
 void	ft_alphabetic(char **copy);
 void	ft_swap_alpha(char **copy, size_t i, size_t j);
 void	init_values(char **env);
 char	**add_to_list(char *str, char **lista);
-//Utils3
+//Utils3-------------------------------------------------------------
 int		find_equal(char *str, char *lista_str);
 char	**change_list(char *str, char **lista);
 char	**remove_from_list(char *str, char **lista);
 int		ft_strcmp_expo(char *str, char *str2);
 char	**create_list(char *str);
-//Utils4
+//Utils4-------------------------------------------------------------
 int		get_cmd_error(char *str);
 int		add_var(char *line);
-//Check
+//Check--------------------------------------------------------------
 int		check_value_list(char *str, char **lista);
 int		check_line(char *str);
 int		check_str(char *str);
-//Free
+//Free---------------------------------------------------------------
 void	free_exit(void);
-// ------------------- echo----------------------
+// Echo--------------------------------------------------------------
 int		ft_echo(char *line, int fd);
 int		ft_echo_n(char *line, int fd);
 int		echo_dollar(char *line, size_t *pos, int fd);
@@ -95,11 +96,11 @@ int		check_args(char *line);
 void	split_args(char *line, int fd);
 void	get_quoted_arg(char *line, int *pos, int fd);
 void	get_arg(char *line, int *pos, int fd);
-// ------------------- exit----------------------
+// Exit--------------------------------------------------------------
 int		ft_exit(char *line, int fd, int *pd);
 int		check_num(char *arg);
 int		check_exit_args(char **args, size_t len);
-// ------------------- env-----------------------
+// Env---------------------------------------------------------------
 int		ft_expand_env(char *line, size_t **pos, int fd);
 int		print_envs(char **env, char *line, int fd);
 char	*get_var(char *name, int id);
@@ -108,17 +109,17 @@ char	*check_if_env(char *name);
 char	*expand_cli_env(char *name, int dollars);
 char	*get_value(char *name, int *pos);
 char	*concat_env(char *s1, char *s2);
-// ------------------- pwd-----------------------
+// PWD--------------------------------------------------------------
 int		ft_pwd(char *line, int fd);
-// ------------------- cd------------------------
+// CD---------------------------------------------------------------
 int		ft_cd(char *line);
 void	change_prompt(void);
-// -------------------export---------------------
+// Export-----------------------------------------------------------
 int		ft_export(char *line, int fd);
 int		check_export_args(char **args, size_t len);
 void	print_export(int fd);
 void	print_char(char *str, int fd);
 int		change_or_add(char *arg, int flg, char ***str);
-// --------------------unset---------------------
+// Unset------------------------------------------------------------
 int		ft_unset(char *line);
 #endif

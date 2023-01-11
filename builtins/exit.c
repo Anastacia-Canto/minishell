@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:10:03 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/11 01:13:08 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:15:09 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_exit(char *line, int fd, int *pd)
 		ret = ft_atoi(args[1]);
 	free_array(args);
 	free_exit();
-	clear_history();
+	rl_clear_history();
 	ret = ret % 256;
 	if (pd != NULL)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/06 02:34:16 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:29:52 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	echo_dollar(char *line, size_t *pos, int fd)
 {
 	if (line[*pos + 1] == '?')
 	{
-		ft_putnbr_fd(data()->exit_status ,fd);
+		ft_putnbr_fd(data()->exit_status, fd);
 		*pos += 2;
 	}
 	else if (data()->expand)
