@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 12:21:32 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/11 15:14:27 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <editline/readline.h>
 # include "libft/libft.h"
 
 typedef struct s_data
@@ -35,6 +34,7 @@ typedef struct s_data
 	int		expo_flag;
 	int		expand;
 	int		pipe_flag;
+	int		sig;
 }	t_data;
 
 typedef struct s_args
