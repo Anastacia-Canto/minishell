@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 16:05:01 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:28:01 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct s_data
 	char	**vars;
 	int		expo_flag;
 	int		expand;
-	int		pipe_flag;
 	int		sig;
 }	t_data;
 

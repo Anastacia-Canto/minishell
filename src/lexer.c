@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 16:33:16 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:26:43 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	break_in_cmd(char *line)
 	int		len;
 	int		exit;
 
-	data()->pipe_flag = 0;
 	cmds = ft_split(line, '|');
 	len = array_len(cmds);
 	free (line);
