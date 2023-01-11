@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 08:42:12 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 15:17:48 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:40:24 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ int	main(int argc, char **argv, char **env)
 			line = readline(data()->prompt);
 			if (check_null_line(line))
 				break ;
+			if (!ft_strlen(line))
+			{
+				free(line);
+				continue ;
+			}
 			add_history(line);
 			break_in_cmd(line);
 		}

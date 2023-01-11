@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 05:05:27 by anastacia         #+#    #+#             */
-/*   Updated: 2022/12/16 14:08:30 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/11 16:26:57 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strchr(const char *s, int c)
 
 	b = c;
 	i = 0;
+	if (!s)
+		return (NULL);
 	while (s && s[i] && (s[i] != b))
 		i++;
 	if (s[i] == b)
