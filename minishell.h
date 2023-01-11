@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/10 17:27:33 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/11 03:11:30 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+#include <editline/readline.h>
 # include "libft/libft.h"
 
 typedef struct s_data
@@ -53,6 +54,7 @@ void	break_in_cmd(char *line);
 void	to_builtins(char *line, int fd, int *pd);
 int		ft_pipe(char **cmds, int len);
 int		prep_exec(char *cmd, int fd, int *pd);
+char	*get_path(char *cmd_line);
 // Utils
 char	*adjust_line(char *line);
 void	free_array(char **arr);

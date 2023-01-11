@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/10 17:28:37 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/11 03:20:03 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	exec_prog(char *line, int *fd)
 	if (ft_strncmp(line, "./", 2))
 	{
 		free (path);
-		path = ft_strjoin("/bin/", cmd_line[0]);
+		path = get_path(cmd_line[0]);
 	}
 	if (execve(path, cmd_line, data()->env) == -1)
 		ret = get_cmd_error(line);
@@ -114,4 +114,30 @@ int	exec_prog(char *line, int *fd)
 	write(fd[1], &ret, sizeof(int));
 	close(fd[1]);
 	return (ret);
+}
+
+char	*get_path(char *cmd_line)
+{
+	char	*path;
+	char	**buffer;
+	int		i;
+
+	i = 0;
+	path = getenv("PATH");
+	buffer = ft_split(path, ':');
+	cmd_line = ft_strjoin("/", cmd_line);
+	while (i < array_len(buffer))
+	{
+		buffer[i] = ft_strjoin(buffer[i], cmd_line);
+		if (access(buffer[i], F_OK) == 0)
+		{
+			free(cmd_line);
+			path = buffer[i];
+			return (path);
+		}
+		i++;
+	}
+	free(cmd_line);
+	path = buffer[i - 1];
+	return (path);
 }
