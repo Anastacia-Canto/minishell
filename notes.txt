@@ -4,7 +4,6 @@ Expanões de variáveis
 
 ECHO 
 - lidar com * (bonus?)
-- echo $?
 - echo -nnnnnnnnnnnnnnnnnn
 
 PIPES
