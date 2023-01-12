@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/12 17:14:03 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/12 18:30:02 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ typedef struct s_data
 	int		sig;
 }	t_data;
 
+/*heredoc
+readirection '>' -> for exemple: echo hello world > output.txt hello > output2.txt hello
+					result: output.txt is empty, output2.txt "hello world hello hello"
+					The output.txt is created anyways even if is going to be empty.
+*/
+
+typedef struct s_heredoc
+{
+	int		direction_len; //how many readirection there are
+	char	**print_args;	//the arguments that should be printed on the output;
+	char	*last_file;		//The last file that should be created and the only that gets the output;
+	int		fd;
+}	t_heredoc;
+
 typedef struct s_args
 {
 	char			*content;
@@ -53,7 +67,7 @@ int		count_cmds(char **args);
 void	print_args(char **args);
 char	***list_cmds(char **args, int nbr_cmds);
 char	**split_cmds(char **line, int start, int len);
-void	free_cmds_list(char ***cmds);
+void	free_cmds_list(char ***cmds, int nbr_cmds);
 //Lexer--------------------------------------------------------------
 void	to_builtins(char **line, int fd, int *pd);
 int		treat_others(char **line);
@@ -63,6 +77,7 @@ int		ft_pipe(char ***cmds, int len);
 int		ft_exec(char **line);
 int		exec_prog(char **line, int *fd);
 char	*get_path(char *cmd_line);
+void	execution(char **line, int fd, int *pd);
 // Utils-------------------------------------------------------------
 t_data	*data(void);
 char	*adjust_line(char *line);
@@ -88,6 +103,7 @@ int		add_var(char *line);
 int		check_value_list(char *str, char **lista);
 int		check_line(char *str);
 int		check_str(char *str);
+int		check_heredoc(char **lines);
 //Free---------------------------------------------------------------
 void	free_exit(void);
 // Echo--------------------------------------------------------------
