@@ -1,13 +1,13 @@
 O que falta: 
 
-Expanões de variáveis
+Expansões de variáveis
 
 ECHO 
 - lidar com * (bonus?)
 - echo -nnnnnnnnnnnnnnnnnn
 
 PIPES
-| and |||
+| (tá fechando o programa depois de executar o último comando) and |||
 
 REDIRECTIONS
 
