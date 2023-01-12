@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:27:36 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/12 17:13:59 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/12 18:20:29 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	ft_pipe(char ***cmds, int len)
 		pid = fork();
 		if (pid == 0)
 		{
-			to_builtins(cmds[i], 1, p1);
-			if (i == len -1)
+			execution(cmds[i], 1, p1);
+			if (i == len - 1)
 			{
 				close(p1[0]);
 				write(p1[1], &data()->exit_status, sizeof(int));

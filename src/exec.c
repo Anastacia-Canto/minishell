@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:07:01 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/12 13:09:59 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/12 17:45:43 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,12 @@ char	*get_path(char *cmd_line)
 	free(cmd_line);
 	path = NULL;
 	return (path);
+}
+
+void	execution(char **line, int fd, int *pd)
+{
+	//if (check_heredoc(line))
+		//heredoc(line, fd, pd);
+	//else
+		to_builtins(line, fd, pd);
 }

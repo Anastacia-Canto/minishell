@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:38:36 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/11 12:31:04 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/12 17:48:22 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,18 @@ int	check_line(char *str)
 		return (1);
 	return (0);
 }
+
+// int	check_heredoc(char **lines)
+// {
+// 	int	index;
+
+// 	index = 0;
+// 	while (lines[index])
+// 	{
+// 		if (lines[index] == ">>" || lines[index] == "<<" || 
+// 			lines[index] == ">" || lines[index] == "<")
+// 			return (1);
+// 		index++;
+// 	}
+// 	return (0);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/12 16:42:06 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/12 18:32:10 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	parser(char *line)
 	nbr_cmds = count_cmds(args);
 	// printf("%d\n", nbr_cmds);
 	if (nbr_cmds == 1)
-		to_builtins(args, 1, NULL);
+		execution(args, 1, NULL);
 	else
 	{
 		cmds = list_cmds(args, nbr_cmds);
 		ft_pipe(cmds, nbr_cmds);
-		free_cmds_list(cmds);
+		//free_cmds_list(cmds, nbr_cmds);
 	}
 	free_array(args);
 }
@@ -84,7 +84,7 @@ char	**ft_split_args(char *line)
 		}
 	}
 	free(temp);
-	args[k] = '\0';
+	args[k] = 0;
 	return (args);
 }
 
@@ -136,13 +136,17 @@ char	***list_cmds(char **args, int nbr_cmds)
 	return (cmds);
 }
 
-void	free_cmds_list(char ***cmds)
+void	free_cmds_list(char ***cmds, int nbr_cmds)
 {
 	int	i;
 
 	i = 0;
-	while (cmds[i])
-		free_array(cmds[i++]);
+	while (i < nbr_cmds)
+	{	
+		printf("%d\n", i);
+		free_array(cmds[i]);
+		i++;
+	}
 	free (cmds);
 }
 
@@ -157,6 +161,6 @@ char	**split_cmds(char **line, int start, int len)
 	i = -1;
 	while (++i < len)
 		cmd[i] = ft_strdup(line[start + i]);
-	cmd[i] = '\0';
+	cmd[i] = 0;
 	return (cmd);
 }
