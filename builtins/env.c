@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:21:17 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/06 02:34:38 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:05:51 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,18 @@ void	print_env_value(char *value, int fd)
 	}
 }
 
-int	print_envs(char **env, char *line, int fd)
+int	print_envs(char **env, char **line, int fd)
 {
 	int		i;
 	size_t	len;
 
 	if (!env || !*env)
 		return (1);
-	if (check_cmd_name(line, "env ", 4))
+	if (array_len(line) > 1)
+	{
+		printf("env: '%s': No such file or directory\n", line[1]);
 		return (127);
+	}
 	i = 0;
 	while (env[i])
 	{

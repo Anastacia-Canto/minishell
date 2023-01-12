@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:07:01 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 16:18:51 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:09:59 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_exec(char *line)
+int	ft_exec(char **line)
 {
 	pid_t	pid;
 	int		fd[2];
@@ -38,24 +38,21 @@ int	ft_exec(char *line)
 	return (ret);
 }
 
-int	exec_prog(char *line, int *fd)
+int	exec_prog(char **line, int *fd)
 {
-	char	**cmd_line;
 	int		ret;
 	char	*path;
 
 	close(fd[0]);
 	ret = 0;
-	cmd_line = ft_split(line, ' ');
-	path = ft_strdup(cmd_line[0]);
-	if (ft_strncmp(line, "./", 2))
+	path = ft_strdup(line[0]);
+	if (ft_strncmp(line[0], "./", 2))
 	{
 		free (path);
-		path = get_path(cmd_line[0]);
+		path = get_path(line[0]);
 	}
-	execve(path, cmd_line, data()->env);
-	ret = get_cmd_error(line);
-	free_array(cmd_line);
+	execve(path, line, data()->env);
+	ret = get_cmd_error(line[0]);
 	free (path);
 	write(fd[1], &ret, sizeof(int));
 	close(fd[1]);

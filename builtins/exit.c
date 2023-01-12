@@ -3,34 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:10:03 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/11 15:25:12 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:07:35 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_exit(char *line, int fd, int *pd)
+int	ft_exit(char **line, int fd, int *pd)
 {
-	char	**args;
 	int		ret;
 	size_t	len;
 
-	if (check_cmd_name(line, "exit ", 5))
-		return (127);
-	args = ft_split(line, ' ');
-	free (line);
-	len = array_len(args);
+	len = array_len(line);
 	ret = 0;
-	if (check_exit_args(args, len))
+	if (check_exit_args(line, len))
 		return (1);
 	if (pd == NULL)
 		write(fd, "exit\n", 5);
-	if (args[1])
-		ret = ft_atoi(args[1]);
-	free_array(args);
+	if (line[1])
+		ret = ft_atoi(line[1]);
+	free_array(line);
 	free_exit();
 	rl_clear_history();
 	ret = ret % 256;
@@ -49,14 +44,13 @@ int	check_exit_args(char **args, size_t len)
 	{
 		if (check_num(args[1]))
 		{
-			clear_history();
+			rl_clear_history();
 			free_array(args);
 			free_exit();
 			exit(2);
 		}
 		if (len > 2)
 		{
-			free_array(args);
 			printf("exit\nminishell: exit: too many arguments\n");
 			return (1);
 		}

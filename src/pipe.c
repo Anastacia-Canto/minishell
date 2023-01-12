@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:27:36 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/11 16:37:18 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:13:59 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_pipe(char **cmds, int len)
+int	ft_pipe(char ***cmds, int len)
 {
 	int		tmpin;
 	int		tmpout;
@@ -40,7 +40,7 @@ int	ft_pipe(char **cmds, int len)
 		pid = fork();
 		if (pid == 0)
 		{
-			prep_exec(cmds[i], 1, p1);
+			to_builtins(cmds[i], 1, p1);
 			if (i == len -1)
 			{
 				close(p1[0]);
@@ -59,17 +59,4 @@ int	ft_pipe(char **cmds, int len)
 	close(tmpout);
 	waitpid(pid, NULL, 0);
 	return (data()->exit_status);
-}
-
-int	prep_exec(char *cmd, int fd, int *pd)
-{
-	char	*adjusted_line;
-	int		ret;
-
-	adjusted_line = adjust_line(cmd);
-	adjusted_line = check_if_env(adjusted_line);
-	to_builtins(adjusted_line, fd, pd);
-	free (adjusted_line);
-	ret = data()->exit_status;
-	return (ret);
 }

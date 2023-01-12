@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:01 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/11 12:27:41 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/12 14:52:52 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,6 @@ void	print_export(int fd)
 		write(fd, "\n", 1);
 		index++;
 	}
-	index = 0;
-	write(1, "division\n ", 9);
-	while (data()->vars[index])
-	{
-		print_char(data()->vars[index], fd);
-		write(fd, "\n", 1);
-		index++;
-	}
 }
 
 int	check_export_args(char **args, size_t len)
@@ -110,27 +102,18 @@ int	check_export_args(char **args, size_t len)
 	return (0);
 }
 
-int	ft_export(char *line, int fd)
+int	ft_export(char **line, int fd)
 {
-	char	**args;
 	size_t	len;
 
-	if (check_cmd_name(line, "export ", 7))
-		return (127);
-	args = ft_split(line, ' ');
-	len = array_len(args);
+	len = array_len(line);
 	if (len != 1)
 	{
-		if (!check_export_args(args, len))
-		{
-			free_array(args);
+		if (!check_export_args(line, len))
 			return (0);
-		}
-		free_array(args);
 		return (1);
 	}
 	else
 		print_export(fd);
-	free_array(args);
 	return (0);
 }

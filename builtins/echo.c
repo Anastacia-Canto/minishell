@@ -6,45 +6,52 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/11 12:29:52 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/12 14:39:17 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_echo(char *line, int fd)
+int	ft_echo(char **line, int fd)
 {
-	char	*str;
+	int		i;
+	int		j;
 
-	if (check_cmd_name(line, "echo ", 5))
-		return (127);
-	str = ft_substr(line, 5, ft_strlen(line) - 5);
-	if (!str)
+	if (array_len(line) == 1)
 	{
 		write(fd, "\n", 1);
 		return (0);
 	}
-	args_parser(str, fd);
+	if (!ft_strncmp(line[1], "-n", sizeof(line[1])))
+		return (ft_echo_n(line, fd));
+	// args_parser(str, fd);
+	i = 0;
+	while (line[++i])
+	{
+		j = 0;
+		while (line[i][j])
+			write(fd, &line[i][j++], 1);
+		if (i < array_len(line) - 1)
+			write(fd, " ", 1);
+	}
 	write(fd, "\n", 1);
-	free (str);
 	return (0);
 }
 
-int	ft_echo_n(char *line, int fd)
+int	ft_echo_n(char **line, int fd)
 {
-	char	*str;
-	size_t	i;
+	int		i;
+	int		j;
 
-	if (check_cmd_name(line, "echo -n ", 8))
-		return (127);
-	i = 8;
-	while (line[i] && ft_whitespace(line[i]))
-		i++;
-	str = ft_substr(line, i, ft_strlen(line) - i + 1);
-	if (!str)
-		return (0);
-	args_parser(str, fd);
-	free (str);
+	i = 1;
+	while (line[++i])
+	{
+		j = 0;
+		while (line[i][j])
+			write(fd, &line[i][j++], 1);
+		if (i < array_len(line) - 1)
+			write(fd, " ", 1);
+	}
 	return (0);
 }
 

@@ -1,22 +1,16 @@
 O que falta: 
 
-UNSET
+Expanões de variáveis
 
 ECHO 
 - lidar com * (bonus?)
-
-EXEC 
-- as vezes necessita digitar exit duas vezes para funcionar.
-- ao abrir ./minishel dentro do minishell da leaks
+- echo $?
+- echo -nnnnnnnnnnnnnnnnnn
 
 PIPES
+| and |||
 
 REDIRECTIONS
-
-INTERACTIVES
-- ctrl-C displays a new prompt
-- ctrl-D exits the shell
-- ctrl-\ does nothing
 
 
 https://github.com/clemedon/Multipipe_tutor

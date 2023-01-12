@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:10:51 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/11 12:30:50 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/12 13:23:51 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ int	get_cmd_error(char *str)
 	int	index;
 
 	index = 0;
-	while (str[index] != ' ' && str[index])
+	while (str[index])
 		printf("%c", str[index++]);
-	index = 0;
 	printf(": command not found\n");
 	return (127);
 }
