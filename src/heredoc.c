@@ -6,25 +6,25 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/12 21:23:23 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/13 02:44:46 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	heredoc(char **line, int fd, int *pd)
+void	heredoc(char **line, int *pd)
 {
 	int index;
 
 	index = 0;
 	while (line[index])
 	{
-		if (!ft_strcmp(line[index], ">"))
-			ft_greater(line, fd, pd);
-		//else if (!ft_strcmp(lines[index], ">>"))
-			//ft_double_greater(lines, fd, pd);
-		//else if (!ft_strcmp(lines[index], "<"))
-			//ft_less(lines, fd, pd);
+		if (!ft_directcmp(line[index], ">"))
+			ft_greater(line, pd);
+		else if (!ft_directcmp(line[index], ">>"))
+			ft_double_greater(line, pd);
+		else if (!ft_directcmp(line[index], "<"))
+			ft_less(line, pd);
 		//else if (!ft_strcmp(lines[index], "<<"))
 			//ft_double_less(lines, fd, pd);
 		index++;

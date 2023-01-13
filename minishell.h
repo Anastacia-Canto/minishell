@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 00:12:30 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/13 02:39:19 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ typedef struct s_data
 }	t_data;
 
 /*heredoc
-readirection '>' -> for exemple: echo hello world > output.txt hello > output2.txt hello
-					result: output.txt is empty, output2.txt "hello world hello hello"
-					The output.txt is created anyways even if is going to be empty.
 */
 
 typedef struct s_heredoc
 {
-	int		direction_len; //how many readirection there are
-	char	**print_args;	//the arguments that should be printed on the output;
-	char	*last_file;		//The last file that should be created and the only that gets the output;
+	int		direction_len;
+	char	**print_args;
+	char	*last_file;
 	int		fd1;
+	int		index;
+	char	*temp;
+	int		tmpout;
 }	t_heredoc;
 
 typedef struct s_args
@@ -80,7 +80,7 @@ int		exec_prog(char **line, int *fd);
 char	*get_path(char *cmd_line);
 void	execution(char **line, int fd, int *pd);
 //Heredoc------------------------------------------------------------
-void	heredoc(char **line, int fd, int *pd);
+void	heredoc(char **line, int *pd);
 // Utils-------------------------------------------------------------
 t_data	*data(void);
 char	*adjust_line(char *line);
@@ -110,10 +110,13 @@ int		check_heredoc(char **lines);
 //Free---------------------------------------------------------------
 void	free_exit(void);
 //Heredoc_fun--------------------------------------------------------
-void	ft_greater(char **line, int fd, int *pd);
+void	ft_greater(char **line, int *pd);
+void	ft_double_greater(char **line, int *pd);
+void	ft_less(char **lines, int *pd);
 //here_utils---------------------------------------------------------
 char	*get_pfile(char *line);
 void	get_args(char **line, int len, t_heredoc *file);
+int		ft_directcmp(char *line, char *cmp);
 // Echo--------------------------------------------------------------
 int		ft_echo(char **line, int fd);
 int		ft_echo_n(char **line, int fd);
