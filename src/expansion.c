@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 13:31:48 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/13 18:28:43 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 char	*check_if_env(char *arg)
 {
-	char	*new_name;
+	char	*new_arg;
+	char	*temp;
 	int		dollars;
 	int		i;
 
@@ -23,7 +24,7 @@ char	*check_if_env(char *arg)
 		return (arg);
 	i = 0;
 	dollars = 0;
-	while (arg[i] && !ft_whitespace(arg[i]))
+	while (arg[i])
 	{
 		if (arg[i] == '$')
 		{
@@ -34,37 +35,50 @@ char	*check_if_env(char *arg)
 	}
 	if (!dollars)
 		return (arg);
-	new_name = expand_cli_env(arg, dollars);
-	if (!new_name)
-		return (arg);
+	i = 0;
+	new_arg = ft_strdup(arg);
+	while (dollars > 0)
+	{
+		temp = ft_strdup(new_arg);
+		free(new_arg);
+		dollars--;
+		while (temp[i] && temp[i] != '$')
+			i++;
+		new_arg = expand_cli_env(temp, i);
+		printf("arg: %s\n", new_arg);
+		i++;
+		free(temp);
+	}
 	free (arg);
-	return (new_name);
+	if (!new_arg)
+		return (NULL);
+	return (new_arg);
 }
 
-char	*expand_cli_env(char *name, int dollars)
+char	*expand_cli_env(char *name, int i)
 {
-	int		i;
 	char	*new_name;
+	char	*value;
 
 	new_name = malloc(sizeof(char) * 1);
 	new_name[0] = '\0';
-	i = 0;
-	while (name[i] && name[i] != '$' && !ft_whitespace(name[i]))
-		i++;
+	// printf("i: %d\n", i);
 	while (i + 1 < (int)ft_strlen(name) && name[i + 1] == '$')
 		i++;
 	if (i > 0)
 	{
+		// printf("passou aqui\n");
 		free (new_name);
 		new_name = ft_substr(name, 0, i);
 	}
-	while (dollars > 0)
-	{
-		i++;
-		dollars--;
-		new_name = concat_env(new_name, get_value(name, &i));
-	}
-	new_name = concat_env(new_name, (char *)name + i);
+	i++;
+	value = get_value(name, &i);
+	if (value)
+		new_name = concat_env(new_name, value);
+	if (name[i])
+		new_name = concat_env(new_name, (char *)name + i);
+	if (!new_name)
+		return (NULL);
 	return (new_name);
 }
 
@@ -128,8 +142,11 @@ char	*concat_env(char *s1, char *s2)
 	int		i;
 	int		j;
 
+	// printf("s1: %s\ts2: %s\n", s1, s2);
+	if (!s1 || !s2)
+		return (NULL);
 	ret = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!s1 || !s2 || !ret)
+	if (!ret)
 		return (NULL);
 	i = -1;
 	while (s1[++i])
