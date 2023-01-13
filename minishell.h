@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 10:10:18 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/13 11:19:13 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int		check_null_line(char *line);
 //Parser
 void	parser(char *line);
 char	**ft_split_args(char *line);
+int		check_end_quote(char *line, int *pos);
+int		is_quote(char c);
 int		count_cmds(char **args);
 void	print_args(char **args);
 char	***list_cmds(char **args, int nbr_cmds);
@@ -112,24 +114,14 @@ int		ft_directcmp(char *line, char *cmp);
 // Echo--------------------------------------------------------------
 int		ft_echo(char **line, int fd);
 int		ft_echo_n(char **line, int fd);
-int		echo_dollar(char *line, size_t *pos, int fd);
-int		printer(char *line, int fd);
-int		is_quote(char c);
-void	args_parser(char *line, int fd);
-int		check_end_quote(char *line, int *pos);
-int		check_args(char *line);
-void	split_args(char *line, int fd);
-void	get_quoted_arg(char *line, int *pos, int fd);
-void	get_arg(char *line, int *pos, int fd);
 // Exit--------------------------------------------------------------
 int		ft_exit(char **line, int fd, int *pd);
 int		check_num(char *arg);
 int		check_exit_args(char **args, size_t len);
 // Env---------------------------------------------------------------
-int		ft_expand_env(char *line, size_t **pos, int fd);
 int		print_envs(char **env, char **line, int fd);
+// Expansion
 char	*get_var(char *name, int id);
-void	print_env_value(char *value, int fd);
 char	*check_if_env(char *arg);
 char	*expand_cli_env(char *name, int dollars);
 char	*get_value(char *name, int *pos);

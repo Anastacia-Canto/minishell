@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 10:47:35 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/13 11:07:01 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,42 @@ char	*get_value(char *name, int *pos)
 		value = get_var(key, 1);
 	*pos = end;
 	free (key);
+	return (value);
+}
+
+char	*get_var(char *name, int id)
+{
+	char	*value;
+	char	*ref_key;
+	char	**list;
+	int		i;
+	int		j;
+
+	list = data()->env;
+	if (id == 1)
+		list = data()->vars;
+	value = NULL;
+	i = 0;
+	while (list[i])
+	{
+		j = 0;
+		while (list[i][j] && list[i][j] != '=')
+			j++;
+		ref_key = ft_substr(list[i], 0, j);
+		if (ft_strlen(name) != ft_strlen(ref_key))
+		{
+			free (ref_key);
+			i++;
+			continue ;
+		}
+		if (!ft_strncmp(name, ref_key, ft_strlen(ref_key)))
+		{
+			value = ft_strchr(list[i], '=');
+			value++;
+		}
+		i++;
+		free (ref_key);
+	}
 	return (value);
 }
 

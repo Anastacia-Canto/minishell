@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2023/01/13 03:28:42 by sde-mull         ###   ########.fr        #
+#    Updated: 2023/01/13 11:17:38 by anastacia        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,11 @@ $(VERBOSE).SILENT:
 NAME = minishell
 
 SRC = main\
-	  src/lexer src/pipe src/exec src/parser src/heredoc\
+	  src/lexer src/pipe src/exec src/parser src/parser2 src/heredoc src/expansion\
 	  utils/utils utils/utils2 utils/utils3 utils/utils4 utils/check utils/free\
 	  heredoc_utils/heredoc_fun heredoc_utils/here_utils\
-	  builtins/echo builtins/echo2 builtins/echo3 builtins/exit builtins/env\
-	  builtins/env2 builtins/pwd builtins/cd builtins/export builtins/unset\
+	  builtins/echo builtins/exit builtins/env\
+	  builtins/pwd builtins/cd builtins/export builtins/unset\
 
 LIBFT = libft/libft.a
 LIBFT_PATH = ./libft

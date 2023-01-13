@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 10:51:48 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/13 11:19:00 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	parser(char *line)
 	args = ft_split_args(line);
 	// print_args(args);
 	nbr_cmds = count_cmds(args);
-	printf("%d\n", nbr_cmds);
 	if (nbr_cmds == 1)
 		execution(args, 1, NULL);
 	else
@@ -95,6 +94,30 @@ char	**ft_split_args(char *line)
 	return (args);
 }
 
+int	check_end_quote(char *line, int *pos)
+{
+	int	i;
+
+	i = *pos + 1;
+	while (line[i] && line[i] != line[*pos])
+		i++;
+	if (line[i] != line[*pos])
+	{
+		*pos = *pos + 1;
+		return (1);
+	}
+	return (0);
+}
+
+int	is_quote(char c)
+{
+	if (c == '\'')
+		return (1);
+	if (c == '\"')
+		return (2);
+	return (0);
+}
+
 void	print_args(char **args)
 {
 	int	i;
@@ -117,56 +140,4 @@ int	count_cmds(char **args)
 			cmds++;
 	}
 	return (cmds);
-}
-
-char	***list_cmds(char **args, int nbr_cmds)
-{
-	char	***cmds;
-	int		i;
-	int		start;
-	int		end;
-
-	cmds = malloc(sizeof(char **) * nbr_cmds);
-	if (!cmds)
-		return (NULL);
-	i = -1;
-	start = 0;
-	end = start;
-	while (++i < nbr_cmds)
-	{
-		while (args[end] && ft_strncmp(args[end], "|", sizeof(args[end])))
-			end++;
-		cmds[i] = split_cmds(args, start, end - start);
-		end++;
-		start = end;
-	}
-	return (cmds);
-}
-
-void	free_cmds_list(char ***cmds, int nbr_cmds)
-{
-	int	i;
-
-	i = 0;
-	while (i < nbr_cmds)
-	{	
-		free_array(cmds[i]);
-		i++;
-	}
-	free (cmds);
-}
-
-char	**split_cmds(char **line, int start, int len)
-{
-	char	**cmd;
-	int		i;
-
-	cmd = malloc(sizeof(char *) * (len + 1));
-	if (!cmd)
-		return (NULL);
-	i = -1;
-	while (++i < len)
-		cmd[i] = ft_strdup(line[start + i]);
-	cmd[i] = 0;
-	return (cmd);
 }
