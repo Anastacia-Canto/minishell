@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:38:36 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/12 17:48:22 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/12 21:20:34 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,17 @@ int	check_line(char *str)
 	return (0);
 }
 
-// int	check_heredoc(char **lines)
-// {
-// 	int	index;
+int	check_heredoc(char **lines)
+{
+	int	index;
 
-// 	index = 0;
-// 	while (lines[index])
-// 	{
-// 		if (lines[index] == ">>" || lines[index] == "<<" || 
-// 			lines[index] == ">" || lines[index] == "<")
-// 			return (1);
-// 		index++;
-// 	}
-// 	return (0);
-// }
+	index = 0;
+	while (lines[index] && lines[index][0])
+	{
+		if (!ft_strcmp(lines[index], ">>") || !ft_strcmp(lines[index], ">") || 
+			!ft_strcmp(lines[index], "<") || !ft_strcmp(lines[index], "<<"))
+				return (1);
+		index++;
+	}
+	return (0);
+}

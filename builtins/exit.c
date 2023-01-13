@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:10:03 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/12 14:07:35 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/12 23:52:58 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_exit(char **line, int fd, int *pd)
 	ret = 0;
 	if (check_exit_args(line, len))
 		return (1);
-	if (pd == NULL)
+	if (pd == 0)
 		write(fd, "exit\n", 5);
 	if (line[1])
 		ret = ft_atoi(line[1]);

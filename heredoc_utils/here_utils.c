@@ -1,32 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.c                                          :+:      :+:    :+:   */
+/*   here_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/12 21:23:23 by sde-mull         ###   ########.fr       */
+/*   Created: 2023/01/13 00:11:09 by sde-mull          #+#    #+#             */
+/*   Updated: 2023/01/13 00:11:29 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	heredoc(char **line, int fd, int *pd)
+char	*get_pfile(char *line)
+{
+	char 		*path;
+	char		*temp;
+
+	path = NULL;
+	path = getcwd(path, 0);
+	if (!path)
+		return (NULL);
+	temp = ft_strdup(path);
+	temp = ft_strjoin(temp, "/");
+	temp = ft_strjoin(temp, line);
+	free(path);
+	return (temp);
+}
+
+void	get_args(char **line, int len, t_heredoc *file)
 {
 	int index;
 
 	index = 0;
-	while (line[index])
+	file->print_args = malloc(sizeof(char *) * len);
+	while (index < len - 1)
 	{
-		if (!ft_strcmp(line[index], ">"))
-			ft_greater(line, fd, pd);
-		//else if (!ft_strcmp(lines[index], ">>"))
-			//ft_double_greater(lines, fd, pd);
-		//else if (!ft_strcmp(lines[index], "<"))
-			//ft_less(lines, fd, pd);
-		//else if (!ft_strcmp(lines[index], "<<"))
-			//ft_double_less(lines, fd, pd);
+		file->print_args[index] = line[index];
 		index++;
 	}
+	file->print_args[index] = 0;
 }
