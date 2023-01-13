@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:07:01 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/12 18:49:47 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/13 01:44:26 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ char	*get_path(char *cmd_line)
 void	execution(char **line, int fd, int *pd)
 {
 	if (check_heredoc(line))
-		heredoc(line, fd, pd);
+		heredoc(line, pd);
 	else
 		to_builtins(line, fd, pd);
 }
