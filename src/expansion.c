@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env2.c                                             :+:      :+:    :+:   */
+/*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 11:07:01 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/13 13:31:48 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,14 @@ char	*check_if_env(char *arg)
 	while (arg[i] && !ft_whitespace(arg[i]))
 	{
 		if (arg[i] == '$')
-			dollars++;
+		{
+			if ((i + 1 < (int)ft_strlen(arg)) && (arg[i + 1] != '$'))
+				dollars++;
+		}
 		i++;
 	}
+	if (!dollars)
+		return (arg);
 	new_name = expand_cli_env(arg, dollars);
 	if (!new_name)
 		return (arg);
@@ -44,18 +49,20 @@ char	*expand_cli_env(char *name, int dollars)
 	new_name = malloc(sizeof(char) * 1);
 	new_name[0] = '\0';
 	i = 0;
-	if (name[i] != '$')
+	while (name[i] && name[i] != '$' && !ft_whitespace(name[i]))
+		i++;
+	while (i + 1 < (int)ft_strlen(name) && name[i + 1] == '$')
+		i++;
+	if (i > 0)
 	{
-		while (name[i] && name[i] != '$' && !ft_whitespace(name[i]))
-			i++;
 		free (new_name);
 		new_name = ft_substr(name, 0, i);
 	}
 	while (dollars > 0)
 	{
 		i++;
-		new_name = concat_env(new_name, get_value(name, &i));
 		dollars--;
+		new_name = concat_env(new_name, get_value(name, &i));
 	}
 	new_name = concat_env(new_name, (char *)name + i);
 	return (new_name);
