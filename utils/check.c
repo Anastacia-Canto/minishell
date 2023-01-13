@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:38:36 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/13 02:12:35 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/13 09:06:16 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,11 @@ int	check_heredoc(char **lines)
 	index = 0;
 	while (lines[index] && lines[index][0])
 	{
-		if (!ft_directcmp(lines[index], ">>") || !ft_directcmp(lines[index], ">") || 
-			!ft_directcmp(lines[index], "<") || !ft_directcmp(lines[index], "<<"))
-				return (1);
+		if (!ft_directcmp(lines[index], ">>")
+			|| !ft_directcmp(lines[index], ">")
+			|| !ft_directcmp(lines[index], "<")
+			|| !ft_directcmp(lines[index], "<<"))
+			return (1);
 		index++;
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:11:09 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/13 02:13:11 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/13 09:27:39 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*get_pfile(char *line)
 {
-	char 		*path;
-	char		*temp;
+	char	*path;
+	char	*temp;
 
 	path = NULL;
 	path = getcwd(path, 0);
@@ -30,21 +30,21 @@ char	*get_pfile(char *line)
 
 void	get_args(char **line, int len, t_heredoc *file)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	file->print_args = malloc(sizeof(char *) * len);
 	while (index < len - 1)
 	{
-		file->print_args[index] = line[index];
+		file->print_args[index] = ft_strdup(line[index]);
 		index++;
 	}
 	file->print_args[index] = 0;
 }
 
-int		ft_directcmp(char *line, char *cmp)
+int	ft_directcmp(char *line, char *cmp)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	if (!line || !cmp)

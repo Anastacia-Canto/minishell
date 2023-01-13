@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/12 20:56:48 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/13 09:27:23 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ int	treat_others(char **line)
 	ret = 0;
 	if (!check_line(line[0]))
 		return (add_var(line[0]));
-	if (!ft_strncmp(line[0], "./minishell", 11))
-		data()->sig = 1;
+	data()->sig = 1;
 	ret = ft_exec(line);
-	if (!ft_strncmp(line[0], "./minishell", 11))
-		data()->sig = 0;
+	data()->sig = 0;
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/12 18:56:09 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/13 09:39:12 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	parser(char *line)
 	{
 		cmds = list_cmds(args, nbr_cmds);
 		ft_pipe(cmds, nbr_cmds);
-		//free_cmds_list(cmds, nbr_cmds);
+		free_cmds_list(cmds, nbr_cmds);
 	}
 	free_array(args);
 }
@@ -143,7 +143,6 @@ void	free_cmds_list(char ***cmds, int nbr_cmds)
 	i = 0;
 	while (i < nbr_cmds)
 	{	
-		printf("%d\n", i);
 		free_array(cmds[i]);
 		i++;
 	}
