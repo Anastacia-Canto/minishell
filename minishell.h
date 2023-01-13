@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 02:39:19 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/13 03:21:18 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_heredoc
 	int		index;
 	char	*temp;
 	int		tmpout;
+	int		tmpin;
 }	t_heredoc;
 
 typedef struct s_args
@@ -113,6 +114,7 @@ void	free_exit(void);
 void	ft_greater(char **line, int *pd);
 void	ft_double_greater(char **line, int *pd);
 void	ft_less(char **lines, int *pd);
+void	ft_double_less(char **line, int *pd);
 //here_utils---------------------------------------------------------
 char	*get_pfile(char *line);
 void	get_args(char **line, int len, t_heredoc *file);

@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/13 02:44:46 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/13 03:21:06 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	heredoc(char **line, int *pd)
 			ft_double_greater(line, pd);
 		else if (!ft_directcmp(line[index], "<"))
 			ft_less(line, pd);
-		//else if (!ft_strcmp(lines[index], "<<"))
-			//ft_double_less(lines, fd, pd);
+		else if (!ft_directcmp(line[index], "<<"))
+			ft_double_less(line, pd);
 		index++;
 	}
 }
