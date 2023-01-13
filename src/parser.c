@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 09:39:12 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/13 10:51:48 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parser(char *line)
 	args = ft_split_args(line);
 	// print_args(args);
 	nbr_cmds = count_cmds(args);
-	// printf("%d\n", nbr_cmds);
+	printf("%d\n", nbr_cmds);
 	if (nbr_cmds == 1)
 		execution(args, 1, NULL);
 	else
@@ -54,6 +54,8 @@ char	**ft_split_args(char *line)
 			i++;
 		if (is_quote(line[i]) && !check_end_quote(line, &i))
 		{
+			if (is_quote(line[i]) == 1)
+				data()->expand = 0;
 			i++;
 			while (line[i] && !is_quote(line[i]))
 				temp[j++] = line[i++];
@@ -61,9 +63,12 @@ char	**ft_split_args(char *line)
 			{
 				temp[j] = '\0';
 				args[k] = ft_strdup(temp);
+				if (data()->expand)
+					args[k] = check_if_env(args[k]);
 				k++;
 				j = 0;
 			}
+			data()->expand = 1;
 			i++;
 		}
 		else
@@ -78,6 +83,8 @@ char	**ft_split_args(char *line)
 			{
 				temp[j] = '\0';
 				args[k] = ft_strdup(temp);
+				if (data()->expand)
+					args[k] = check_if_env(args[k]);
 				k++;
 				j = 0;
 			}

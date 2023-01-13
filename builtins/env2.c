@@ -3,37 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   env2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 16:30:11 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:47:35 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*check_if_env(char *name)
+char	*check_if_env(char *arg)
 {
 	char	*new_name;
 	int		dollars;
 	int		i;
 
-	if (!ft_strchr(name, '$'))
-		return (name);
+	data()->expand = 1;
+	if (!ft_strchr(arg, '$'))
+		return (arg);
 	i = 0;
 	dollars = 0;
-	while (name[i] && !ft_whitespace(name[i]))
+	while (arg[i] && !ft_whitespace(arg[i]))
 	{
-		if (name[i] == '$')
+		if (arg[i] == '$')
 			dollars++;
 		i++;
 	}
-	if (!dollars)
-		return (name);
-	new_name = expand_cli_env(name, dollars);
+	new_name = expand_cli_env(arg, dollars);
 	if (!new_name)
-		return (name);
-	free (name);
+		return (arg);
+	free (arg);
 	return (new_name);
 }
 

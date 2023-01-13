@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 03:21:18 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/13 10:10:18 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ typedef struct s_data
 	int		sig;
 }	t_data;
 
-/*heredoc
-*/
-
 typedef struct s_heredoc
 {
 	int		direction_len;
@@ -51,13 +48,6 @@ typedef struct s_heredoc
 	int		tmpout;
 	int		tmpin;
 }	t_heredoc;
-
-typedef struct s_args
-{
-	char			*content;
-	struct s_args	*next;
-}	t_args;
-
 
 //Main---------------------------------------------------------------
 void	handler_sigint(int sig);
@@ -140,7 +130,7 @@ int		ft_expand_env(char *line, size_t **pos, int fd);
 int		print_envs(char **env, char **line, int fd);
 char	*get_var(char *name, int id);
 void	print_env_value(char *value, int fd);
-char	*check_if_env(char *name);
+char	*check_if_env(char *arg);
 char	*expand_cli_env(char *name, int dollars);
 char	*get_value(char *name, int *pos);
 char	*concat_env(char *s1, char *s2);

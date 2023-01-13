@@ -6,6 +6,18 @@ ECHO
 - lidar com * (bonus?)
 - echo -nnnnnnnnnnnnnnnnnn
 
+ fix this case:
+				expected: e$A$B hello $A$B'$USER'
+				hello cho$USER
+
+				our minishell: e$A$B hello $A$B'$USER'
+				args[0]: echo
+				args[1]: hello
+				args[2]: $A$B$USER
+
+				hello $A$B$USER
+
+
 PIPES
 | (tá fechando o programa depois de executar o último comando) and |||
 
