@@ -6,7 +6,7 @@
 #    By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2023/01/12 18:33:19 by sde-mull         ###   ########.fr        #
+#    Updated: 2023/01/12 18:59:04 by sde-mull         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ LIBFT_PATH = ./libft
 
 CC = gcc
 RM = rm -f
-CFLAGS = -Wall -Werror -Wextra -I. -fsanitize=address
-LFLAGS = -lreadline
+CFLAGS = -I. -I/opt/homebrew/opt/readline/include -fsanitize=address
+LFLAGS = -lreadline -L/opt/homebrew/opt/readline/lib
 
 all: $(NAME)
 

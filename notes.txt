@@ -12,7 +12,6 @@ PIPES
 
 REDIRECTIONS
 
-
 https://github.com/clemedon/Multipipe_tutor
 
 https://github.com/madebypixel02/minishell
