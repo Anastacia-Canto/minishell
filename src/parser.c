@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 13:33:43 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/13 13:53:54 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	**ft_split_args(char *line)
 	{
 		while (line[i] && ft_whitespace(line[i]))
 			i++;
+		if (!line[i])
+			break ;
 		if (is_quote(line[i]) && !check_end_quote(line, &i))
 		{
 			if (is_quote(line[i]) == 1)
@@ -124,7 +126,7 @@ void	print_args(char **args)
 
 	i = -1;
 	while (args[++i])
-		printf("args[%d]: %s\n", i, args[i]);
+		printf("args[%d]: %s\n len: %ld\n", i, args[i], ft_strlen(args[i]));
 }
 
 int	count_cmds(char **args)

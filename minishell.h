@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 11:19:13 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/13 13:44:44 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int		ft_directcmp(char *line, char *cmp);
 // Echo--------------------------------------------------------------
 int		ft_echo(char **line, int fd);
 int		ft_echo_n(char **line, int fd);
+int		check_n(char *arg);
 // Exit--------------------------------------------------------------
 int		ft_exit(char **line, int fd, int *pd);
 int		check_num(char *arg);

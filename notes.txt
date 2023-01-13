@@ -4,8 +4,7 @@ Expansões de variáveis
 
 ECHO 
 - lidar com * (bonus?)
-- echo -nnnnnnnnnnnnnnnnnn
-- echo $$$
+
 
  fix this case:
 				expected: e$A$B hello $A$B'$USER'
