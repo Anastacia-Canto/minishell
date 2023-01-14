@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:11:09 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/13 09:27:39 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/13 23:33:36 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,17 @@ int	ft_directcmp(char *line, char *cmp)
 		index++;
 	}
 	return (1);
+}
+
+void	save_heredoc(char *line, int fd)
+{
+	int index;
+
+	index = 0;
+	while (line[index])
+	{
+		write(fd, &line[index], 1);
+		index++;
+	}
+	write(fd, "\n", 1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 17:13:32 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/13 23:33:52 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_heredoc
 	char	*temp;
 	int		tmpout;
 	int		tmpin;
+	char	*endstr;
+	char	*line2;
 }	t_heredoc;
 
 //Main---------------------------------------------------------------
@@ -111,6 +113,7 @@ void	ft_double_less(char **line, int *pd);
 char	*get_pfile(char *line);
 void	get_args(char **line, int len, t_heredoc *file);
 int		ft_directcmp(char *line, char *cmp);
+void	save_heredoc(char *line, int fd);
 // Echo--------------------------------------------------------------
 int		ft_echo(char **line, int fd);
 int		ft_echo_n(char **line, int fd);
