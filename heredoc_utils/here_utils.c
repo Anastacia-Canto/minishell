@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:11:09 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/14 05:27:35 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/14 10:11:47 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	get_args(char **line, t_heredoc *file, char *str)
 			file->print_args[file->iargs++] = ft_strdup(line[file->index]);
 		file->index++;
 	}
-	file->files[file->idir] = 0;
-	file->print_args[file->iargs] = 0;
+	file->files[file->idir] = '\0';
+	file->print_args[file->iargs] = '\0';
 }
 
 int	ft_directcmp(char *line, char *cmp)
@@ -69,7 +69,7 @@ int	ft_directcmp(char *line, char *cmp)
 
 void	save_heredoc(char *line, int fd)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (line[index])
@@ -81,7 +81,7 @@ void	save_heredoc(char *line, int fd)
 }
 
 void	divide_args(char **line, t_heredoc *file, char *str)
- {
+{
 	get_args_len(file, line, str);
 	get_args(line, file, str);
- }
+}

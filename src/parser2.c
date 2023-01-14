@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:14:34 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 11:15:36 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/14 10:10:42 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	free_cmds_list(char ***cmds, int nbr_cmds)
 {
 	int	i;
 
+	if (!cmds || !**cmds)
+		return ;
 	i = 0;
 	while (i < nbr_cmds)
 	{	

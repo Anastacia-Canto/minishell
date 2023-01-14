@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/14 05:13:52 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/14 07:35:53 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_data
 	int		expo_flag;
 	int		expand;
 	int		sig;
-	int 	break_flg;
+	int		break_flg;
 	int		stop_wr;
 }	t_data;
 
@@ -52,8 +52,8 @@ typedef struct s_heredoc
 	int		tmpin;
 	char	*endstr;
 	char	*line2;
-	int 	iargs;
-	int 	idir;
+	int		iargs;
+	int		idir;
 }	t_heredoc;
 
 //Main---------------------------------------------------------------

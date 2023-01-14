@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 18:39:51 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/14 09:22:32 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char	*check_if_env(char *arg)
 	{
 		if (arg[i] == '$')
 		{
+			if ((i + 1 < (int)ft_strlen(arg)) && arg[i + 1] == '?')
+				return (arg);
 			if ((i + 1 < (int)ft_strlen(arg)) && (arg[i + 1] != '$'))
 				dollars++;
 		}

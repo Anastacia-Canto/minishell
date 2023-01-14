@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_fun.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:22:53 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/14 05:18:03 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/14 10:27:08 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	get_args_len(t_heredoc *file, char **line, char *str)
 {
 	file->index = 0;
-
 	file->direction_len = 0;
 	file->args_len = 0;
 	while (line[file->index])
@@ -39,7 +38,8 @@ void	ft_greater(char **line, int *pd)
 	file.index = 0;
 	while (file.files[file.index + 1])
 		open(file.files[file.index++], O_RDWR | O_CREAT, S_IRWXU);
-	file.fd1 = open(file.files[file.index], O_RDWR | O_CREAT | O_TRUNC, S_IRWXU);
+	file.fd1 = open(file.files[file.index], O_RDWR
+			| O_CREAT | O_TRUNC, S_IRWXU);
 	dup2(file.fd1, 1);
 	to_builtins(file.print_args, 1, pd);
 	dup2(file.tmpout, 1);
@@ -58,7 +58,8 @@ void	ft_double_greater(char **line, int *pd)
 	file.index = 0;
 	while (file.files[file.index + 1])
 		open(file.files[file.index++], O_RDWR | O_CREAT, S_IRWXU);
-	file.fd1 = open(file.files[file.index], O_CREAT | O_RDWR | O_APPEND, S_IRWXU);
+	file.fd1 = open(file.files[file.index], O_CREAT
+			| O_RDWR | O_APPEND, S_IRWXU);
 	if (file.fd1 < 0)
 		return ;
 	dup2(file.fd1, 1);
@@ -72,7 +73,7 @@ void	ft_double_greater(char **line, int *pd)
 void	ft_less(char **line, int *pd)
 {
 	t_heredoc	file;
-;
+
 	file.tmpin = dup(0);
 	data()->break_flg = 1;
 	divide_args(line, &file, "<");
@@ -82,18 +83,24 @@ void	ft_less(char **line, int *pd)
 	file.fd1 = open(file.files[file.index], O_RDONLY, 0777);
 	if (file.fd1 < 0)
 	{
-		printf("%s: No such file or directory\n", file.files[file.index]);
+		// printf("%s: No such file or directory\n", file.files[file.index]);
+		write(2, ": No such file or directory\n", 28);
+		free_array(file.print_args);
+		free_array(file.files);
 		return ;
 	}
-	dup2(file.fd1, 0);
-	to_builtins(file.print_args, 1, pd);
-	dup2(file.tmpin, 0);
-	close(file.fd1);
+	else
+	{
+		dup2(file.fd1, 0);
+		to_builtins(file.print_args, 1, pd);
+		dup2(file.tmpin, 0);
+		close(file.fd1);
+	}
 	free_array(file.print_args);
 	free_array(file.files);
 }
 
-int		check_here_args(t_heredoc *file)
+int	check_here_args(t_heredoc *file)
 {
 	if (!ft_directcmp(file->files[file->index], file->line2))
 	{
