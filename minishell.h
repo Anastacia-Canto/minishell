@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 23:33:52 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/14 05:13:52 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,16 @@ typedef struct s_data
 	int		expo_flag;
 	int		expand;
 	int		sig;
+	int 	break_flg;
+	int		stop_wr;
 }	t_data;
 
 typedef struct s_heredoc
 {
 	int		direction_len;
+	int		args_len;
 	char	**print_args;
-	char	*last_file;
+	char	**files;
 	int		fd1;
 	int		index;
 	char	*temp;
@@ -49,6 +52,8 @@ typedef struct s_heredoc
 	int		tmpin;
 	char	*endstr;
 	char	*line2;
+	int 	iargs;
+	int 	idir;
 }	t_heredoc;
 
 //Main---------------------------------------------------------------
@@ -109,11 +114,13 @@ void	ft_greater(char **line, int *pd);
 void	ft_double_greater(char **line, int *pd);
 void	ft_less(char **lines, int *pd);
 void	ft_double_less(char **line, int *pd);
+void	get_args_len(t_heredoc *file, char **line, char *str);
 //here_utils---------------------------------------------------------
 char	*get_pfile(char *line);
-void	get_args(char **line, int len, t_heredoc *file);
+void	get_args(char **line, t_heredoc *file, char *str);
 int		ft_directcmp(char *line, char *cmp);
 void	save_heredoc(char *line, int fd);
+void	divide_args(char **line, t_heredoc *file, char *str);
 // Echo--------------------------------------------------------------
 int		ft_echo(char **line, int fd);
 int		ft_echo_n(char **line, int fd);

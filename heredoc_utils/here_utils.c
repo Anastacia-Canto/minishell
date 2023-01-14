@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:11:09 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/13 23:33:36 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/14 05:27:35 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,27 @@ char	*get_pfile(char *line)
 	return (temp);
 }
 
-void	get_args(char **line, int len, t_heredoc *file)
+void	get_args(char **line, t_heredoc *file, char *str)
 {
-	int	index;
-
-	index = 0;
-	file->print_args = malloc(sizeof(char *) * len);
-	while (index < len - 1)
+	file->index = 0;
+	file->iargs = 0;
+	file->idir = 0;
+	file->files = malloc(sizeof(char *) * (file->direction_len + 1));
+	file->print_args = malloc(sizeof(char *) * (file->args_len + 1));
+	while (line[file->index])
 	{
-		file->print_args[index] = ft_strdup(line[index]);
-		index++;
+		if (!ft_directcmp(line[file->index], str))
+		{
+			if (!line[file->index++])
+				break ;
+			file->files[file->idir++] = ft_strdup(line[file->index]);
+		}
+		else
+			file->print_args[file->iargs++] = ft_strdup(line[file->index]);
+		file->index++;
 	}
-	file->print_args[index] = 0;
+	file->files[file->idir] = 0;
+	file->print_args[file->iargs] = 0;
 }
 
 int	ft_directcmp(char *line, char *cmp)
@@ -70,3 +79,9 @@ void	save_heredoc(char *line, int fd)
 	}
 	write(fd, "\n", 1);
 }
+
+void	divide_args(char **line, t_heredoc *file, char *str)
+ {
+	get_args_len(file, line, str);
+	get_args(line, file, str);
+ }
