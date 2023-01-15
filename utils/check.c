@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:38:36 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/13 09:06:16 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/15 02:25:35 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,29 @@ int	check_heredoc(char **lines)
 	index = 0;
 	while (lines[index] && lines[index][0])
 	{
-		if (!ft_directcmp(lines[index], ">>")
-			|| !ft_directcmp(lines[index], ">")
-			|| !ft_directcmp(lines[index], "<")
-			|| !ft_directcmp(lines[index], "<<"))
+		if (!ft_recmp(lines[index], ">>")
+			|| !ft_recmp(lines[index], ">")
+			|| !ft_recmp(lines[index], "<")
+			|| !ft_recmp(lines[index], "<<"))
 			return (1);
 		index++;
 	}
 	return (0);
 }
+
+// int	check_input_val(char **line, t_heredoc *file)
+// {
+// 	int index;
+
+// 	index = 0;
+// 	while (line[index])
+// 	{
+// 		if (!ft_recmp(line[index], "<") || !ft_recmp(line[index], "<"))
+// 			break;
+// 		index++;
+// 	}
+// 	if (line[index + 1])
+// 		if (!ft_recmp(line[index + 1], file->all_inputs[0]))
+// 			return (0);
+// 	return (1);
+// }

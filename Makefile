@@ -6,7 +6,7 @@
 #    By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2023/01/14 05:27:53 by sde-mull         ###   ########.fr        #
+#    Updated: 2023/01/15 16:32:34 by sde-mull         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = minishell
 SRC = main\
 	  src/lexer src/pipe src/exec src/parser src/parser2 src/heredoc src/expansion\
 	  utils/utils utils/utils2 utils/utils3 utils/utils4 utils/check utils/free\
-	  heredoc_utils/heredoc_fun heredoc_utils/here_utils\
+	  heredoc_utils/heredoc_fun heredoc_utils/here_utils heredoc_utils/here_utils2\
 	  builtins/echo builtins/exit builtins/env\
 	  builtins/pwd builtins/cd builtins/export builtins/unset\
 

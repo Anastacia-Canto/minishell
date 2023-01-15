@@ -3,55 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   here_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:11:09 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/14 10:11:47 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/15 03:26:26 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_pfile(char *line)
-{
-	char	*path;
-	char	*temp;
-
-	path = NULL;
-	path = getcwd(path, 0);
-	if (!path)
-		return (NULL);
-	temp = ft_strdup(path);
-	temp = ft_strjoin(temp, "/");
-	temp = ft_strjoin(temp, line);
-	free(path);
-	return (temp);
-}
-
-void	get_args(char **line, t_heredoc *file, char *str)
-{
-	file->index = 0;
-	file->iargs = 0;
-	file->idir = 0;
-	file->files = malloc(sizeof(char *) * (file->direction_len + 1));
-	file->print_args = malloc(sizeof(char *) * (file->args_len + 1));
-	while (line[file->index])
-	{
-		if (!ft_directcmp(line[file->index], str))
-		{
-			if (!line[file->index++])
-				break ;
-			file->files[file->idir++] = ft_strdup(line[file->index]);
-		}
-		else
-			file->print_args[file->iargs++] = ft_strdup(line[file->index]);
-		file->index++;
-	}
-	file->files[file->idir] = '\0';
-	file->print_args[file->iargs] = '\0';
-}
-
-int	ft_directcmp(char *line, char *cmp)
+int	ft_recmp(char *line, char *cmp)
 {
 	int	index;
 
@@ -67,21 +28,105 @@ int	ft_directcmp(char *line, char *cmp)
 	return (1);
 }
 
-void	save_heredoc(char *line, int fd)
+int		input_len(char **line, t_heredoc *file)
+{
+	int index;
+	int len;
+	
+	index = -1;
+	len = 0;
+	file->arg_len = 0;
+	while (line[++index])
+	{
+		if (!ft_recmp(line[index], "<") || !ft_recmp(line[index], "<<"))
+		{
+			if (line[index + 1])
+			{
+				len++;
+				index++;
+			}
+		}
+		else if (!ft_recmp(line[index], ">") || !ft_recmp(line[index], ">>"))
+		{
+			if (line[index + 1])
+				index++;
+		}
+		else
+			file->arg_len++;
+	}
+	return (len);
+}
+
+int		output_len(char **line)
 {
 	int	index;
+	int len;
 
 	index = 0;
+	len = 0;
 	while (line[index])
 	{
-		write(fd, &line[index], 1);
+		if (!ft_recmp(line[index], ">") ||
+			!ft_recmp(line[index], ">>"))
+				if (line[index + 1])
+					len++;
 		index++;
 	}
-	write(fd, "\n", 1);
+	return (len);
 }
 
-void	divide_args(char **line, t_heredoc *file, char *str)
+void	get_inputs(char **line, t_heredoc *file)
 {
-	get_args_len(file, line, str);
-	get_args(line, file, str);
+	file->index = 0;
+	file->i_input = 0;
+	file->all_inputs = malloc(sizeof(char *) * (file->input_len + 1));
+	if (!file->all_inputs)
+		return ;
+	while (line[++file->index])
+	{
+		if (!ft_recmp(line[file->index], "<") || !ft_recmp(line[file->index], "<<"))
+		{
+			if (line[file->index + 1])
+			{
+				file->all_inputs[file->i_input++] = ft_strdup(line[file->index + 1]);
+				file->index++;
+			}
+		}
+	}
+	file->all_inputs[file->i_input] = 0;
 }
+
+void	get_outputs(char **line, t_heredoc *file)
+{
+	file->index = 0;
+	file->i_output = 0;
+	file->all_outputs = malloc(sizeof(char *) * (file->output_len + 1));
+	if (!file->all_outputs)
+		return ;
+	while (line[file->index])
+	{
+		if (!ft_recmp(line[file->index], ">") ||
+			!ft_recmp(line[file->index], ">>"))
+				if (line[file->index + 1])
+					file->all_outputs[file->i_output++] = ft_strdup(line[file->index + 1]);
+		file->index++;
+	}
+	file->all_outputs[file->i_output] = 0;
+}
+
+
+// printf("this is input %d\n", file->input_len);
+// printf("this is output %d\n", file->output_len);
+//printf("this is args %d\n", file->arg_len);
+
+// while (file->all_inputs[index])
+// 	{
+// 		printf("this is imput %s\n", file->all_inputs[index]);
+// 		index++;
+// 	}
+// 	index = 0;
+// 	while (file->all_outputs[index])
+// 	{
+// 		printf("this is output %s\n", file->all_outputs[index]);
+// 		index++;
+// 	}
