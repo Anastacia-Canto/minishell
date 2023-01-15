@@ -66,6 +66,7 @@ void	parser(char *line);
 char	**ft_split_args(char *line);
 int		check_end_quote(char *line, int *pos);
 int		is_quote(char c);
+int		simple_check_heredoc(char *line, int i);
 int		count_cmds(char **args);
 void	print_args(char **args);
 char	***list_cmds(char **args, int nbr_cmds);

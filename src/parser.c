@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/14 09:23:44 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/15 10:03:57 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,14 @@ char	**ft_split_args(char *line)
 		{
 			while (line[i] && !ft_whitespace(line[i]))
 			{
+				if (simple_check_heredoc(line, i))
+				{
+					temp[j++] = line[i++];
+					temp[j] = '\0';
+					args[k++] = ft_strdup(temp);
+					j = 0;
+					break ;
+				}
 				if (is_quote(line[i]))
 					break ;
 				temp[j++] = line[i++];
