@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/14 07:35:53 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/15 16:30:20 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,21 @@ typedef struct s_data
 
 typedef struct s_heredoc
 {
-	int		direction_len;
-	int		args_len;
-	char	**print_args;
-	char	**files;
-	int		fd1;
-	int		index;
-	char	*temp;
-	int		tmpout;
-	int		tmpin;
-	char	*endstr;
-	char	*line2;
-	int		iargs;
-	int		idir;
+	int		index;				//general index
+	int 	H_file;
+	int		out;				//fd for output
+	int		in;					//fd for input
+	char 	**all_inputs;		//list of all output files, only last one matters
+	char	**all_outputs;		//list of all imput files, only last one matters
+	int		input_len;			//how many imput files there is
+	int		output_len;			//how many output files there is
+	int		i_input;        	//index for get imputs
+	int		i_output;			//index for get outputs
+	int		i_args;				//index for get args
+	char	**args;				//argumentos que vao ser enviados para execução
+	int		arg_len;			//how many arguments there is
+	char 	*line2;
+	
 }	t_heredoc;
 
 //Main---------------------------------------------------------------
@@ -110,17 +112,21 @@ int		check_heredoc(char **lines);
 //Free---------------------------------------------------------------
 void	free_exit(void);
 //Heredoc_fun--------------------------------------------------------
-void	ft_greater(char **line, int *pd);
+void	ft_greater(char **line, int *pd, t_heredoc *file);
 void	ft_double_greater(char **line, int *pd);
 void	ft_less(char **lines, int *pd);
-void	ft_double_less(char **line, int *pd);
+void	ft_double_less(char **line, int *pd, t_heredoc *file);
 void	get_args_len(t_heredoc *file, char **line, char *str);
 //here_utils---------------------------------------------------------
-char	*get_pfile(char *line);
-void	get_args(char **line, t_heredoc *file, char *str);
-int		ft_directcmp(char *line, char *cmp);
-void	save_heredoc(char *line, int fd);
-void	divide_args(char **line, t_heredoc *file, char *str);
+int		ft_recmp(char *line, char *cmp);
+int		input_len(char **line, t_heredoc *file);
+int		output_len(char **line);
+void	get_inputs(char **line, t_heredoc *file);
+void	get_outputs(char **line, t_heredoc *file);
+//here_utils2---------------------------------------------------------
+void	get_args(char **line, t_heredoc *file);
+int		open_files(char **line, t_heredoc *file);
+void	execute_redirection(t_heredoc *file, int *pd);
 // Echo--------------------------------------------------------------
 int		ft_echo(char **line, int fd);
 int		ft_echo_n(char **line, int fd);
