@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 02:17:46 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/15 16:30:04 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/15 20:40:42 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,19 @@ int	open_files(char **line, t_heredoc *file)
 		{
 			if (file->in > 2)
 				close(file->in);
-			file->in = open(file->all_inputs[i], O_RDONLY, 0777);
-			if (file->in < 0)
+			if (!ft_recmp(line[index - 1], "<"))
 			{
-				printf("%s: No such file or directory\n", file->all_inputs[i]);
-				return (0);
+				file->in = open(file->all_inputs[i], O_RDONLY, 0777);
+				if (file->in < 0)
+				{
+					printf("%s: No such file or directory\n", file->all_inputs[i]);
+					return (0);
+				}
+			}
+			else if (!ft_recmp(line[index - 1], "<<"))
+			{
+				file->here_flag = 1;
+				file->in = open(".tmp_heredoc2024.txt", O_CREAT | O_RDWR, 0777);
 			}
 			i++;
 		}
@@ -82,14 +90,20 @@ void	execute_redirection(t_heredoc *file, int *pd)
 {
 	int	tmpin;
 	int tmpout;
+	char *temp;
 
+
+	int fd =  open(".tmp_heredoc2024.txt", O_CREAT | O_RDWR, S_IRWXU);
 	tmpin = dup(0);
 	tmpout = dup(1);
-	dup2(file->in, 0);
 	dup2(file->out, 1);
-// if (!ft_directcmp(line[file->index], "<<"))
-	// 	ft_double_less(line, pd, file);
+	dup2(file->in, 0);
 	to_builtins(file->args, 1, pd);
+	temp = get_pfile(".tmp_heredoc2024.txt");
+	if (!temp)
+		return ;
+	if (access(temp, F_OK) == 0)
+		unlink(temp);
 	close(file->in);
 	close(file->out);
 	dup2(tmpin, 0);

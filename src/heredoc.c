@@ -6,11 +6,25 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/15 16:30:32 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/15 20:23:43 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int		check_is_heredoc(char **line)
+{
+	int	index;
+
+	index = 0;
+	while (line[index])
+	{
+		if (!ft_recmp(line[index], "<<"))
+			return (1);
+		index++;
+	}
+	return (0);
+}
 
 void	get_info(t_heredoc *file, char **line, int *pd)
 {
@@ -19,6 +33,8 @@ void	get_info(t_heredoc *file, char **line, int *pd)
 	get_inputs(line, file);
 	get_outputs(line, file);
 	get_args(line, file);
+	if (check_is_heredoc(line))
+		ft_double_less(line, file);
 	if(open_files(line, file))
 		execute_redirection(file, pd);
 	free_array(file->all_inputs);
@@ -30,5 +46,6 @@ void	heredoc(char **line, int *pd)
 {
 	t_heredoc file;
 	
+	file.here_flag = 0;
 	get_info(&file, line, pd);
 }

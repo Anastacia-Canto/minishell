@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/15 16:30:20 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/15 20:39:49 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_heredoc
 	char	**args;				//argumentos que vao ser enviados para execução
 	int		arg_len;			//how many arguments there is
 	char 	*line2;
+	int 	here_flag;
+	char	**here_str;
 	
 }	t_heredoc;
 
@@ -113,11 +115,11 @@ int		check_heredoc(char **lines);
 //Free---------------------------------------------------------------
 void	free_exit(void);
 //Heredoc_fun--------------------------------------------------------
-void	ft_greater(char **line, int *pd, t_heredoc *file);
-void	ft_double_greater(char **line, int *pd);
-void	ft_less(char **lines, int *pd);
-void	ft_double_less(char **line, int *pd, t_heredoc *file);
-void	get_args_len(t_heredoc *file, char **line, char *str);
+char	*get_pfile(char *line);;
+void	ft_double_less(char **line, t_heredoc *file);
+void	save_heredoc(char *line, int fd);
+int		check_here_args(t_heredoc *file);
+void	get_here_str(char **line, t_heredoc *file);
 //here_utils---------------------------------------------------------
 int		ft_recmp(char *line, char *cmp);
 int		input_len(char **line, t_heredoc *file);
