@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/14 07:35:53 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/15 09:55:28 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	parser(char *line);
 char	**ft_split_args(char *line);
 int		check_end_quote(char *line, int *pos);
 int		is_quote(char c);
+int		simple_check_heredoc(char *line, int i);
 int		count_cmds(char **args);
 void	print_args(char **args);
 char	***list_cmds(char **args, int nbr_cmds);
