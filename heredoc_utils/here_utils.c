@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:11:09 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/15 03:26:26 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/16 03:40:28 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_recmp(char *line, char *cmp)
 		return (127);
 	while (line[index] == cmp[index])
 	{
-		if (!line[index + 1])
+		if (!line[index + 1] && !cmp[index + 1])
 			return (0);
 		index++;
 	}

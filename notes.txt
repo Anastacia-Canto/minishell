@@ -28,6 +28,11 @@ https://github.com/clemedon/Multipipe_tutor
 https://github.com/madebypixel02/minishell
 
 
+imput readirections is not working with pipes. 
+The reason for that is because the readirections are being readed from pipe to pipe. 
+Probably will need to get all arguments including after pipe so it will get parsed 
+and only after that it will go to the pipe function
+
 readirection '>' -> for exemple: echo hello world > output.txt hello > output2.txt hello
 					result: output.txt is empty, output2.txt "hello world hello hello"
 					The output.txt is created anyways even if is going to be empty.
