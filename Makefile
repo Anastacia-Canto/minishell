@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2023/01/16 03:47:48 by sde-mull         ###   ########.fr        #
+#    Updated: 2023/01/16 18:46:27 by ansilva-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ $(VERBOSE).SILENT:
 NAME = minishell
 
 SRC = main\
-	  src/lexer src/pipe src/exec src/parser src/parser2 src/heredoc src/expansion\
+	  src/lexer src/pipe src/exec src/parser src/parser2 src/heredoc src/expansion src/expansion2\
 	  utils/utils utils/utils2 utils/utils3 utils/utils4 utils/check utils/free\
 	  heredoc_utils/heredoc_fun heredoc_utils/here_utils heredoc_utils/here_utils2\
 	  builtins/echo builtins/exit builtins/env\

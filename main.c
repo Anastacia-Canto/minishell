@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 08:42:12 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 03:25:16 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:43:33 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,37 @@ int	check_null_line(char *line)
 	return (0);
 }
 
-int	main(int argc, char **argv, char **env)
+void	main_loop(void)
 {
 	char	*line;
 
+	while (1)
+	{
+		signal(SIGINT, handler_sigint);
+		signal(SIGQUIT, SIG_IGN);
+		line = readline(data()->prompt);
+		if (check_null_line(line))
+			break ;
+		if (!ft_strlen(line))
+		{
+			free(line);
+			continue ;
+		}
+		add_history(line);
+		parser(line);
+		free(line);
+	}
+}
+
+int	main(int argc, char **argv, char **env)
+{
 	(void)argc;
 	(void)argv;
 	init_values(env);
 	if (env)
 	{
 		change_prompt();
-		while (1)
-		{
-			signal(SIGINT, handler_sigint);
-			signal(SIGQUIT, SIG_IGN);
-			line = readline(data()->prompt);
-			if (check_null_line(line))
-				break ;
-			if (!ft_strlen(line))
-			{
-				free(line);
-				continue ;
-			}
-			add_history(line);
-			parser(line);
-			free(line);
-		}
+		main_loop();
 		free (data()->prompt);
 		rl_clear_history();
 	}

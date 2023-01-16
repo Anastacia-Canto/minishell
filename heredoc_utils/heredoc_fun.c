@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_fun.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:22:53 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/15 20:38:07 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:39:25 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*get_pfile(char *line)
 
 void	ft_double_less(char **line, t_heredoc *file)
 {
-	char	*temp;
+	// char	*temp;
 
 	get_here_str(line, file);
 	file->index = 0;

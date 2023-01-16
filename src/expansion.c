@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/14 09:22:32 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/16 18:47:19 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 char	*check_if_env(char *arg)
 {
-	char	*new_arg;
-	char	*temp;
 	int		dollars;
 	int		i;
 
@@ -37,23 +35,7 @@ char	*check_if_env(char *arg)
 	}
 	if (!dollars)
 		return (arg);
-	new_arg = ft_strdup(arg);
-	while (dollars > 0)
-	{
-		temp = ft_strdup(new_arg);
-		free(new_arg);
-		dollars--;
-		i = 0;
-		while (temp[i] && temp[i] != '$')
-			i++;
-		new_arg = expand_cli_env(temp, i);
-		i++;
-		free(temp);
-	}
-	free (arg);
-	if (!new_arg)
-		return (NULL);
-	return (new_arg);
+	return (ft_expand_env(dollars, arg));
 }
 
 char	*expand_cli_env(char *name, int i)
@@ -91,25 +73,21 @@ char	*get_value(char *name, int *pos)
 	while (name[end] && name[end] != '$' && !ft_whitespace(name[end]))
 		end++;
 	key = ft_substr(name, *pos, end - *pos);
-	value = get_var(key, 0);
+	value = get_var(key, data()->env);
 	if (!value)
-		value = get_var(key, 1);
+		value = get_var(key, data()->vars);
 	*pos = end;
 	free (key);
 	return (value);
 }
 
-char	*get_var(char *name, int id)
+char	*get_var(char *name, char **list)
 {
 	char	*value;
 	char	*ref_key;
-	char	**list;
 	int		i;
 	int		j;
 
-	list = data()->env;
-	if (id == 1)
-		list = data()->vars;
 	value = NULL;
 	i = 0;
 	while (list[i])
@@ -118,13 +96,8 @@ char	*get_var(char *name, int id)
 		while (list[i][j] && list[i][j] != '=')
 			j++;
 		ref_key = ft_substr(list[i], 0, j);
-		if (ft_strlen(name) != ft_strlen(ref_key))
-		{
-			free (ref_key);
-			i++;
-			continue ;
-		}
-		if (!ft_strncmp(name, ref_key, ft_strlen(ref_key)))
+		if (!ft_strncmp(name, ref_key, ft_strlen(ref_key))
+			&& ft_strlen(name) == ft_strlen(ref_key))
 		{
 			value = ft_strchr(list[i], '=');
 			value++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/15 10:03:57 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/16 18:51:20 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,15 +136,6 @@ int	is_quote(char c)
 	if (c == '\"')
 		return (2);
 	return (0);
-}
-
-void	print_args(char **args)
-{
-	int	i;
-
-	i = -1;
-	while (args[++i])
-		printf("args[%d]: %s\n len: %ld\n", i, args[i], ft_strlen(args[i]));
 }
 
 int	count_cmds(char **args)

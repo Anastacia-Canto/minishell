@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/15 20:39:49 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:08:39 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_heredoc
 //Main---------------------------------------------------------------
 void	handler_sigint(int sig);
 int		check_null_line(char *line);
+void	main_loop(void);
 //Parser
 void	parser(char *line);
 char	**ft_split_args(char *line);
@@ -70,7 +71,6 @@ int		check_end_quote(char *line, int *pos);
 int		is_quote(char c);
 int		simple_check_heredoc(char *line, int i);
 int		count_cmds(char **args);
-void	print_args(char **args);
 char	***list_cmds(char **args, int nbr_cmds);
 char	**split_cmds(char **line, int start, int len);
 void	free_cmds_list(char ***cmds, int nbr_cmds);
@@ -107,6 +107,7 @@ char	**create_list(char *str);
 //Utils4-------------------------------------------------------------
 int		get_cmd_error(char *str);
 int		add_var(char *line);
+void	print_args(char **args);
 //Check--------------------------------------------------------------
 int		check_value_list(char *str, char **lista);
 int		check_line(char *str);
@@ -134,6 +135,7 @@ void	execute_redirection(t_heredoc *file, int *pd);
 int		ft_echo(char **line, int fd);
 int		ft_echo_n(char **line, int fd);
 int		check_n(char *arg);
+void	print_echo(char **line, int fd, int i);
 // Exit--------------------------------------------------------------
 int		ft_exit(char **line, int fd, int *pd);
 int		check_num(char *arg);
@@ -141,8 +143,9 @@ int		check_exit_args(char **args, size_t len);
 // Env---------------------------------------------------------------
 int		print_envs(char **env, char **line, int fd);
 // Expansion
-char	*get_var(char *name, int id);
+char	*get_var(char *name, char **list);
 char	*check_if_env(char *arg);
+char	*ft_expand_env(int dollars, char *arg);
 char	*expand_cli_env(char *name, int i);
 char	*get_value(char *name, int *pos);
 char	*concat_env(char *s1, char *s2);

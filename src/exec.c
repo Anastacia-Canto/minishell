@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:07:01 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/14 09:49:24 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/16 18:56:47 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,23 +69,21 @@ char	*get_path(char *cmd_line)
 	i = 0;
 	path = getenv("PATH");
 	buffer = ft_split(path, ':');
+	path = NULL;
 	cmd_line = ft_strjoin("/", cmd_line);
 	while (i < array_len(buffer) - 1)
 	{
 		temp = ft_strjoin(buffer[i], cmd_line);
 		if (access(temp, F_OK) == 0)
 		{
-			free(cmd_line);
 			path = ft_strdup(temp);
-			free_array(buffer);
-			return (path);
+			break ;
 		}
 		free(temp);
 		i++;
 	}
 	free_array(buffer);
 	free(cmd_line);
-	path = NULL;
 	return (path);
 }
 
