@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/19 09:52:36 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/19 14:41:58 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 void	parser(char *line)
 {
 	char	**args;
-	int		nbr_cmds;
-	char	***cmds;
+	// int		nbr_cmds;
+	// char	***cmds;
 
 	args = ft_split_args(line);
-	// print_args(args);
-	nbr_cmds = count_cmds(args);
-	if (nbr_cmds == 1)
-		execution(args, 1, NULL);
-	else
-	{
-		cmds = list_cmds(args, nbr_cmds);
-		ft_pipe(cmds, nbr_cmds);
-		free_cmds_list(cmds, nbr_cmds);
-	}
+	print_args(args);
+	// nbr_cmds = count_cmds(args);
+	// if (nbr_cmds == 1)
+	// 	execution(args, 1, NULL);
+	// else
+	// {
+	// 	cmds = list_cmds(args, nbr_cmds);
+	// 	ft_pipe(cmds, nbr_cmds);
+	// 	free_cmds_list(cmds, nbr_cmds);
+	// }
 	free_array(args);
 }
 
@@ -55,59 +55,25 @@ char	**ft_split_args(char *line)
 			break ;
 		if (is_quote(line[i]) && !check_end_quote(line, &i))
 		{
-			if (is_quote(line[i]) == 1)
-				data()->expand = 0;
-			i++;
-			while (line[i] && !is_quote(line[i]))
-				temp[j++] = line[i++];
-			if (!line[i + 1] || ft_whitespace(line[i + 1]))
-			{
-				temp[j] = '\0';
-				args[k] = ft_strdup(temp);
-				if (data()->expand)
-					args[k] = check_if_env(args[k]);
-				if (!args[k])
-				{
-					free(args[k]);
-					k--;
-				}
-				k++;
-				j = 0;
-			}
-			data()->expand = 1;
+			while (line[++i] && !is_quote(line[i]))
+				temp[j++] = line[i];
 			i++;
 		}
 		else
 		{
-			while (line[i] && !ft_whitespace(line[i]))
+			while (line[i] && !ft_whitespace(line[i]) && !is_quote(line[i]))
 			{
-				if (simple_check_heredoc(line, i))
-				{
-					temp[j++] = line[i++];
-					temp[j] = '\0';
-					args[k++] = ft_strdup(temp);
-					j = 0;
-					break ;
-				}
-				if (is_quote(line[i]))
-					break ;
 				temp[j++] = line[i++];
-			}
-			if (!line[i] || ft_whitespace(line[i]))
-			{
-				temp[j] = '\0';
-				args[k] = ft_strdup(temp);
-				if (data()->expand)
-					args[k] = check_if_env(args[k]);
-				if (!args[k])
+				if (simple_check_heredoc(line, i - 1))
 				{
-					free(args[k]);
-					k--;
+					finalize_arg(temp, &j, args, &k);
+					break ;
 				}
-				k++;
-				j = 0;
 			}
 		}
+		if (!line[i] || ft_whitespace(line[i]))
+			finalize_arg(temp, &j, args, &k);
+		data()->expand = 1;
 	}
 	free(temp);
 	args[k] = 0;
@@ -126,6 +92,8 @@ int	check_end_quote(char *line, int *pos)
 		*pos = *pos + 1;
 		return (1);
 	}
+	if (is_quote(line[*pos]) == 1)
+		data()->expand = 0;
 	return (0);
 }
 

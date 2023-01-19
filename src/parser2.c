@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:14:34 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/16 18:22:12 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:59:54 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,78 @@ char	**split_cmds(char **line, int start, int len)
 		cmd[i] = ft_strdup(line[start + i]);
 	cmd[i] = 0;
 	return (cmd);
+}
+
+// char	*get_quoted_arg(char *line, int *i, char *temp, int *j)
+// {
+// 	*i++;
+// 	while (line[*i] && !is_quote(line[*i]))
+// 		temp[*j++] = line[*i++];
+// 	if (!line[*i + 1] || ft_whitespace(line[*i + 1]))
+// 	{
+// 		temp[*j] = '\0';
+// 		args[k] = ft_strdup(temp);
+// 		if (data()->expand)
+// 			args[k] = check_if_env(args[k]);
+// 		if (!args[k])
+// 		{
+// 			free(args[k]);
+// 			k--;
+// 		}
+// 		k++;
+// 		j = 0;
+// 	}
+// 	data()->expand = 1;
+// 	i++;
+// }
+
+void	get_quoted_arg(char *line)
+{
+	char	*temp;
+	int		j;
+
+	j - 0;
+	*line++;
+	while (*line && !is_quote(*line))
+		temp[j++] = *line++;
+	temp[j] = '\0';
+	*line++;
+}
+
+void	finalize_arg(char *temp, int *j, char **args, int *k)
+{
+	temp[*j] = '\0';
+	args[*k] = ft_strdup(temp);
+	if (data()->expand)
+		args[*k] = check_if_env(args[*k]);
+	if (!args[*k])
+	{
+		free(args[*k]);
+		*k = *k - 1;
+	}
+	*k = *k + 1;
+	*j = 0;
+}
+
+int	copy_arg(char *temp, int *j, char *line, int *i)
+{
+	if (is_quote(line[*i]) && !check_end_quote(line, &(*i)))
+	{
+		*i = *i + 1;
+		while (line[*i] && !is_quote(line[*i]))
+			temp[*j++] = line[*i++];
+		*i = *i + 1;
+	}
+	else
+	{
+		while (line[*i] && !ft_whitespace(line[*i]) && !is_quote(line[*i]))
+		{
+			temp[*j++] = line[*i++];
+			if (simple_check_heredoc(line, *i - 1))
+			{
+				return (1);
+			}
+		}
+	}
+	return (0);
 }

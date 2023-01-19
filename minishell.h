@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/19 09:04:35 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/19 14:34:19 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ int		count_cmds(char **args);
 char	***list_cmds(char **args, int nbr_cmds);
 char	**split_cmds(char **line, int start, int len);
 void	free_cmds_list(char ***cmds, int nbr_cmds);
+void	finalize_arg(char *temp, int *j, char **args, int *k);
+int		copy_arg(char *temp, int *j, char *line, int *i);
 //Lexer--------------------------------------------------------------
 void	to_builtins(char **line, int fd, int *pd);
 int		treat_others(char **line);
