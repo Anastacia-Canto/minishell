@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/19 16:16:55 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/19 16:49:49 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	parser(char *line)
 	int		nbr_cmds;
 	char	***cmds;
 
-	args = ft_split_args(line);
+	args = malloc(sizeof(char *) * 100);
+	if (!args)
+		return ;
+	ft_split_args(line, args);
 	// print_args(args);
 	nbr_cmds = count_cmds(args);
 	if (nbr_cmds == 1)
@@ -32,18 +35,16 @@ void	parser(char *line)
 	free_array(args);
 }
 
-char	**ft_split_args(char *line)
+void	ft_split_args(char *line, char **args)
 {
-	char	**args;
 	char	*temp;
 	int		i;
 	int		j;
 	int		k;
 
-	args = malloc(sizeof(char *) * 100);
 	temp = malloc(sizeof(char) * 1024);
-	if (!temp || !args)
-		return (NULL);
+	if (!temp)
+		return ;
 	i = 0;
 	k = 0;
 	j = 0;
@@ -59,7 +60,6 @@ char	**ft_split_args(char *line)
 	}
 	free(temp);
 	args[k] = 0;
-	return (args);
 }
 
 int	check_end_quote(char *line, int *pos)

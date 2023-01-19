@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:11:09 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/19 08:22:17 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/19 16:29:06 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void	get_outputs(char **line, t_heredoc *file)
 	}
 	file->all_outputs[file->i_output] = 0;
 }
-
 
 // printf("this is input %d\n", file->input_len);
 // printf("this is output %d\n", file->output_len);

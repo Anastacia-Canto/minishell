@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 02:17:46 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/19 08:28:18 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/19 16:32:21 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	open_files(char **line, t_heredoc *file)
 			o++;
 		}
 	}
-	return(1);
+	return (1);
 }
 
 void	execute_redirection(t_heredoc *file, int *pd)

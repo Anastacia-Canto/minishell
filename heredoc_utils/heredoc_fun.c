@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:22:53 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/19 08:13:56 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/19 16:33:23 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	get_here_str(char **line, t_heredoc *file)
 {
-	int index;
-	int len;
-	
+	int	index;
+	int	len;
+
 	index = -1;
 	len = 0;
 	while (line[++index])

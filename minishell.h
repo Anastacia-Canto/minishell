@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/19 16:06:29 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/19 16:52:13 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ typedef struct s_data
 typedef struct s_heredoc
 {
 	int		index;				//general index
-	int 	H_file;
+	int		H_file;
 	int		out;				//fd for output
 	int		in;					//fd for input
-	char 	**all_inputs;		//list of all output files, only last one matters
+	char	**all_inputs;		//list of all output files, only last one matters
 	char	**all_outputs;		//list of all imput files, only last one matters
 	int		input_len;			//how many imput files there is
 	int		output_len;			//how many output files there is
@@ -55,28 +55,29 @@ typedef struct s_heredoc
 	int		i_args;				//index for get args
 	char	**args;				//argumentos que vao ser enviados para execução
 	int		arg_len;			//how many arguments there is
-	char 	*line2;
-	int 	here_flag;
+	char	*line2;
+	int		here_flag;
 	char	**here_str;
-	
 }	t_heredoc;
 
 //Main---------------------------------------------------------------
 void	handler_sigint(int sig);
 int		check_null_line(char *line);
 void	main_loop(void);
-//Parser
+//Parser-------------------------------------------------------------
 void	parser(char *line);
-char	**ft_split_args(char *line);
+void	ft_split_args(char *line, char **args);
 int		check_end_quote(char *line, int *pos);
 int		is_quote(char c);
-int		end_heredoc(char *line, int i);
 int		count_cmds(char **args);
-char	***list_cmds(char **args, int nbr_cmds);
-char	**split_cmds(char **line, int start, int len);
-void	free_cmds_list(char ***cmds, int nbr_cmds);
+//Parser2------------------------------------------------------------
+int		end_heredoc(char *line, int i);
 void	finalize_arg(char *temp, int *j, char **args, int *k);
 void	copy_arg(char *line, int *i, char *temp, int *j);
+//Parser3------------------------------------------------------------
+char	***list_cmds(char **args, int nbr_cmds);
+void	free_cmds_list(char ***cmds, int nbr_cmds);
+char	**split_cmds(char **line, int start, int len);
 //Lexer--------------------------------------------------------------
 void	to_builtins(char **line, int fd, int *pd);
 int		treat_others(char **line);

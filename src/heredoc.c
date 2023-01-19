@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/16 03:41:06 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:27:07 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		check_is_heredoc(char **line)
+int	check_is_heredoc(char **line)
 {
 	int	index;
 
@@ -35,7 +35,7 @@ void	get_info(t_heredoc *file, char **line, int *pd)
 	get_args(line, file);
 	if (check_is_heredoc(line))
 		ft_double_less(line, file);
-	if(open_files(line, file))
+	if (open_files(line, file))
 		execute_redirection(file, pd);
 	free_array(file->all_inputs);
 	free_array(file->all_outputs);
@@ -44,8 +44,8 @@ void	get_info(t_heredoc *file, char **line, int *pd)
 
 void	heredoc(char **line, int *pd)
 {
-	t_heredoc file;
-	
+	t_heredoc	file;
+
 	file.here_flag = 0;
 	get_info(&file, line, pd);
 }
