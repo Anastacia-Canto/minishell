@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/16 18:47:19 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/19 09:51:29 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ char	*check_if_env(char *arg)
 		if (arg[i] == '$')
 		{
 			if ((i + 1 < (int)ft_strlen(arg)) && arg[i + 1] == '?')
-				return (arg);
+			{
+				free (arg);
+				return (ft_itoa(data()->exit_status));
+			}
 			if ((i + 1 < (int)ft_strlen(arg)) && (arg[i + 1] != '$'))
 				dollars++;
 		}
