@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:07:01 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/16 18:56:47 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/19 09:41:34 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_exec(char **line)
 		read(fd[0], &ret, sizeof(int));
 		close(fd[0]);
 	}
-	return (ret);
+	return (ret / 256);
 }
 
 int	exec_prog(char **line, int *fd)
@@ -46,7 +46,7 @@ int	exec_prog(char **line, int *fd)
 	close(fd[0]);
 	ret = 0;
 	path = ft_strdup(line[0]);
-	if (ft_strncmp(line[0], "./", 2))
+	if (ft_strncmp(line[0], "./", 2) && ft_strncmp(line[0], "/", 1))
 	{
 		free (path);
 		path = get_path(line[0]);

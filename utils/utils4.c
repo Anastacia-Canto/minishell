@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:10:51 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/16 17:46:42 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/19 09:39:30 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	get_cmd_error(char *str)
 	while (str[index])
 		printf("%c", str[index++]);
 	printf(": command not found\n");
-	return (127);
+	return (32512);
 }
 
 int	add_var(char *line)
