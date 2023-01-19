@@ -6,13 +6,13 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:14:34 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/19 14:59:54 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/19 16:15:32 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	simple_check_heredoc(char *line, int i)
+int	end_heredoc(char *line, int i)
 {
 	if (i == (int)ft_strlen(line) - 1)
 		return (0);
@@ -78,42 +78,6 @@ char	**split_cmds(char **line, int start, int len)
 	return (cmd);
 }
 
-// char	*get_quoted_arg(char *line, int *i, char *temp, int *j)
-// {
-// 	*i++;
-// 	while (line[*i] && !is_quote(line[*i]))
-// 		temp[*j++] = line[*i++];
-// 	if (!line[*i + 1] || ft_whitespace(line[*i + 1]))
-// 	{
-// 		temp[*j] = '\0';
-// 		args[k] = ft_strdup(temp);
-// 		if (data()->expand)
-// 			args[k] = check_if_env(args[k]);
-// 		if (!args[k])
-// 		{
-// 			free(args[k]);
-// 			k--;
-// 		}
-// 		k++;
-// 		j = 0;
-// 	}
-// 	data()->expand = 1;
-// 	i++;
-// }
-
-void	get_quoted_arg(char *line)
-{
-	char	*temp;
-	int		j;
-
-	j - 0;
-	*line++;
-	while (*line && !is_quote(*line))
-		temp[j++] = *line++;
-	temp[j] = '\0';
-	*line++;
-}
-
 void	finalize_arg(char *temp, int *j, char **args, int *k)
 {
 	temp[*j] = '\0';
@@ -127,27 +91,32 @@ void	finalize_arg(char *temp, int *j, char **args, int *k)
 	}
 	*k = *k + 1;
 	*j = 0;
+	data()->expand = 1;
 }
 
-int	copy_arg(char *temp, int *j, char *line, int *i)
+void	copy_arg(char *line, int *i, char *temp, int *j)
 {
-	if (is_quote(line[*i]) && !check_end_quote(line, &(*i)))
+	int	k;
+	int	w;
+
+	k = *i;
+	w = *j;
+	if (is_quote(line[k]) && !check_end_quote(line, &k))
 	{
-		*i = *i + 1;
-		while (line[*i] && !is_quote(line[*i]))
-			temp[*j++] = line[*i++];
-		*i = *i + 1;
+		while (line[++k] && !is_quote(line[k]))
+			temp[w++] = line[k];
+		*i = k + 1;
+		*j = w;
 	}
 	else
 	{
-		while (line[*i] && !ft_whitespace(line[*i]) && !is_quote(line[*i]))
+		while (line[k] && !ft_whitespace(line[k]) && !is_quote(line[k]))
 		{
-			temp[*j++] = line[*i++];
-			if (simple_check_heredoc(line, *i - 1))
-			{
-				return (1);
-			}
+			temp[w++] = line[k++];
+			if (end_heredoc(line, k - 1))
+				break ;
 		}
+		*i = k;
+		*j = w;
 	}
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/19 14:34:19 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/19 16:06:29 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_data
 	int		sig;
 	int		break_flg;
 	int		stop_wr;
+	char	**args;
 }	t_data;
 
 typedef struct s_heredoc
@@ -69,13 +70,13 @@ void	parser(char *line);
 char	**ft_split_args(char *line);
 int		check_end_quote(char *line, int *pos);
 int		is_quote(char c);
-int		simple_check_heredoc(char *line, int i);
+int		end_heredoc(char *line, int i);
 int		count_cmds(char **args);
 char	***list_cmds(char **args, int nbr_cmds);
 char	**split_cmds(char **line, int start, int len);
 void	free_cmds_list(char ***cmds, int nbr_cmds);
 void	finalize_arg(char *temp, int *j, char **args, int *k);
-int		copy_arg(char *temp, int *j, char *line, int *i);
+void	copy_arg(char *line, int *i, char *temp, int *j);
 //Lexer--------------------------------------------------------------
 void	to_builtins(char **line, int fd, int *pd);
 int		treat_others(char **line);
