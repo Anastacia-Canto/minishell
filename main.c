@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 08:42:12 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/16 17:43:33 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/19 08:00:11 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,18 @@ void	handler_sigint(int sig)
 
 int	check_null_line(char *line)
 {
+	int	i;
+
 	if (line == NULL)
 	{
 		write(1, "exit\n", 5);
 		return (1);
 	}
+	i = 0;
+	while (ft_whitespace(line[i]))
+		i++;
+	if (!line[i])
+		return (2);
 	return (0);
 }
 
@@ -43,9 +50,9 @@ void	main_loop(void)
 		signal(SIGINT, handler_sigint);
 		signal(SIGQUIT, SIG_IGN);
 		line = readline(data()->prompt);
-		if (check_null_line(line))
+		if (check_null_line(line) == 1)
 			break ;
-		if (!ft_strlen(line))
+		if (!ft_strlen(line) || check_null_line(line) == 2)
 		{
 			free(line);
 			continue ;

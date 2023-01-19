@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 02:17:46 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/16 17:40:25 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/01/19 08:28:18 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	get_args(char **line, t_heredoc *file)
 		return ;
 	while (line[++file->index])
 	{
-		if (!ft_recmp(line[file->index], "<") ||
-			!ft_recmp(line[file->index], "<<"))
+		if (!ft_recmp(line[file->index], "<")
+			|| !ft_recmp(line[file->index], "<<"))
 		{
 			if (line[file->index + 1])
 				file->index++;
 		}
-		else if (!ft_recmp(line[file->index], ">") ||
-			!ft_recmp(line[file->index], ">>"))
+		else if (!ft_recmp(line[file->index], ">")
+			|| !ft_recmp(line[file->index], ">>"))
 		{
 			if (line[file->index + 1])
 				file->index++;
@@ -41,9 +41,9 @@ void	get_args(char **line, t_heredoc *file)
 
 int	open_files(char **line, t_heredoc *file)
 {
-	int index;
-	int i;
-	int o;
+	int	index;
+	int	i;
+	int	o;
 
 	index = -1;
 	i = 0;
@@ -88,9 +88,9 @@ int	open_files(char **line, t_heredoc *file)
 
 void	execute_redirection(t_heredoc *file, int *pd)
 {
-	int	tmpin;
-	int tmpout;
-	char *temp;
+	int		tmpin;
+	int		tmpout;
+	char	*temp;
 
 	// int fd =  open(".tmp_heredoc2024.txt", O_CREAT | O_RDWR, S_IRWXU);
 	tmpin = dup(0);

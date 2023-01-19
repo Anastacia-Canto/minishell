@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:11:09 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/16 03:40:28 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/19 08:22:17 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	ft_recmp(char *line, char *cmp)
 	return (1);
 }
 
-int		input_len(char **line, t_heredoc *file)
+int	input_len(char **line, t_heredoc *file)
 {
-	int index;
-	int len;
-	
+	int	index;
+	int	len;
+
 	index = -1;
 	len = 0;
 	file->arg_len = 0;
@@ -57,18 +57,17 @@ int		input_len(char **line, t_heredoc *file)
 	return (len);
 }
 
-int		output_len(char **line)
+int	output_len(char **line)
 {
 	int	index;
-	int len;
+	int	len;
 
 	index = 0;
 	len = 0;
 	while (line[index])
 	{
-		if (!ft_recmp(line[index], ">") ||
-			!ft_recmp(line[index], ">>"))
-				if (line[index + 1])
+		if (!ft_recmp(line[index], ">") || !ft_recmp(line[index], ">>"))
+			if (line[index + 1])
 					len++;
 		index++;
 	}
@@ -84,7 +83,8 @@ void	get_inputs(char **line, t_heredoc *file)
 		return ;
 	while (line[++file->index])
 	{
-		if (!ft_recmp(line[file->index], "<") || !ft_recmp(line[file->index], "<<"))
+		if (!ft_recmp(line[file->index], "<")
+			|| !ft_recmp(line[file->index], "<<"))
 		{
 			if (line[file->index + 1])
 			{
@@ -105,10 +105,10 @@ void	get_outputs(char **line, t_heredoc *file)
 		return ;
 	while (line[file->index])
 	{
-		if (!ft_recmp(line[file->index], ">") ||
-			!ft_recmp(line[file->index], ">>"))
-				if (line[file->index + 1])
-					file->all_outputs[file->i_output++] = ft_strdup(line[file->index + 1]);
+		if (!ft_recmp(line[file->index], ">")
+			|| !ft_recmp(line[file->index], ">>"))
+			if (line[file->index + 1])
+				file->all_outputs[file->i_output++] = ft_strdup(line[file->index + 1]);
 		file->index++;
 	}
 	file->all_outputs[file->i_output] = 0;
