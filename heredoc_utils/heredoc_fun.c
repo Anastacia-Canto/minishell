@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:22:53 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/19 16:33:23 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/26 12:07:28 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,17 @@ char	*get_pfile(char *line)
 {
 	char	*path;
 	char	*temp;
+	char	*aux;
 
 	path = NULL;
 	path = getcwd(path, 0);
 	if (!path)
 		return (NULL);
 	temp = ft_strdup(path);
-	temp = ft_strjoin(temp, "/");
-	temp = ft_strjoin(temp, line);
+	aux = ft_strjoin(temp, "/");
+	free (temp);
+	temp = ft_strjoin(aux, line);
+	free (aux);
 	free(path);
 	return (temp);
 }

@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 02:17:46 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/19 16:32:21 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/26 12:10:57 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,5 @@ void	execute_redirection(t_heredoc *file, int *pd)
 	close(file->out);
 	dup2(tmpin, 0);
 	dup2(tmpout, 1);
+	free (temp);
 }
