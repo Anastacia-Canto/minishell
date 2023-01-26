@@ -6,19 +6,20 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:07:01 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/19 09:41:34 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/26 11:46:53 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_exec(char **line)
+int	ft_exec(char **line, int file)
 {
 	pid_t	pid;
 	int		fd[2];
 	int		ret;
 
 	ret = 0;
+	fd[1] = dup(file);
 	if (pipe(fd) == -1)
 		return (1);
 	pid = fork();

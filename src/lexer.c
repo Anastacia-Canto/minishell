@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/13 09:27:23 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/26 11:42:56 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	to_builtins(char **line, int fd, int *pd)
 	else if (!ft_strncmp(line[0], "unset", sizeof(line[0])))
 		exit = ft_unset(line);
 	else
-		exit = treat_others(line);
+		exit = treat_others(line, fd);
 	data()->exit_status = exit;
 }
 
-int	treat_others(char **line)
+int	treat_others(char **line, int fd)
 {
 	int		ret;
 
@@ -43,7 +43,7 @@ int	treat_others(char **line)
 	if (!check_line(line[0]))
 		return (add_var(line[0]));
 	data()->sig = 1;
-	ret = ft_exec(line);
+	ret = ft_exec(line, fd);
 	data()->sig = 0;
 	return (ret);
 }
