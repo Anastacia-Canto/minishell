@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+         #
+#    By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/29 16:43:01 by anastacia         #+#    #+#              #
-#    Updated: 2023/01/19 16:25:06 by anastacia        ###   ########.fr        #
+#    Updated: 2023/01/27 16:29:22 by sde-mull         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
