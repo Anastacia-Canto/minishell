@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:38:36 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/15 02:25:35 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/27 21:36:49 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int	check_value_list(char *str, char **lista)
 	index = 0;
 	while (lista[index])
 	{
-		cmp = ft_strcmp_expo(lista[index], str);
+		cmp = ft_strcmp_expo(str, lista[index]);
 		if (cmp == 0)
-			return (1);
+			return (0);
 		else if (cmp == 2)
 			return (2);
 		index++;
 	}
-	return (0);
+	return (1);
 }
 
 int	check_str(char *str)
