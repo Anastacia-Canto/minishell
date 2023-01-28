@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/26 12:00:37 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/28 21:37:22 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,4 +166,5 @@ void	print_char(char *str, int fd);
 int		change_or_add(char *arg, int flg, char ***str);
 // Unset------------------------------------------------------------
 int		ft_unset(char **line);
+void	exchange(int check, char *line);
 #endif
