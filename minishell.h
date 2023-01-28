@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/28 21:37:22 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/28 21:46:09 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	***list_cmds(char **args, int nbr_cmds);
 void	free_cmds_list(char ***cmds, int nbr_cmds);
 char	**split_cmds(char **line, int start, int len);
 //Lexer--------------------------------------------------------------
-void	to_builtins(char **line, int fd, int *pd);
+void	to_builtins(char **line, int *pd);
 int		treat_others(char **line, int fd);
 //Pipe---------------------------------------------------------------
 int		ft_pipe(char ***cmds, int len);
@@ -87,7 +87,7 @@ int		ft_pipe(char ***cmds, int len);
 int		ft_exec(char **line, int file);
 int		exec_prog(char **line, int *fd);
 char	*get_path(char *cmd_line);
-void	execution(char **line, int fd, int *pd);
+void	execution(char **line, int *pd);
 //Heredoc------------------------------------------------------------
 void	heredoc(char **line, int *pd);
 // Utils-------------------------------------------------------------

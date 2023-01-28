@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 02:17:46 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/26 12:10:57 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/28 21:46:55 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	execute_redirection(t_heredoc *file, int *pd)
 	tmpout = dup(1);
 	dup2(file->out, 1);
 	dup2(file->in, 0);
-	to_builtins(file->args, 1, pd);
+	to_builtins(file->args, pd);
 	temp = get_pfile(".tmp_heredoc2024.txt");
 	if (!temp)
 		return ;

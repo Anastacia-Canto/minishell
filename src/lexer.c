@@ -3,35 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/26 11:42:56 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/28 21:45:44 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	to_builtins(char **line, int fd, int *pd)
+void	to_builtins(char **line, int *pd)
 {
 	int	exit;
 
 	if (!ft_strncmp(line[0], "echo", sizeof(line[0])))
-		exit = ft_echo(line, fd);
+		exit = ft_echo(line, 1);
 	else if (!ft_strncmp(line[0], "pwd", sizeof(line[0])))
-		exit = ft_pwd(fd);
+		exit = ft_pwd(1);
 	else if (!ft_strncmp(line[0], "cd", sizeof(line[0])))
 		exit = ft_cd(line);
 	else if (!ft_strncmp(line[0], "env", sizeof(line[0])))
-		exit = print_envs(data()->env, line, fd);
+		exit = print_envs(data()->env, line, 1);
 	else if (!ft_strncmp(line[0], "exit", sizeof(line[0])))
-		exit = ft_exit(line, fd, pd);
+		exit = ft_exit(line, 1, pd);
 	else if (!ft_strncmp(line[0], "export", sizeof(line[0])))
-		exit = ft_export(line, fd);
+		exit = ft_export(line, 1);
 	else if (!ft_strncmp(line[0], "unset", sizeof(line[0])))
 		exit = ft_unset(line);
 	else
-		exit = treat_others(line, fd);
+		exit = treat_others(line, 1);
 	data()->exit_status = exit;
 }
 
