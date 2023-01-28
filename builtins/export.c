@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:01 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/28 20:53:49 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/01/28 21:14:36 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	change_or_add(char *arg, int flg, char ***str)
 
 	index = 0;
 	check = check_value_list(arg, *str);
+	printf("%d\n", check);
 	if (flg && check == 1)
 	{
 		while (arg[index++])
