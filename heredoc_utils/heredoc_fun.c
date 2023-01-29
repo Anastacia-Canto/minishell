@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_fun.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:22:53 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/26 12:07:28 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/01/29 20:02:57 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,14 @@ int	check_here_args(t_heredoc *file)
 {
 	if (!ft_recmp(file->here_str[file->index], file->line2))
 	{
-		data()->stop_wr = 1;
+		if (file->here_str[file->index + 1])
+		{
+			close(file->H_file);
+			file->H_file = open(".tmp_heredoc2024.txt", O_CREAT |
+				O_RDWR | O_TRUNC, S_IRWXU);
+			free(file->line2);
+			file->line2 = readline(">");
+		}
 		file->index++;
 	}
 	if (!file->here_str[file->index])
@@ -93,8 +100,7 @@ void	ft_double_less(char **line, t_heredoc *file)
 	{
 		while (check_here_args(file))
 		{
-			if (!data()->stop_wr)
-				save_heredoc(file->line2, file->H_file);
+			save_heredoc(file->line2, file->H_file);
 			free(file->line2);
 			file->line2 = readline(">");
 			if (file->line2 == NULL)
