@@ -1,10 +1,5 @@
 O que falta: 
 
-Expansões de variáveis
-
-ECHO 
-- lidar com * (bonus?)
-
 
  fix this case:
 				expected: e$A$B hello $A$B'$USER'
@@ -18,8 +13,6 @@ ECHO
 				hello $A$B$USER
 
 
-PIPES
-| (tá fechando o programa depois de executar o último comando) and |||
 
 REDIRECTIONS
 
@@ -44,3 +37,14 @@ readirection '>' -> for exemple: echo hello world > output.txt hello > output2.t
 check error treatment in this case:  cat > teste.txt good bye
 										cat: good: No such file or directory
 										cat: bye: No such file or directory
+
+
+
+PARA RESOLVER AINDA:
+
+ - '' -> causa memory leak na join do get_path
+ - | -> memory leak na check_line
+ - '|' -> memory leak na check_line
+ - > -> memory leak na check_line
+ - '>' -> memory leak na check_line
+
