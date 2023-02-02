@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:22:53 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/29 20:02:57 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/02 16:46:04 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	get_here_str(char **line, t_heredoc *file)
 	index = -1;
 	len = 0;
 	while (line[++index])
-		if (!ft_recmp(line[index], "<<"))
+		if (!ft_recmp(line[index], "<<") && line[index + 1] &&
+			ft_recmp(line[index + 1], "<<"))
 			len++;
 	file->here_str = malloc(sizeof(char *) * (len + 1));
 	if (!file->here_str)
@@ -29,7 +30,7 @@ void	get_here_str(char **line, t_heredoc *file)
 	len = 0;
 	while (line[++index])
 		if (!ft_recmp(line[index], "<<"))
-			if (line[index + 1])
+			if (line[index + 1] && ft_recmp(line[index + 1], "<<"))
 				file->here_str[len++] = ft_strdup(line[index + 1]);
 	file->here_str[len] = 0;
 }
@@ -43,8 +44,7 @@ int	check_here_args(t_heredoc *file)
 			close(file->H_file);
 			file->H_file = open(".tmp_heredoc2024.txt", O_CREAT |
 				O_RDWR | O_TRUNC, S_IRWXU);
-			free(file->line2);
-			file->line2 = readline(">");
+			data()->stop_wr = 1;
 		}
 		file->index++;
 	}
@@ -100,7 +100,11 @@ void	ft_double_less(char **line, t_heredoc *file)
 	{
 		while (check_here_args(file))
 		{
-			save_heredoc(file->line2, file->H_file);
+			if (data()->stop_wr == 0)
+			{
+				save_heredoc(file->line2, file->H_file);
+				data()->stop_wr = 0;
+			}
 			free(file->line2);
 			file->line2 = readline(">");
 			if (file->line2 == NULL)

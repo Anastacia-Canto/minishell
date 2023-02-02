@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/28 21:46:09 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/02 15:58:23 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ typedef struct s_data
 
 typedef struct s_heredoc
 {
-	int		index;				//general index
+	int		index;
 	int		H_file;
-	int		out;				//fd for output
-	int		in;					//fd for input
-	char	**all_inputs;		//list of all output files, only last one matters
-	char	**all_outputs;		//list of all imput files, only last one matters
-	int		input_len;			//how many imput files there is
-	int		output_len;			//how many output files there is
-	int		i_input;        	//index for get imputs
-	int		i_output;			//index for get outputs
-	int		i_args;				//index for get args
-	char	**args;				//argumentos que vao ser enviados para execução
-	int		arg_len;			//how many arguments there is
+	int		out;
+	int		in;
+	char	**all_inputs;
+	char	**all_outputs;
+	int		input_len;
+	int		output_len;
+	int		i_input;
+	int		i_output;
+	int		i_args;
+	char	**args;
+	int		arg_len;
 	char	*line2;
 	int		here_flag;
 	char	**here_str;

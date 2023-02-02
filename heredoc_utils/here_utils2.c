@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 02:17:46 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/28 21:46:55 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:37:11 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ int	open_files(char **line, t_heredoc *file)
 				}
 			}
 			else if (!ft_recmp(line[index - 1], "<<"))
-			{
-				file->here_flag = 1;
 				file->in = open(".tmp_heredoc2024.txt", O_CREAT | O_RDWR, 0777);
-			}
 			i++;
 		}
 		else if (!ft_recmp(line[index], file->all_outputs[o]))
@@ -90,22 +87,14 @@ void	execute_redirection(t_heredoc *file, int *pd)
 {
 	int		tmpin;
 	int		tmpout;
-	char	*temp;
 
-	// int fd =  open(".tmp_heredoc2024.txt", O_CREAT | O_RDWR, S_IRWXU);
 	tmpin = dup(0);
 	tmpout = dup(1);
 	dup2(file->out, 1);
 	dup2(file->in, 0);
 	to_builtins(file->args, pd);
-	temp = get_pfile(".tmp_heredoc2024.txt");
-	if (!temp)
-		return ;
-	if (access(temp, F_OK) == 0)
-		unlink(temp);
 	close(file->in);
 	close(file->out);
 	dup2(tmpin, 0);
 	dup2(tmpout, 1);
-	free (temp);
 }
