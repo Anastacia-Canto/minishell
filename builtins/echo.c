@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/02/03 12:21:21 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/03 19:11:21 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	print_echo(char **line, int fd, int i)
 {
 	int		j;
 
-	check_special_sign(line);
+	// check_special_sign(line);
 	while (line[++i])
 	{
 		j = 0;
@@ -78,13 +78,17 @@ void	check_special_sign(char **line)
 	i = 0;
 	while (line[i])
 	{
-		if (!ft_strncmp(line[i], "\'>\'", sizeof(line[i])))
+		if (!ft_strncmp(line[i], "\'>\'", sizeof(line[i]))
+			|| !ft_strncmp(line[i], "\">\"", sizeof(line[i])))
 			line[i] = ft_strdup(">");
-		else if (!ft_strncmp(line[i], "\'>>\'", sizeof(line[i])))
+		else if (!ft_strncmp(line[i], "\'>>\'", sizeof(line[i]))
+			|| !ft_strncmp(line[i], "\">>\"", sizeof(line[i])))
 			line[i] = ft_strdup(">>");
-		else if (!ft_strncmp(line[i], "\'<\'", sizeof(line[i])))
+		else if (!ft_strncmp(line[i], "\'<\'", sizeof(line[i]))
+			|| !ft_strncmp(line[i], "\"<\"", sizeof(line[i])))
 			line[i] = ft_strdup("<");
-		else if (!ft_strncmp(line[i], "\'<<\'", sizeof(line[i])))
+		else if (!ft_strncmp(line[i], "\'<<\'", sizeof(line[i]))
+			|| !ft_strncmp(line[i], "\"<<\"", sizeof(line[i])))
 			line[i] = ft_strdup("<<");
 		i++;
 	}

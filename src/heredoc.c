@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/03 18:44:31 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:10:37 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,13 @@ void	fix_args(char **lista)
 	index = 0;
 	while (lista[index])
 	{
-		if (ft_recmp(lista[index], "'<'") || ft_recmp(lista[index], "'<<'") ||
-			ft_recmp(lista[index], "'>'") || ft_recmp(lista[index], "'>>'") ||
-			ft_recmp(lista[index], "\"<\"") || ft_recmp(lista[index], "\"<<\"") ||
-			ft_recmp(lista[index], "\">\"") || ft_recmp(lista[index], "\">>\""))
+		if (!ft_recmp(lista[index], "'<'") || !ft_recmp(lista[index], "'<<'")
+			||!ft_recmp(lista[index], "'>'") || !ft_recmp(lista[index], "'>>'")
+			||!ft_recmp(lista[index], "\"<\"") || !ft_recmp(lista[index], "\"<<\"")
+			||!ft_recmp(lista[index], "\">\"") || !ft_recmp(lista[index], "\">>\""))
 			{
-				str = lista[index];
-				lista[index] = remove_quotes(str);
+				str = remove_quotes(lista[index]);
+				lista[index] = str;
 			}
 		index++;
 	}
@@ -115,7 +115,7 @@ void	get_info(t_heredoc *file, char **line, int *pd)
 	get_inputs(line, file);
 	get_outputs(line, file);
 	get_args(line, file);
-	fix_args(file->args);
+	check_special_sign(file->args);
 	check = check_is_heredoc(line);
 	if (check)
 		ft_double_less(line, file);

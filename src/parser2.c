@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:14:34 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/03 18:17:23 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/03 19:13:32 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,21 @@ void	copy_arg(char *line, int *i, char *temp, int *j)
 void	ft_ignore(char *line, int k, char *temp, int *w)
 {
 	int	i;
+	int	len;
 
+	len = ft_strlen(line);
 	i = k + 1;
-	if (((line[i] == '>') && line[i + 1] && (is_quote(line[i + 1])
+	if (((line[i] == '>') && i + 1 < len && (is_quote(line[i + 1])
 				|| (line[i + 1] == '>'
-					&& line[i + 2] && is_quote(line[i + 2])))))
+					&& i + 2 < len && is_quote(line[i + 2])))))
 	{
 		data()->ignore_sign = 1;
 		temp[*w] = line[k];
 		*w = *w + 1;
 	}
-	else if (((line[i] == '<') && line[i + 1] && (is_quote(line[i + 1])
+	else if (((line[i] == '<') && i + 1 < len && (is_quote(line[i + 1])
 				|| (line[i + 1] == '<'
-					&& line[i + 2] && is_quote(line[i + 2])))))
+					&& i + 2 < len && is_quote(line[i + 2])))))
 	{
 		data()->ignore_sign = 1;
 		temp[*w] = line[k];
