@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:14:34 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/03 11:43:48 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/03 17:23:17 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ int	end_heredoc(char *line, int i)
 
 void	finalize_arg(char *temp, int *j, char **args, int *k)
 {
-	if (data()->ignore_sign)
-	{
-		data()->ignore_sign = 0;
-		temp[*j] = '\'';
-		*j = *j + 1;
-	}
 	temp[*j] = '\0';
 	args[*k] = ft_strdup(temp);
 	if (data()->expand)
@@ -58,6 +52,11 @@ void	copy_arg(char *line, int *i, char *temp, int *j)
 		ft_ignore(line, k, temp, &w);
 		while (line[++k] && !is_quote(line[k]))
 			temp[w++] = line[k];
+		if (data()->ignore_sign)
+		{
+			temp[w++] = line[k];
+			data()->ignore_sign = 0;
+		}
 		*i = k + 1;
 		*j = w;
 	}
@@ -79,21 +78,16 @@ void	ft_ignore(char *line, int k, char *temp, int *w)
 	int	i;
 
 	i = k + 1;
-	if (line[i] && (line[i] == '>'))
-	{
-		if (!(line[i + 1] && (is_quote(line[i + 1])
-					|| (line[i + 1] == '>'
-						&& line[i + 2] && is_quote(line[i + 2])))))
-			return ;
-	}
-	if (line[i] && (line[i] == '<'))
-	{
-		if (!(line[i + 1] && (is_quote(line[i + 1])
-					|| (line[i + 1] == '<'
-						&& line[i + 2] && is_quote(line[i + 2])))))
-			return ;
-	}
+	if (!((line[i] == '>') && line[i + 1] && (is_quote(line[i + 1])
+				|| (line[i + 1] == '>'
+					&& line[i + 2] && is_quote(line[i + 2])))))
+		return ;
+
+	if (!((line[i] == '<') && line[i + 1] && (is_quote(line[i + 1])
+				|| (line[i + 1] == '<'
+					&& line[i + 2] && is_quote(line[i + 2])))))
+		return ;
 	data()->ignore_sign = 1;
-	temp[*w] = '\'';
+	temp[*w] = line[k];
 	*w = *w + 1;
 }

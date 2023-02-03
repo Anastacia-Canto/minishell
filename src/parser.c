@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/03 12:09:23 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/03 17:23:26 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	parser(char *line)
 	if (!args)
 		return ;
 	ft_split_args(line, args);
-	print_args(args);
+	// print_argssargs);
 	if (!check_pipe_on_args(args))
 	{
 		nbr_cmds = count_cmds(args);

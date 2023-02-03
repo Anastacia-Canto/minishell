@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/02 17:37:19 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/03 17:24:15 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	get_info(t_heredoc *file, char **line, int *pd)
 	if (check)
 		ft_double_less(line, file);
 	check = check_redirect(line);
-	if (open_files(line, file) && !check)
+	if (!check && open_files(line, file))
 		execute_redirection(file, pd);
 	temp = get_pfile(".tmp_heredoc2024.txt");
 	if (!temp)
