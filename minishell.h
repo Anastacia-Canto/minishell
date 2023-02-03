@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/03 12:04:44 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/03 18:46:14 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ char	*get_path(char *cmd_line);
 void	execution(char **line, int *pd);
 //Heredoc------------------------------------------------------------
 void	heredoc(char **line, int *pd);
+void	fix_args(char **lista);
 // Utils-------------------------------------------------------------
 t_data	*data(void);
 char	*adjust_line(char *line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:14:34 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/03 17:23:17 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/03 18:17:23 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,20 @@ void	ft_ignore(char *line, int k, char *temp, int *w)
 	int	i;
 
 	i = k + 1;
-	if (!((line[i] == '>') && line[i + 1] && (is_quote(line[i + 1])
+	if (((line[i] == '>') && line[i + 1] && (is_quote(line[i + 1])
 				|| (line[i + 1] == '>'
 					&& line[i + 2] && is_quote(line[i + 2])))))
-		return ;
-
-	if (!((line[i] == '<') && line[i + 1] && (is_quote(line[i + 1])
+	{
+		data()->ignore_sign = 1;
+		temp[*w] = line[k];
+		*w = *w + 1;
+	}
+	else if (((line[i] == '<') && line[i + 1] && (is_quote(line[i + 1])
 				|| (line[i + 1] == '<'
 					&& line[i + 2] && is_quote(line[i + 2])))))
-		return ;
-	data()->ignore_sign = 1;
-	temp[*w] = line[k];
-	*w = *w + 1;
+	{
+		data()->ignore_sign = 1;
+		temp[*w] = line[k];
+		*w = *w + 1;
+	}
 }

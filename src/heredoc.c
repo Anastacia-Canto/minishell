@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/03 17:24:15 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/03 18:44:31 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,56 @@ int	check_is_heredoc(char **line)
 	return (0);
 }
 
+char	*remove_quotes(char *str)
+{
+	int 	len;
+	int 	index;
+	char	*str2;
+
+	len = 0;
+	index = 0;
+	while (str[len++])
+	str2 = malloc(sizeof(char) * len + 1);
+	len = 0;
+	while (str[len])
+	{
+		if (str[len] != 39 && str[len] != 34)
+		{
+			str2[index] = str[len];
+			index++;
+		}
+		len++;
+	}
+	str2[index] = '\0';
+	free(str);
+	return (str2);
+}
+
+void	fix_args(char **lista)
+{
+	int index;
+	char *str;
+
+	index = 0;
+	while (lista[index])
+	{
+		if (ft_recmp(lista[index], "'<'") || ft_recmp(lista[index], "'<<'") ||
+			ft_recmp(lista[index], "'>'") || ft_recmp(lista[index], "'>>'") ||
+			ft_recmp(lista[index], "\"<\"") || ft_recmp(lista[index], "\"<<\"") ||
+			ft_recmp(lista[index], "\">\"") || ft_recmp(lista[index], "\">>\""))
+			{
+				str = lista[index];
+				lista[index] = remove_quotes(str);
+			}
+		index++;
+	}
+}
+
 void	get_info(t_heredoc *file, char **line, int *pd)
 {
 	int check;
 	char *temp;
+
 
 	check = 0;
 	file->input_len = input_len(line, file);
@@ -69,6 +115,7 @@ void	get_info(t_heredoc *file, char **line, int *pd)
 	get_inputs(line, file);
 	get_outputs(line, file);
 	get_args(line, file);
+	fix_args(file->args);
 	check = check_is_heredoc(line);
 	if (check)
 		ft_double_less(line, file);
