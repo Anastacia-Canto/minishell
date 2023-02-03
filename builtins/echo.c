@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/16 19:09:31 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:21:21 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	print_echo(char **line, int fd, int i)
 {
 	int		j;
 
+	check_special_sign(line);
 	while (line[++i])
 	{
 		j = 0;
@@ -68,4 +69,23 @@ int	check_n(char *arg)
 		i++;
 	}
 	return (0);
+}
+
+void	check_special_sign(char **line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!ft_strncmp(line[i], "\'>\'", sizeof(line[i])))
+			line[i] = ft_strdup(">");
+		else if (!ft_strncmp(line[i], "\'>>\'", sizeof(line[i])))
+			line[i] = ft_strdup(">>");
+		else if (!ft_strncmp(line[i], "\'<\'", sizeof(line[i])))
+			line[i] = ft_strdup("<");
+		else if (!ft_strncmp(line[i], "\'<<\'", sizeof(line[i])))
+			line[i] = ft_strdup("<<");
+		i++;
+	}
 }

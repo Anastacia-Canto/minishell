@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:22:39 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/03 11:04:25 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/03 11:09:06 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	check_pipe_on_args(char **args)
 			return (0);
 	}
 	printf("bash: syntax error near unexpected token `|'\n");
+	data()->exit_status = 2;
 	return (1);
 }
 
