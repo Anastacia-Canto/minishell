@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:14:34 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/19 16:23:20 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/03 10:41:09 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	copy_arg(char *line, int *i, char *temp, int *j)
 	w = *j;
 	if (is_quote(line[k]) && !check_end_quote(line, &k))
 	{
+		ft_ignore(line, k);
 		while (line[++k] && !is_quote(line[k]))
 			temp[w++] = line[k];
 		*i = k + 1;
@@ -64,5 +65,20 @@ void	copy_arg(char *line, int *i, char *temp, int *j)
 		}
 		*i = k;
 		*j = w;
+	}
+}
+
+void	ft_ignore(char *line, int k)
+{
+	int	i;
+
+	i = k + 1;
+	data()->ignore_sign = 0;
+	while (line[i] && line[i] != line[k])
+	{
+		// if (ine, ">") || line[i] == '>>'
+		// 	|| line[i] == '<' || line[i] == '<')
+		// 	data()->ignore_sign = 1;
+		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:18:00 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/19 16:15:54 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/03 10:45:31 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_values(char **env)
 	data()->sig = 0;
 	data()->break_flg = 0;
 	data()->stop_wr = 0;
+	data()->ignore_sign = 0;
 }
 
 void	ft_swap_alpha(char **copy, size_t i, size_t j)

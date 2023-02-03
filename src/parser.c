@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/28 21:45:11 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/03 10:40:45 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,15 @@ void	parser(char *line)
 		return ;
 	ft_split_args(line, args);
 	// print_args(args);
-	nbr_cmds = count_cmds(args);
-	if (nbr_cmds == 1)
-		execution(args, NULL);
-	else
+	if (!check_pipe_on_args(args))
 	{
+		nbr_cmds = count_cmds(args);
 		cmds = list_cmds(args, nbr_cmds);
-		ft_pipe(cmds, nbr_cmds);
-		free_cmds_list(cmds, nbr_cmds);
+		if (cmds)
+		{
+			ft_pipe(cmds, nbr_cmds);
+			free_cmds_list(cmds, nbr_cmds);
+		}
 	}
 	free_array(args);
 }

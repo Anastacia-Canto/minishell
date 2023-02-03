@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/02 15:58:23 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/03 10:44:53 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_data
 	int		break_flg;
 	int		stop_wr;
 	char	**args;
+	int		ignore_sign;
 }	t_data;
 
 typedef struct s_heredoc
@@ -74,7 +75,9 @@ int		count_cmds(char **args);
 int		end_heredoc(char *line, int i);
 void	finalize_arg(char *temp, int *j, char **args, int *k);
 void	copy_arg(char *line, int *i, char *temp, int *j);
+void	ft_ignore(char *line, int k);
 //Parser3------------------------------------------------------------
+int		check_pipe_on_args(char **args);
 char	***list_cmds(char **args, int nbr_cmds);
 void	free_cmds_list(char ***cmds, int nbr_cmds);
 char	**split_cmds(char **line, int start, int len);

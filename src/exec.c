@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:07:01 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/28 21:45:27 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/03 10:42:39 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,12 @@
 
 int	ft_exec(char **line, int file)
 {
-	pid_t	pid;
 	int		fd[2];
 	int		ret;
 
 	ret = 0;
 	fd[1] = dup(file);
-	if (pipe(fd) == -1)
-		return (1);
-	pid = fork();
-	if (pid == 0)
-	{
-		ret = exec_prog(line, fd);
-		exit(ret);
-	}
-	else
-	{
-		if (waitpid(pid, &ret, 0) != pid)
-			ret = -1;
-		close(fd[1]);
-		read(fd[0], &ret, sizeof(int));
-		close(fd[0]);
-	}
+	ret = exec_prog(line, fd);
 	return (ret / 256);
 }
 
