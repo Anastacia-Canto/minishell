@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/02/03 19:11:21 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/07 16:59:39 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,28 @@ void	check_special_sign(char **line)
 	{
 		if (!ft_strncmp(line[i], "\'>\'", sizeof(line[i]))
 			|| !ft_strncmp(line[i], "\">\"", sizeof(line[i])))
-			line[i] = ft_strdup(">");
+			{
+				free(line[i]);
+				line[i] = ft_strdup(">");
+			}
 		else if (!ft_strncmp(line[i], "\'>>\'", sizeof(line[i]))
 			|| !ft_strncmp(line[i], "\">>\"", sizeof(line[i])))
-			line[i] = ft_strdup(">>");
+			{
+				free(line[i]);
+				line[i] = ft_strdup(">>");
+			}
 		else if (!ft_strncmp(line[i], "\'<\'", sizeof(line[i]))
 			|| !ft_strncmp(line[i], "\"<\"", sizeof(line[i])))
-			line[i] = ft_strdup("<");
+			{
+				free(line[i]);
+				line[i] = ft_strdup("<");
+			}
 		else if (!ft_strncmp(line[i], "\'<<\'", sizeof(line[i]))
 			|| !ft_strncmp(line[i], "\"<<\"", sizeof(line[i])))
-			line[i] = ft_strdup("<<");
+			{
+				free(line[i]);
+				line[i] = ft_strdup("<<");
+			}
 		i++;
 	}
 }

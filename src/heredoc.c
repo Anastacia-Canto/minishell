@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/03 19:10:37 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/07 16:55:32 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ char	*remove_quotes(char *str)
 
 	len = 0;
 	index = 0;
-	while (str[len++])
-	str2 = malloc(sizeof(char) * len + 1);
+	while (str[len++]);
+	str2 = malloc(sizeof(char) * len);
 	len = 0;
 	while (str[len])
 	{
@@ -115,7 +115,8 @@ void	get_info(t_heredoc *file, char **line, int *pd)
 	get_inputs(line, file);
 	get_outputs(line, file);
 	get_args(line, file);
-	check_special_sign(file->args);
+	fix_args(file->args);
+	//check_special_sign(file->args);
 	check = check_is_heredoc(line);
 	if (check)
 		ft_double_less(line, file);
