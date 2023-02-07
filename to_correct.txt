@@ -1,0 +1,33 @@
+cat->enter->enter->ctrl-c imprime dois prompts nao ei se e suposto.
+
+-> echo string |ls
+-> echo string|ls
+-> echo string| ls
+
+-> cd $HOME/Documents -> cd nao funciona temos de ver porque
+
+-> a = e; b = cho; $a$b hello -> leaks;
+
+-> echo -n -n -nnnn -nnnnm -> imprime tudo quando so devia imprimir o ultima string
+
+-> export "" et unset "" -> nao faz export de et / unset 
+
+-> not_cmd bonjour > salut -> imprime commando num file salut quando devia imprimir no terminal e apenas criar o file vazio
+
+-> echo bonjour >>> test -> nao devia dar print, devia dar erro
+
+->  echo bonjour > > out -> devia acontecer o mesmo que o anterior
+
+-> export nao funciona novamente por alguma razao
+
+-> echo bonjour > $test -> leaks
+
+-> sleep 10 depois ctrl-C -> imprime dois prompts nao sei se deve ser corrigido
+
+-> cat | cat | cat | ls -> nao faz o mesmo que no bash nao sei se deve ser corrigido neste caso
+
+-> $bla -> quando nao definido da leaks
+
+-> exit -10 -> imprime erro mas sai na mesma,nosso minishell nao sai
+
+https://github.com/t0mm4rx/minishell_tests

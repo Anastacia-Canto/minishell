@@ -33,7 +33,7 @@ readirection '>' -> for exemple: echo hello world > output.txt hello > output2.t
 			'>>' -> The same happens to this redirection but it appends instead of overwritting.
 
 
-
+https://github.com/t0mm4rx/minishell_tests
 check error treatment in this case:  cat > teste.txt good bye
 										cat: good: No such file or directory
 										cat: bye: No such file or directory
