@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:27:36 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/02/02 11:18:46 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/07 18:42:44 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	ft_pipe(char ***cmds, int len)
 
 	tmpin = dup(0);
 	tmpout = dup(1);
+	printf("len %d\n", len);
 	fd[0] = dup(tmpin);
 	i = -1;
 	while (++i < len)

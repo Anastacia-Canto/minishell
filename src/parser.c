@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/03 17:23:26 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/07 18:48:08 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	parser(char *line)
 		// print_cmds(cmds);
 		if (cmds)
 		{
-			ft_pipe(cmds, nbr_cmds);
+			if (nbr_cmds == 1)
+				execution(cmds[0], NULL);
+			else
+				ft_pipe(cmds, nbr_cmds);
 			free_cmds_list(cmds, nbr_cmds);
 		}
 	}
