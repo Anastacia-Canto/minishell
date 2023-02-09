@@ -12,7 +12,7 @@
 
 -> echo bonjour >>> test -> nao devia dar print, devia dar erro
 
-->  echo bonjour > > out -> devia acontecer o mesmo que o anterior
+(OK) -> echo bonjour > > out -> devia acontecer o mesmo que o anterior
 
 (OK) -> echo bonjour > $test -> leaks
 

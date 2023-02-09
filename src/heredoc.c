@@ -6,11 +6,27 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/09 18:59:54 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/09 20:16:06 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	print_rederror(char *line)
+{
+	if (!line)
+	{
+		printf("-bash: syntax error near unexpected token `newline'\n");
+		return (1);
+	}
+	else if (!ft_recmp(line, "<") || !ft_recmp(line, ">")
+	|| !ft_recmp(line, ">>") || !ft_recmp(line, "<<"))
+	{
+		printf("-bash: syntax error near unexpected token `%s'\n", line);
+		return (1);
+	}
+	return (0);
+}
 
 int	check_redirect(char **line)
 {
@@ -19,14 +35,14 @@ int	check_redirect(char **line)
 	index = 0;
 	while (line[index])
 	{
-		if (!ft_recmp(line[index], "<") && !line[index + 1])
-			return (printf("-bash: syntax error near unexpected token `newline'\n"));
+		if (!ft_recmp(line[index], "<"))
+			return (print_rederror(line[index + 1]));
 		else if (!ft_recmp(line[index], "<<") && !line[index + 1])
-			return (printf("-bash: syntax error near unexpected token `newline'\n"));
+			return (print_rederror(line[index + 1]));
 		else if (!ft_recmp(line[index], ">") && line[index + 1] == 0)
-			return (printf("-bash: syntax error near unexpected token `newline'\n"));
+			return (print_rederror(line[index + 1]));
 		else if (!ft_recmp(line[index], ">>") && !line[index + 1])
-			return (printf("-bash: syntax error near unexpected token `newline'\n"));
+			return (print_rederror(line[index + 1]));
 		index++;
 	}
 	return (0);
