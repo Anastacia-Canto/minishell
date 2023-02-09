@@ -25,3 +25,11 @@
 (OK) -> exit -10 -> imprime erro mas sai na mesma,nosso minishell nao sai
 
 https://github.com/t0mm4rx/minishell_tests
+
+-> sleep 5 | exit
+
+-> cd multiple arguments
+
+-> echo |
+
+-> cat > >
