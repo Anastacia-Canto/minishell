@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/07 16:55:32 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:59:54 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_redirect(char **line)
 			return (printf("-bash: syntax error near unexpected token `newline'\n"));
 		else if (!ft_recmp(line[index], "<<") && !line[index + 1])
 			return (printf("-bash: syntax error near unexpected token `newline'\n"));
-		else if (!ft_recmp(line[index], ">") && !line[index + 1])
+		else if (!ft_recmp(line[index], ">") && line[index + 1] == 0)
 			return (printf("-bash: syntax error near unexpected token `newline'\n"));
 		else if (!ft_recmp(line[index], ">>") && !line[index + 1])
 			return (printf("-bash: syntax error near unexpected token `newline'\n"));
@@ -116,7 +116,6 @@ void	get_info(t_heredoc *file, char **line, int *pd)
 	get_outputs(line, file);
 	get_args(line, file);
 	fix_args(file->args);
-	//check_special_sign(file->args);
 	check = check_is_heredoc(line);
 	if (check)
 		ft_double_less(line, file);

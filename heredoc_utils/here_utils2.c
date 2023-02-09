@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 02:17:46 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/02 17:37:11 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:59:05 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ int	open_files(char **line, t_heredoc *file)
 	file->out = 1;
 	while (line[++index])
 	{
+		if (line[index][0] == 0)
+		{
+			printf("-bash: ambiguous redirect\n");
+			return (0);
+		}
 		if (!ft_recmp(line[index], file->all_inputs[i]))
 		{
 			if (file->in > 2)

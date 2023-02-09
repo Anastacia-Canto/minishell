@@ -8,13 +8,13 @@
 
 (OK) -> echo -n -n -nnnn -nnnnm -> imprime tudo quando so devia imprimir o ultima string
 
--> not_cmd bonjour > salut -> imprime commando num file salut quando devia imprimir no terminal e apenas criar o file vazio
+(OK) -> not_cmd bonjour > salut -> imprime commando num file salut quando devia imprimir no terminal e apenas criar o file vazio
 
 -> echo bonjour >>> test -> nao devia dar print, devia dar erro
 
 ->  echo bonjour > > out -> devia acontecer o mesmo que o anterior
 
--> echo bonjour > $test -> leaks
+(OK) -> echo bonjour > $test -> leaks
 
 (testei e imprimiu um só) -> sleep 10 depois ctrl-C -> imprime dois prompts nao sei se deve ser corrigido
 
