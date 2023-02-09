@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:55:33 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/28 21:45:44 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:57:04 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	to_builtins(char **line, int *pd)
 {
 	int	exit;
 
+	if (ft_strlen(line[0]) == 0)
+		return ;
 	if (!ft_strncmp(line[0], "echo", sizeof(line[0])))
 		exit = ft_echo(line, 1);
 	else if (!ft_strncmp(line[0], "pwd", sizeof(line[0])))

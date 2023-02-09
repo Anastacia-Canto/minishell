@@ -1,12 +1,12 @@
-cat->enter->enter->ctrl-c imprime dois prompts nao ei se e suposto.
+(testei e imprimiu um só) - cat->enter->enter->ctrl-c imprime dois prompts nao ei se e suposto.
 
 -> echo string |ls
 -> echo string|ls
 -> echo string| ls
 
--> cd $HOME/Documents -> cd nao funciona nao e encontrado
+(OK) -> cd $HOME/Documents -> cd nao funciona nao e encontrado
 
--> echo -n -n -nnnn -nnnnm -> imprime tudo quando so devia imprimir o ultima string
+(OK) -> echo -n -n -nnnn -nnnnm -> imprime tudo quando so devia imprimir o ultima string
 
 -> not_cmd bonjour > salut -> imprime commando num file salut quando devia imprimir no terminal e apenas criar o file vazio
 
@@ -16,12 +16,12 @@ cat->enter->enter->ctrl-c imprime dois prompts nao ei se e suposto.
 
 -> echo bonjour > $test -> leaks
 
--> sleep 10 depois ctrl-C -> imprime dois prompts nao sei se deve ser corrigido
+(testei e imprimiu um só) -> sleep 10 depois ctrl-C -> imprime dois prompts nao sei se deve ser corrigido
 
--> cat | cat | cat | ls -> nao faz o mesmo que no bash nao sei se deve ser corrigido neste caso
+(Acho que se não dá leak, deixa) -> cat | cat | cat | ls -> nao faz o mesmo que no bash nao sei se deve ser corrigido neste caso
 
--> $bla -> quando nao definido da leaks
+(OK) -> $bla -> quando nao definido da leaks
 
--> exit -10 -> imprime erro mas sai na mesma,nosso minishell nao sai
+(OK) -> exit -10 -> imprime erro mas sai na mesma,nosso minishell nao sai
 
 https://github.com/t0mm4rx/minishell_tests

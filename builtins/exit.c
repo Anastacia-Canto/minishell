@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:10:03 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/01/19 13:47:18 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/09 10:45:18 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	check_num(char *arg)
 	size_t	i;
 
 	i = 0;
+	if (arg[i] == '-' || arg[i] == '+')
+		i++;
 	while (i < ft_strlen(arg) && ft_isdigit(arg[i]) != 0)
 		i++;
 	if (i < ft_strlen(arg))

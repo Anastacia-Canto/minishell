@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:29:32 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/19 09:51:29 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/09 12:13:32 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ char	*get_value(char *name, int *pos)
 	char	*key;
 
 	end = *pos;
-	while (name[end] && name[end] != '$' && !ft_whitespace(name[end]))
+	while (name[end] && name[end] != '$'
+		&& (ft_isalpha(name[end]) || name[end] == '_'))
 		end++;
 	key = ft_substr(name, *pos, end - *pos);
 	value = get_var(key, data()->env);
