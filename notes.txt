@@ -48,3 +48,10 @@ PARA RESOLVER AINDA:
  - > -> memory leak na check_line
  - '>' -> memory leak na check_line
 
+
+
+<<< only reads << and after that is separate so needs to be fixed on parsed
+
+<as is good but as< is not, needs to be fixed too
+
+< <<< para a frente devia imprimir erro de <<< não sei se corrijo isto ou nao
