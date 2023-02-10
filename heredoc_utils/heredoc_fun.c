@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_fun.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:22:53 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/02 16:46:04 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:35:52 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	get_here_str(char **line, t_heredoc *file)
 	index = -1;
 	len = 0;
 	while (line[++index])
-		if (!ft_recmp(line[index], "<<") && line[index + 1] &&
-			ft_recmp(line[index + 1], "<<"))
+		if (!ft_recmp(line[index], "<<") && line[index + 1]
+			&& ft_recmp(line[index + 1], "<<"))
 			len++;
 	file->here_str = malloc(sizeof(char *) * (len + 1));
 	if (!file->here_str)
@@ -41,9 +41,9 @@ int	check_here_args(t_heredoc *file)
 	{
 		if (file->here_str[file->index + 1])
 		{
-			close(file->H_file);
-			file->H_file = open(".tmp_heredoc2024.txt", O_CREAT |
-				O_RDWR | O_TRUNC, S_IRWXU);
+			close(file->h_file);
+			file->h_file = open(".tmp_heredoc2024.txt", O_CREAT
+					| O_RDWR | O_TRUNC, S_IRWXU);
 			data()->stop_wr = 1;
 		}
 		file->index++;
@@ -89,12 +89,10 @@ char	*get_pfile(char *line)
 
 void	ft_double_less(char **line, t_heredoc *file)
 {
-	// char	*temp;
-
 	get_here_str(line, file);
 	file->index = 0;
 	data()->stop_wr = 0;
-	file->H_file = open(".tmp_heredoc2024.txt", O_CREAT | O_RDWR, S_IRWXU);
+	file->h_file = open(".tmp_heredoc2024.txt", O_CREAT | O_RDWR, S_IRWXU);
 	file->line2 = readline(">");
 	if (file->line2 != NULL)
 	{
@@ -102,7 +100,7 @@ void	ft_double_less(char **line, t_heredoc *file)
 		{
 			if (data()->stop_wr == 0)
 			{
-				save_heredoc(file->line2, file->H_file);
+				save_heredoc(file->line2, file->h_file);
 				data()->stop_wr = 0;
 			}
 			free(file->line2);
@@ -112,6 +110,6 @@ void	ft_double_less(char **line, t_heredoc *file)
 		}
 	}
 	free(file->line2);
-	close(file->H_file);
+	close(file->h_file);
 	free_array(file->here_str);
 }

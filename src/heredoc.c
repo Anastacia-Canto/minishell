@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/09 20:41:44 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:19:38 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	print_rederror(char *line)
 		return (1);
 	}
 	else if (!ft_recmp(line, "<") || !ft_recmp(line, ">")
-	|| !ft_recmp(line, ">>") || !ft_recmp(line, "<<"))
+		|| !ft_recmp(line, ">>") || !ft_recmp(line, "<<"))
 	{
 		printf("-bash: syntax error near unexpected token `%s'\n", line);
 		return (1);
@@ -30,7 +30,7 @@ int	print_rederror(char *line)
 
 int	check_redirect(char **line)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (line[index])
@@ -51,7 +51,7 @@ int	check_redirect(char **line)
 int	check_is_heredoc(char **line)
 {
 	int	index;
-	int flg;
+	int	flg;
 
 	index = 0;
 	flg = 0;
@@ -76,13 +76,14 @@ int	check_is_heredoc(char **line)
 
 char	*remove_quotes(char *str)
 {
-	int 	len;
-	int 	index;
+	int		len;
+	int		index;
 	char	*str2;
 
 	len = 0;
 	index = 0;
-	while (str[len++]);
+	while (str[len])
+		len++;
 	str2 = malloc(sizeof(char) * len);
 	len = 0;
 	while (str[len])
@@ -101,8 +102,8 @@ char	*remove_quotes(char *str)
 
 void	fix_args(char **lista)
 {
-	int index;
-	char *str;
+	int		index;
+	char	*str;
 
 	index = 0;
 	while (lista[index])
@@ -111,48 +112,10 @@ void	fix_args(char **lista)
 			||!ft_recmp(lista[index], "'>'") || !ft_recmp(lista[index], "'>>'")
 			||!ft_recmp(lista[index], "\"<\"") || !ft_recmp(lista[index], "\"<<\"")
 			||!ft_recmp(lista[index], "\">\"") || !ft_recmp(lista[index], "\">>\""))
-			{
-				str = remove_quotes(lista[index]);
-				lista[index] = str;
-			}
+		{
+			str = remove_quotes(lista[index]);
+			lista[index] = str;
+		}
 		index++;
 	}
-}
-
-void	get_info(t_heredoc *file, char **line, int *pd)
-{
-	int check;
-	char *temp;
-
-
-	check = 0;
-	file->input_len = input_len(line, file);
-	file->output_len = output_len(line);
-	get_inputs(line, file);
-	get_outputs(line, file);
-	get_args(line, file);
-	fix_args(file->args);
-	check = check_is_heredoc(line);
-	if (check)
-		ft_double_less(line, file);
-	check = check_redirect(line);
-	if (!check && open_files(line, file))
-		execute_redirection(file, pd);
-	temp = get_pfile(".tmp_heredoc2024.txt");
-	if (!temp)
-		return ;
-	if (access(temp, F_OK) == 0)
-		unlink(temp);
-	free_array(file->all_inputs);
-	free_array(file->all_outputs);
-	free_array(file->args);
-	free(temp);
-}
-
-void	heredoc(char **line, int *pd)
-{
-	t_heredoc	file;
-
-	file.here_flag = 0;
-	get_info(&file, line, pd);
 }

@@ -17,7 +17,7 @@ NAME = minishell
 
 SRC = main\
 	  src/lexer src/pipe src/exec src/parser src/parser2 src/parser3\
-	  src/heredoc src/expansion src/expansion2\
+	  src/heredoc src/heredoc2 src/expansion src/expansion2\
 	  utils/utils utils/utils2 utils/utils3 utils/utils4 utils/check utils/free\
 	  heredoc_utils/heredoc_fun heredoc_utils/here_utils heredoc_utils/here_utils2\
 	  builtins/echo builtins/echo2 builtins/exit builtins/env\

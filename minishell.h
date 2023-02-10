@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/10 17:06:21 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 17:34:37 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_data
 typedef struct s_heredoc
 {
 	int		index;
-	int		H_file;
+	int		h_file;
 	int		out;
 	int		in;
 	char	**all_inputs;
@@ -99,8 +99,14 @@ int		exec_prog(char **line, int *fd);
 char	*get_path(char *cmd_line);
 void	execution(char **line, int *pd);
 //Heredoc------------------------------------------------------------
-void	heredoc(char **line, int *pd);
+int		print_rederror(char *line);
+int		check_redirect(char **line);
+int		check_is_heredoc(char **line);
+char	*remove_quotes(char *str);
 void	fix_args(char **lista);
+//Heredoc2-----------------------------------------------------------
+void	get_info(t_heredoc *file, char **line, int *pd);
+void	heredoc(char **line, int *pd);
 // Utils-------------------------------------------------------------
 t_data	*data(void);
 char	*adjust_line(char *line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:11:23 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/01/28 21:41:39 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 17:21:40 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	ft_unset(char **line)
 
 void	exchange(int check, char *line)
 {
-	char **expo;
-	char **vars;
-	char **env;
+	char	**expo;
+	char	**vars;
+	char	**env;
 
 	if (check == 1)
 	{

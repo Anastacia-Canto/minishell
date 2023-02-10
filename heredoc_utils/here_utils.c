@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 00:11:09 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/09 11:13:52 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 17:34:17 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	output_len(char **line)
 
 void	get_inputs(char **line, t_heredoc *file)
 {
+	char	*aux;
+
 	file->index = 0;
 	file->i_input = 0;
 	file->all_inputs = malloc(sizeof(char *) * (file->input_len + 1));
@@ -88,7 +90,8 @@ void	get_inputs(char **line, t_heredoc *file)
 		{
 			if (line[file->index + 1])
 			{
-				file->all_inputs[file->i_input++] = ft_strdup(line[file->index + 1]);
+				aux = ft_strdup(line[file->index + 1]);
+				file->all_inputs[file->i_input++] = aux;
 				file->index++;
 			}
 		}
@@ -98,6 +101,8 @@ void	get_inputs(char **line, t_heredoc *file)
 
 void	get_outputs(char **line, t_heredoc *file)
 {
+	char	*aux;
+
 	file->index = 0;
 	file->i_output = 0;
 	file->all_outputs = malloc(sizeof(char *) * (file->output_len + 1));
@@ -107,25 +112,14 @@ void	get_outputs(char **line, t_heredoc *file)
 	{
 		if (!ft_recmp(line[file->index], ">")
 			|| !ft_recmp(line[file->index], ">>"))
+		{
 			if (line[file->index + 1])
-				file->all_outputs[file->i_output++] = ft_strdup(line[file->index + 1]);
+			{
+				aux = ft_strdup(line[file->index + 1]);
+				file->all_outputs[file->i_output++] = aux;
+			}
+		}
 		file->index++;
 	}
 	file->all_outputs[file->i_output] = 0;
 }
-
-// printf("this is input %d\n", file->input_len);
-// printf("this is output %d\n", file->output_len);
-//printf("this is args %d\n", file->arg_len);
-
-// while (file->all_inputs[index])
-// 	{
-// 		printf("this is imput %s\n", file->all_inputs[index]);
-// 		index++;
-// 	}
-// 	index = 0;
-// 	while (file->all_outputs[index])
-// 	{
-// 		printf("this is output %s\n", file->all_outputs[index]);
-// 		index++;
-// 	}
