@@ -20,7 +20,7 @@ SRC = main\
 	  src/heredoc src/expansion src/expansion2\
 	  utils/utils utils/utils2 utils/utils3 utils/utils4 utils/check utils/free\
 	  heredoc_utils/heredoc_fun heredoc_utils/here_utils heredoc_utils/here_utils2\
-	  builtins/echo builtins/exit builtins/env\
+	  builtins/echo builtins/echo2 builtins/exit builtins/env\
 	  builtins/pwd builtins/cd builtins/export builtins/unset\
 
 LIBFT = libft/libft.a

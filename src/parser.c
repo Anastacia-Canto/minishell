@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/09 18:04:22 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 11:50:12 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 void	parser(char *line)
 {
-	char	**args;
 	int		nbr_cmds;
 	char	***cmds;
 
-	args = malloc(sizeof(char *) * 100);
-	if (!args)
+	data()->args_p = malloc(sizeof(char *) * 100);
+	if (!data()->args_p)
 		return ;
-	ft_split_args(line, args);
-	//print_args(args);
-	if (!check_pipe_on_args(args))
+	ft_split_args(line);
+	// print_args(data()->args_p);
+	if (!check_pipe_on_args(data()->args_p))
 	{
-		nbr_cmds = count_cmds(args);
-		cmds = list_cmds(args, nbr_cmds);
+		nbr_cmds = count_cmds(data()->args_p);
+		cmds = list_cmds(data()->args_p, nbr_cmds);
 		//print_cmds(cmds);
 		if (cmds)
 		{
@@ -37,7 +36,7 @@ void	parser(char *line)
 			free_cmds_list(cmds, nbr_cmds);
 		}
 	}
-	free_array(args);
+	free_array(data()->args_p);
 }
 
 void	print_cmds(char ***cmds)
@@ -52,31 +51,49 @@ void	print_cmds(char ***cmds)
 	}
 }
 
-void	ft_split_args(char *line, char **args)
+void	ft_split_args(char *line)
 {
-	char	*temp;
 	int		i;
-	int		j;
-	int		k;
 
-	temp = malloc(sizeof(char) * 1024);
-	if (!temp)
+	data()->temp = malloc(sizeof(char) * 1024);
+	if (!data()->temp)
 		return ;
 	i = 0;
-	k = 0;
-	j = 0;
+	data()->p_args = 0;
+	data()->p_temp = 0;
 	while (line[i])
 	{
 		while (line[i] && ft_whitespace(line[i]))
 			i++;
 		if (!line[i])
 			break ;
-		copy_arg(line, &i, temp, &j);
+		copy_arg(line, &i);
+		if (line[i] == '|')
+		{
+			if (line[i + 1] && ft_whitespace(line[i + 1]))
+			{
+				finalize_arg();
+				data()->temp[data()->p_temp++] = line[i++];
+			}
+			else if (line[i - 1] && ft_whitespace(line[i - 1]))
+			{
+				data()->temp[data()->p_temp++] = line[i++];
+				finalize_arg();
+			}
+			else if (line[i - 1] && line[i + 1]
+				&& !ft_whitespace(line[i + 1]) && !ft_whitespace(line[i - 1]))
+			{
+				finalize_arg();
+				data()->temp[data()->p_temp++] = line[i++];
+				finalize_arg();
+			}
+		}
+			// split_pipe(line, i);
 		if (!line[i] || ft_whitespace(line[i]) || end_heredoc(line, i - 1) == 1)
-			finalize_arg(temp, &j, args, &k);
+			finalize_arg();
 	}
-	free(temp);
-	args[k] = 0;
+	free(data()->temp);
+	data()->args_p[data()->p_args] = 0;
 }
 
 int	check_end_quote(char *line, int *pos)

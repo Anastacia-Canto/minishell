@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:22:39 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/03 11:09:06 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 11:40:11 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,25 @@ char	**split_cmds(char **line, int start, int len)
 		cmd[i] = ft_strdup(line[start + i]);
 	cmd[i] = 0;
 	return (cmd);
+}
+
+void	split_pipe(char *line, int i)
+{
+	if (line[i + 1] && ft_whitespace(line[i + 1]))
+	{
+		finalize_arg();
+		data()->temp[data()->p_temp++] = line[i++];
+	}
+	else if (line[i - 1] && ft_whitespace(line[i - 1]))
+	{
+		data()->temp[data()->p_temp++] = line[i++];
+		finalize_arg();
+	}
+	else if (line[i - 1] && line[i + 1]
+		&& !ft_whitespace(line[i + 1]) && !ft_whitespace(line[i - 1]))
+	{
+		finalize_arg();
+		data()->temp[data()->p_temp++] = line[i++];
+		finalize_arg();
+	}
 }

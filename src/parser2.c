@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:14:34 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/09 12:43:33 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 11:38:21 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,56 +24,54 @@ int	end_heredoc(char *line, int i)
 	return (0);
 }
 
-void	finalize_arg(char *temp, int *j, char **args, int *k)
+void	finalize_arg(void)
 {
-	temp[*j] = '\0';
-	args[*k] = ft_strdup(temp);
+	data()->temp[data()->p_temp] = '\0';
+	data()->args_p[data()->p_args] = ft_strdup(data()->temp);
 	if (data()->expand)
-		args[*k] = check_if_env(args[*k]);
-	if (!args[*k])
+		data()->args_p[data()->p_args] = check_if_env(data()->args_p[data()->p_args]);
+	if (!data()->args_p[data()->p_args])
 	{
-		free(args[*k]);
-		*k = *k - 1;
+		free(data()->args_p[data()->p_args]);
+		data()->p_args--;
 	}
-	*k = *k + 1;
-	*j = 0;
+	data()->p_args++;
+	data()->p_temp = 0;
 	data()->expand = 1;
 }
 
-void	copy_arg(char *line, int *i, char *temp, int *j)
+void	copy_arg(char *line, int *i)
 {
 	int	k;
-	int	w;
 
 	k = *i;
-	w = *j;
 	if (is_quote(line[k]) && !check_end_quote(line, &k))
 	{
-		ft_ignore(line, k, temp, &w);
+		ft_ignore(line, k);
 		while (line[++k] && !is_quote(line[k]))
-			temp[w++] = line[k];
+			data()->temp[data()->p_temp++] = line[k];
 		if (data()->ignore_sign)
 		{
-			temp[w++] = line[k];
+			data()->temp[data()->p_temp++] = line[k];
 			data()->ignore_sign = 0;
 		}
 		*i = k + 1;
-		*j = w;
 	}
 	else
 	{
 		while (line[k] && !ft_whitespace(line[k]) && !is_quote(line[k]))
 		{
-			temp[w++] = line[k++];
+			if (line[k] == '|')
+				break ;
+			data()->temp[data()->p_temp++] = line[k++];
 			if (end_heredoc(line, k - 1))
 				break ;
 		}
 		*i = k;
-		*j = w;
 	}
 }
 
-void	ft_ignore(char *line, int k, char *temp, int *w)
+void	ft_ignore(char *line, int k)
 {
 	int	i;
 	int	len;
@@ -85,15 +83,15 @@ void	ft_ignore(char *line, int k, char *temp, int *w)
 					&& i + 2 < len && is_quote(line[i + 2])))))
 	{
 		data()->ignore_sign = 1;
-		temp[*w] = line[k];
-		*w = *w + 1;
+		data()->temp[data()->p_temp] = line[k];
+		data()->p_temp++;
 	}
 	else if (((line[i] == '<') && i + 1 < len && (is_quote(line[i + 1])
 				|| (line[i + 1] == '<'
 					&& i + 2 < len && is_quote(line[i + 2])))))
 	{
 		data()->ignore_sign = 1;
-		temp[*w] = line[k];
-		*w = *w + 1;
+		data()->temp[data()->p_temp] = line[k];
+		data()->p_temp++;
 	}
 }

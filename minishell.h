@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/03 18:46:14 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 11:53:25 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ typedef struct s_data
 	int		stop_wr;
 	char	**args;
 	int		ignore_sign;
+	char	**args_p;
+	int		p_args;
+	char	*temp;
+	int		p_temp;
 }	t_data;
 
 typedef struct s_heredoc
@@ -67,21 +71,22 @@ int		check_null_line(char *line);
 void	main_loop(void);
 //Parser-------------------------------------------------------------
 void	parser(char *line);
-void	ft_split_args(char *line, char **args);
+void	ft_split_args(char *line);
 int		check_end_quote(char *line, int *pos);
 int		is_quote(char c);
 int		count_cmds(char **args);
 void	print_cmds(char ***cmds);
 //Parser2------------------------------------------------------------
 int		end_heredoc(char *line, int i);
-void	finalize_arg(char *temp, int *j, char **args, int *k);
-void	copy_arg(char *line, int *i, char *temp, int *j);
-void	ft_ignore(char *line, int k, char *temp, int *w);
+void	finalize_arg(void);
+void	copy_arg(char *line, int *i);
+void	ft_ignore(char *line, int k);
 //Parser3------------------------------------------------------------
 int		check_pipe_on_args(char **args);
 char	***list_cmds(char **args, int nbr_cmds);
 void	free_cmds_list(char ***cmds, int nbr_cmds);
 char	**split_cmds(char **line, int start, int len);
+void	split_pipe(char *line, int i);
 //Lexer--------------------------------------------------------------
 void	to_builtins(char **line, int *pd);
 int		treat_others(char **line, int fd);
@@ -145,7 +150,9 @@ int		ft_echo(char **line, int fd);
 int		ft_echo_n(char **line, int fd);
 int		check_n(char *arg);
 void	print_echo(char **line, int fd, int i);
+// Echo 2 -----------------------------------------------------------
 void	check_special_sign(char **line);
+void	change_special_sign(char **line, int i, int sig);
 // Exit--------------------------------------------------------------
 int		ft_exit(char **line, int fd, int *pd);
 int		check_num(char *arg);

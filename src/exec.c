@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:07:01 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/09 10:52:12 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 11:43:28 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	ft_exec(char **line, int file)
 	}
 	return (ret / 256);
 }
-
 
 int	exec_prog(char **line, int *fd)
 {

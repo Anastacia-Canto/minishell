@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/02/09 12:29:13 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 11:52:34 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,39 +74,4 @@ int	check_n(char *arg)
 		i++;
 	}
 	return (0);
-}
-
-void	check_special_sign(char **line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (!ft_strncmp(line[i], "\'>\'", sizeof(line[i]))
-			|| !ft_strncmp(line[i], "\">\"", sizeof(line[i])))
-			{
-				free(line[i]);
-				line[i] = ft_strdup(">");
-			}
-		else if (!ft_strncmp(line[i], "\'>>\'", sizeof(line[i]))
-			|| !ft_strncmp(line[i], "\">>\"", sizeof(line[i])))
-			{
-				free(line[i]);
-				line[i] = ft_strdup(">>");
-			}
-		else if (!ft_strncmp(line[i], "\'<\'", sizeof(line[i]))
-			|| !ft_strncmp(line[i], "\"<\"", sizeof(line[i])))
-			{
-				free(line[i]);
-				line[i] = ft_strdup("<");
-			}
-		else if (!ft_strncmp(line[i], "\'<<\'", sizeof(line[i]))
-			|| !ft_strncmp(line[i], "\"<<\"", sizeof(line[i])))
-			{
-				free(line[i]);
-				line[i] = ft_strdup("<<");
-			}
-		i++;
-	}
 }
