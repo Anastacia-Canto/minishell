@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/10 15:27:14 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 15:50:53 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,30 +69,7 @@ void	ft_split_args(char *line)
 			break ;
 		copy_arg(line, &i);
 		if (line[i] == '|' || line[i] == '>' || line[i] == '<')
-		{
-			if (!line[i + 1] || (line[i + 1] && (ft_whitespace(line[i + 1]))))
-			{
-				finalize_arg();
-				data()->temp[data()->p_temp++] = line[i++];
-			}
-			else if (line[i - 1] && ft_whitespace(line[i - 1]))
-			{
-				data()->temp[data()->p_temp++] = line[i++];
-				if ((line[i] == '<' || line[i] == '>') && line[i] == line[i - 1])
-					data()->temp[data()->p_temp++] = line[i++];
-				finalize_arg();
-			}
-			else if (line[i - 1] && line[i + 1]
-				&& !ft_whitespace(line[i + 1]) && !ft_whitespace(line[i - 1]))
-			{
-				finalize_arg();
-				data()->temp[data()->p_temp++] = line[i++];
-				if ((line[i] == '<' || line[i] == '>') && line[i] == line[i - 1])
-					data()->temp[data()->p_temp++] = line[i++];
-				finalize_arg();
-			}
-		}
-			// split_pipe(line, i);
+			split_pipe(line, &i);
 		if (!line[i] || ft_whitespace(line[i]))
 			finalize_arg();
 	}
@@ -124,19 +101,4 @@ int	is_quote(char c)
 	if (c == '\"')
 		return (2);
 	return (0);
-}
-
-int	count_cmds(char **args)
-{
-	int	i;
-	int	cmds;
-
-	i = -1;
-	cmds = 1;
-	while (args[++i])
-	{
-		if (!ft_strncmp(args[i], "|", sizeof(args[i])))
-			cmds++;
-	}
-	return (cmds);
 }

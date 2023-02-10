@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/10 15:25:13 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 15:50:44 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,18 @@ void	parser(char *line);
 void	ft_split_args(char *line);
 int		check_end_quote(char *line, int *pos);
 int		is_quote(char c);
-int		count_cmds(char **args);
 void	print_cmds(char ***cmds);
 //Parser2------------------------------------------------------------
 void	finalize_arg(void);
 void	copy_arg(char *line, int *i);
 void	ft_ignore(char *line, int k);
+int		count_cmds(char **args);
 //Parser3------------------------------------------------------------
 int		check_pipe_on_args(char **args);
 char	***list_cmds(char **args, int nbr_cmds);
 void	free_cmds_list(char ***cmds, int nbr_cmds);
 char	**split_cmds(char **line, int start, int len);
-void	split_pipe(char *line, int i);
+void	split_pipe(char *line, int *i);
 //Lexer--------------------------------------------------------------
 void	to_builtins(char **line, int *pd);
 int		treat_others(char **line, int fd);
