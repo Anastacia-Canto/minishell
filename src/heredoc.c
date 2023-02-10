@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/10 17:19:38 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 19:18:22 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,18 @@ int	check_redirect(char **line)
 	index = 0;
 	while (line[index])
 	{
-		if (!ft_recmp(line[index], "<"))
-			return (print_rederror(line[index + 1]));
-		else if (!ft_recmp(line[index], "<<") && !line[index + 1])
-			return (print_rederror(line[index + 1]));
-		else if (!ft_recmp(line[index], ">") && line[index + 1] == 0)
-			return (print_rederror(line[index + 1]));
-		else if (!ft_recmp(line[index], ">>") && !line[index + 1])
-			return (print_rederror(line[index + 1]));
+		if (!ft_recmp(line[index], "<") 
+			&& print_rederror(line[index + 1]))
+			return (1);
+		else if (!ft_recmp(line[index], "<<") 
+			&& print_rederror(line[index + 1]))
+			return (1);
+		else if (!ft_recmp(line[index], ">") 
+			&& print_rederror(line[index + 1]))
+			return (1);
+		else if (!ft_recmp(line[index], ">>") 
+			&& print_rederror(line[index + 1]))
+			return (1);
 		index++;
 	}
 	return (0);

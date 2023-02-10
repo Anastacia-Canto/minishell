@@ -3,21 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:15:51 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/10 17:20:52 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 19:19:46 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+void free_here(t_heredoc *file)
+{
+	char	*temp;
+	
+	temp = get_pfile(".tmp_heredoc2024.txt");
+	if (!temp)
+		return ;
+	if (access(temp, F_OK) == 0)
+		unlink(temp);
+	free_array(file->all_inputs);
+	free_array(file->all_outputs);
+	free_array(file->args);
+	free(temp);
+}
+
 void	get_info(t_heredoc *file, char **line, int *pd)
 {
 	int		check;
-	char	*temp;
 
 	check = 0;
+	file->i = 0;
+	file->o = 0;
+	file->in = 0;
+	file->out = 1;
 	file->input_len = input_len(line, file);
 	file->output_len = output_len(line);
 	get_inputs(line, file);
@@ -30,15 +48,7 @@ void	get_info(t_heredoc *file, char **line, int *pd)
 	check = check_redirect(line);
 	if (!check && open_files(line, file))
 		execute_redirection(file, pd);
-	temp = get_pfile(".tmp_heredoc2024.txt");
-	if (!temp)
-		return ;
-	if (access(temp, F_OK) == 0)
-		unlink(temp);
-	free_array(file->all_inputs);
-	free_array(file->all_outputs);
-	free_array(file->args);
-	free(temp);
+	free_here(file);
 }
 
 void	heredoc(char **line, int *pd)

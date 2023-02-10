@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 02:17:46 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/09 18:59:05 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:56:59 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,50 +39,55 @@ void	get_args(char **line, t_heredoc *file)
 	file->args[file->i_args] = 0;
 }
 
+
+int	open_inputs(t_heredoc *file, char **line)
+{
+	if (file->in > 2)
+		close(file->in);
+	if (!ft_recmp(line[file->index - 1], "<"))
+	{
+		file->in = open(file->all_inputs[file->i], O_RDONLY, 0777);
+		if (file->in < 0)
+		{
+			printf("%s: No such file or directory\n", file->all_inputs[file->i]);
+			return (1);
+		}
+	}
+	else if (!ft_recmp(line[file->index - 1], "<<"))
+		file->in = open(".tmp_heredoc2024.txt", O_CREAT | O_RDWR, 0777);
+	return (0);
+}
+
+void	open_outputs(t_heredoc *file, char **line)
+{
+	if (file->out > 2)
+		close(file->out);
+	if (!ft_recmp(line[file->index - 1], ">"))
+		file->out = open(file->all_outputs[file->o], O_RDWR | O_CREAT | O_TRUNC, S_IRWXU);
+	else if (!ft_recmp(line[file->index - 1], ">>"))
+		file->out = open(file->all_outputs[file->o], O_CREAT | O_RDWR | O_APPEND, S_IRWXU);
+}
+
 int	open_files(char **line, t_heredoc *file)
 {
-	int	index;
-	int	i;
-	int	o;
-
-	index = -1;
-	i = 0;
-	o = 0;
-	file->in = 0;
-	file->out = 1;
-	while (line[++index])
+	file->index = -1;
+	while (line[++file->index])
 	{
-		if (line[index][0] == 0)
+		if (line[file->index][0] == 0)
 		{
 			printf("-bash: ambiguous redirect\n");
 			return (0);
 		}
-		if (!ft_recmp(line[index], file->all_inputs[i]))
+		if (!ft_recmp(line[file->index], file->all_inputs[file->i]))
 		{
-			if (file->in > 2)
-				close(file->in);
-			if (!ft_recmp(line[index - 1], "<"))
-			{
-				file->in = open(file->all_inputs[i], O_RDONLY, 0777);
-				if (file->in < 0)
-				{
-					printf("%s: No such file or directory\n", file->all_inputs[i]);
-					return (0);
-				}
-			}
-			else if (!ft_recmp(line[index - 1], "<<"))
-				file->in = open(".tmp_heredoc2024.txt", O_CREAT | O_RDWR, 0777);
-			i++;
+			if (open_inputs(file, line))
+				return (0);
+			file->i++;
 		}
-		else if (!ft_recmp(line[index], file->all_outputs[o]))
+		else if (!ft_recmp(line[file->index], file->all_outputs[file->o]))
 		{
-			if (file->out > 2)
-				close(file->out);
-			if (!ft_recmp(line[index - 1], ">"))
-				file->out = open(file->all_outputs[o], O_RDWR | O_CREAT | O_TRUNC, S_IRWXU);
-			else if (!ft_recmp(line[index - 1], ">>"))
-				file->out = open(file->all_outputs[o], O_CREAT | O_RDWR | O_APPEND, S_IRWXU);
-			o++;
+			open_outputs(file, line);
+			file->o++;
 		}
 	}
 	return (1);
