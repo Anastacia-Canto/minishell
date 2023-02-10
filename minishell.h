@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/10 16:59:49 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 17:06:21 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	to_builtins(char **line, int *pd);
 int		treat_others(char **line, int fd);
 //Pipe---------------------------------------------------------------
 int		ft_pipe(char ***cmds, int len);
+void	ft_prepare_pipe(int *fd, int i, int len, int tmpout);
 void	ft_execute_pipe(char **cmds, int i, int len);
 //Exec---------------------------------------------------------------
 int		ft_exec(char **line, int file);
