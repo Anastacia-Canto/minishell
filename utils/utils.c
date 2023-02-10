@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:38:19 by anastacia         #+#    #+#             */
-/*   Updated: 2023/01/11 08:14:13 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 20:08:48 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,6 @@ t_data	*data(void)
 	static t_data	data;
 
 	return (&data);
-}
-
-char	*adjust_line(char *line)
-{
-	char	*new_line;
-	int		i;
-	int		j;
-
-	new_line = malloc(sizeof(char) * (ft_strlen(line) + 1));
-	if (!line || !new_line)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (line[i] && ft_whitespace(line[i]))
-		i++;
-	while (line[i] && !ft_whitespace(line[i]))
-		new_line[j++] = line[i++];
-	if (line[i])
-		new_line[j++] = line[i++];
-	while (line[i] && ft_whitespace(line[i]))
-		i++;
-	while (line[i])
-		new_line[j++] = line[i++];
-	new_line[j] = '\0';
-	return (new_line);
 }
 
 void	free_array(char **arr)

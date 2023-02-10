@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/10 19:29:23 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 20:03:27 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ int	check_redirect(char **line)
 	index = 0;
 	while (line[index])
 	{
-		if (!ft_recmp(line[index], "<") 
+		if (!ft_recmp(line[index], "<")
 			&& print_rederror(line[index + 1]))
 			return (1);
-		else if (!ft_recmp(line[index], "<<") 
+		else if (!ft_recmp(line[index], "<<")
 			&& print_rederror(line[index + 1]))
 			return (1);
-		else if (!ft_recmp(line[index], ">") 
+		else if (!ft_recmp(line[index], ">")
 			&& print_rederror(line[index + 1]))
 			return (1);
-		else if (!ft_recmp(line[index], ">>") 
+		else if (!ft_recmp(line[index], ">>")
 			&& print_rederror(line[index + 1]))
 			return (1);
 		index++;

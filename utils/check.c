@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 19:38:36 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/09 11:15:23 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 20:10:14 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,20 +88,3 @@ int	check_heredoc(char **lines)
 	}
 	return (0);
 }
-
-// int	check_input_val(char **line, t_heredoc *file)
-// {
-// 	int index;
-
-// 	index = 0;
-// 	while (line[index])
-// 	{
-// 		if (!ft_recmp(line[index], "<") || !ft_recmp(line[index], "<"))
-// 			break;
-// 		index++;
-// 	}
-// 	if (line[index + 1])
-// 		if (!ft_recmp(line[index + 1], file->all_inputs[0]))
-// 			return (0);
-// 	return (1);
-// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 02:17:46 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/10 18:56:59 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 19:34:12 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	get_args(char **line, t_heredoc *file)
 	file->args[file->i_args] = 0;
 }
 
-
 int	open_inputs(t_heredoc *file, char **line)
 {
 	if (file->in > 2)
@@ -63,9 +62,11 @@ void	open_outputs(t_heredoc *file, char **line)
 	if (file->out > 2)
 		close(file->out);
 	if (!ft_recmp(line[file->index - 1], ">"))
-		file->out = open(file->all_outputs[file->o], O_RDWR | O_CREAT | O_TRUNC, S_IRWXU);
+		file->out = open(file->all_outputs[file->o], O_RDWR
+				| O_CREAT | O_TRUNC, S_IRWXU);
 	else if (!ft_recmp(line[file->index - 1], ">>"))
-		file->out = open(file->all_outputs[file->o], O_CREAT | O_RDWR | O_APPEND, S_IRWXU);
+		file->out = open(file->all_outputs[file->o], O_CREAT
+				| O_RDWR | O_APPEND, S_IRWXU);
 }
 
 int	open_files(char **line, t_heredoc *file)

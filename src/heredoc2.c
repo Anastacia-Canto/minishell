@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:15:51 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/10 19:33:09 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 20:03:46 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void free_here(t_heredoc *file)
+void	free_here(t_heredoc *file)
 {
 	char	*temp;
-	
+
 	temp = get_pfile(".tmp_heredoc2024.txt");
 	if (!temp)
 		return ;
@@ -29,8 +29,8 @@ void free_here(t_heredoc *file)
 
 void	get_info(t_heredoc *file, char **line, int *pd)
 {
-	int		check;
-	int 	check2;
+	int	check;
+	int	check2;
 
 	check = 0;
 	file->i = 0;

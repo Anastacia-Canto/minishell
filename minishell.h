@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/10 18:44:15 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 20:15:22 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ int		check_null_line(char *line);
 void	main_loop(void);
 //Parser-------------------------------------------------------------
 void	parser(char *line);
+void	print_cmds(char ***cmds);
 void	ft_split_args(char *line);
 int		check_end_quote(char *line, int *pos);
 int		is_quote(char c);
-void	print_cmds(char ***cmds);
 //Parser2------------------------------------------------------------
 void	finalize_arg(void);
 void	copy_arg(char *line, int *i);
@@ -107,19 +107,19 @@ int		check_is_heredoc(char **line);
 char	*remove_quotes(char *str);
 void	fix_args(char **lista);
 //Heredoc2-----------------------------------------------------------
+void	free_here(t_heredoc *file);
 void	get_info(t_heredoc *file, char **line, int *pd);
 void	heredoc(char **line, int *pd);
 // Utils-------------------------------------------------------------
 t_data	*data(void);
-char	*adjust_line(char *line);
 void	free_array(char **arr);
 int		check_cmd_name(char *line, char *name, size_t len);
 int		array_len(char **arr);
 //Utils2-------------------------------------------------------------
-char	**ft_list(char **ex_list);
-void	ft_alphabetic(char **copy);
-void	ft_swap_alpha(char **copy, size_t i, size_t j);
 void	init_values(char **env);
+void	ft_swap_alpha(char **copy, size_t i, size_t j);
+void	ft_alphabetic(char **copy);
+char	**ft_list(char **ex_list);
 char	**add_to_list(char *str, char **lista);
 //Utils3-------------------------------------------------------------
 int		find_equal(char *str, char *lista_str);
@@ -133,17 +133,17 @@ int		add_var(char *line);
 void	print_args(char **args);
 //Check--------------------------------------------------------------
 int		check_value_list(char *str, char **lista);
-int		check_line(char *str);
 int		check_str(char *str);
+int		check_line(char *str);
 int		check_heredoc(char **lines);
 //Free---------------------------------------------------------------
 void	free_exit(void);
 //Heredoc_fun--------------------------------------------------------
+void	get_here_str(char **line, t_heredoc *file);
+int		check_here_args(t_heredoc *file);
+void	save_heredoc(char *line, int fd);
 char	*get_pfile(char *line);;
 void	ft_double_less(char **line, t_heredoc *file);
-void	save_heredoc(char *line, int fd);
-int		check_here_args(t_heredoc *file);
-void	get_here_str(char **line, t_heredoc *file);
 //here_utils---------------------------------------------------------
 int		ft_recmp(char *line, char *cmp);
 int		input_len(char **line, t_heredoc *file);
@@ -152,40 +152,43 @@ void	get_inputs(char **line, t_heredoc *file);
 void	get_outputs(char **line, t_heredoc *file);
 //here_utils2---------------------------------------------------------
 void	get_args(char **line, t_heredoc *file);
-int		open_files(char **line, t_heredoc *file);
+int		open_inputs(t_heredoc *file, char **line);
+void	open_outputs(t_heredoc *file, char **line);
 void	execute_redirection(t_heredoc *file, int *pd);
+int		open_files(char **line, t_heredoc *file);
 // Echo--------------------------------------------------------------
 int		ft_echo(char **line, int fd);
+void	print_echo(char **line, int fd, int i);
 int		ft_echo_n(char **line, int fd);
 int		check_n(char *arg);
-void	print_echo(char **line, int fd, int i);
 // Echo 2 -----------------------------------------------------------
 void	check_special_sign(char **line);
 void	change_special_sign(char **line, int i, int sig);
 // Exit--------------------------------------------------------------
 int		ft_exit(char **line, int fd, int *pd);
-int		check_num(char *arg);
 int		check_exit_args(char **args, size_t len);
+int		check_num(char *arg);
 // Env---------------------------------------------------------------
 int		print_envs(char **env, char **line, int fd);
-// Expansion
-char	*get_var(char *name, char **list);
+// Expansion---------------------------------------------------------
 char	*check_if_env(char *arg);
-char	*ft_expand_env(int dollars, char *arg);
 char	*expand_cli_env(char *name, int i);
 char	*get_value(char *name, int *pos);
+char	*get_var(char *name, char **list);
 char	*concat_env(char *s1, char *s2);
+// Expansion2-------------------------------------------------------
+char	*ft_expand_env(int dollars, char *arg);
 // PWD--------------------------------------------------------------
 int		ft_pwd(int fd);
 // CD---------------------------------------------------------------
 int		ft_cd(char **line);
 void	change_prompt(void);
 // Export-----------------------------------------------------------
-int		ft_export(char **line, int fd);
-int		check_export_args(char **args, size_t len);
-void	print_export(int fd);
-void	print_char(char *str, int fd);
 int		change_or_add(char *arg, int flg, char ***str);
+void	print_char(char *str, int fd);
+void	print_export(int fd);
+int		check_export_args(char **args, size_t len);
+int		ft_export(char **line, int fd);
 // Unset------------------------------------------------------------
 int		ft_unset(char **line);
 void	exchange(int check, char *line);
