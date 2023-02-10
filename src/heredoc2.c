@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 17:15:51 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/10 19:19:46 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 19:33:09 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void free_here(t_heredoc *file)
 void	get_info(t_heredoc *file, char **line, int *pd)
 {
 	int		check;
+	int 	check2;
 
 	check = 0;
 	file->i = 0;
@@ -43,10 +44,10 @@ void	get_info(t_heredoc *file, char **line, int *pd)
 	get_args(line, file);
 	fix_args(file->args);
 	check = check_is_heredoc(line);
-	if (check)
+	check2 = check_redirect(line);
+	if (check && !check2)
 		ft_double_less(line, file);
-	check = check_redirect(line);
-	if (!check && open_files(line, file))
+	if (!check2 && open_files(line, file))
 		execute_redirection(file, pd);
 	free_here(file);
 }

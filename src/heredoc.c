@@ -6,7 +6,7 @@
 /*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/10 19:18:22 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/10 19:29:23 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	print_rederror(char *line)
 	if (!line)
 	{
 		printf("-bash: syntax error near unexpected token `newline'\n");
-		return (1);
+		return (data()->exit_status = 258);
 	}
 	else if (!ft_recmp(line, "<") || !ft_recmp(line, ">")
 		|| !ft_recmp(line, ">>") || !ft_recmp(line, "<<"))
 	{
 		printf("-bash: syntax error near unexpected token `%s'\n", line);
-		return (1);
+		return (data()->exit_status = 258);
 	}
 	return (0);
 }
