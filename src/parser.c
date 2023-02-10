@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 07:53:37 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/10 11:50:12 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 15:27:14 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ void	ft_split_args(char *line)
 		if (!line[i])
 			break ;
 		copy_arg(line, &i);
-		if (line[i] == '|')
+		if (line[i] == '|' || line[i] == '>' || line[i] == '<')
 		{
-			if (line[i + 1] && ft_whitespace(line[i + 1]))
+			if (!line[i + 1] || (line[i + 1] && (ft_whitespace(line[i + 1]))))
 			{
 				finalize_arg();
 				data()->temp[data()->p_temp++] = line[i++];
@@ -78,6 +78,8 @@ void	ft_split_args(char *line)
 			else if (line[i - 1] && ft_whitespace(line[i - 1]))
 			{
 				data()->temp[data()->p_temp++] = line[i++];
+				if ((line[i] == '<' || line[i] == '>') && line[i] == line[i - 1])
+					data()->temp[data()->p_temp++] = line[i++];
 				finalize_arg();
 			}
 			else if (line[i - 1] && line[i + 1]
@@ -85,11 +87,13 @@ void	ft_split_args(char *line)
 			{
 				finalize_arg();
 				data()->temp[data()->p_temp++] = line[i++];
+				if ((line[i] == '<' || line[i] == '>') && line[i] == line[i - 1])
+					data()->temp[data()->p_temp++] = line[i++];
 				finalize_arg();
 			}
 		}
 			// split_pipe(line, i);
-		if (!line[i] || ft_whitespace(line[i]) || end_heredoc(line, i - 1) == 1)
+		if (!line[i] || ft_whitespace(line[i]))
 			finalize_arg();
 	}
 	free(data()->temp);

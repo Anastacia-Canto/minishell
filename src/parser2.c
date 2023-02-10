@@ -6,23 +6,11 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/13 11:14:34 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/10 11:38:21 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/10 15:27:24 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	end_heredoc(char *line, int i)
-{
-	if (i == (int)ft_strlen(line) - 1)
-		return (0);
-	if (line[i] == '>' && line[i + 1] != '>' && !ft_whitespace(line[i + 1]))
-		return (1);
-	else if (line[i] == '<' && line[i + 1] != '<'
-		&& !ft_whitespace(line[i + 1]))
-		return (1);
-	return (0);
-}
 
 void	finalize_arg(void)
 {
@@ -30,7 +18,8 @@ void	finalize_arg(void)
 	data()->args_p[data()->p_args] = ft_strdup(data()->temp);
 	if (data()->expand)
 		data()->args_p[data()->p_args] = check_if_env(data()->args_p[data()->p_args]);
-	if (!data()->args_p[data()->p_args])
+	if (!data()->args_p[data()->p_args]
+		|| ft_strlen(data()->args_p[data()->p_args]) == 0)
 	{
 		free(data()->args_p[data()->p_args]);
 		data()->p_args--;
@@ -61,11 +50,9 @@ void	copy_arg(char *line, int *i)
 	{
 		while (line[k] && !ft_whitespace(line[k]) && !is_quote(line[k]))
 		{
-			if (line[k] == '|')
+			if (line[k] == '|' || line[k] == '>' || line[k] == '<')
 				break ;
 			data()->temp[data()->p_temp++] = line[k++];
-			if (end_heredoc(line, k - 1))
-				break ;
 		}
 		*i = k;
 	}
