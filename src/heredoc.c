@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/11 00:31:35 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/11 12:36:46 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	print_rederror(char *line)
 	if (!line)
 	{
 		printf("-bash: syntax error near unexpected token `newline'\n");
-		return (data()->exit_status = 258);
+		return (data()->exit_status = 2);
 	}
 	else if (!ft_recmp(line, "<") || !ft_recmp(line, ">")
 		|| !ft_recmp(line, ">>") || !ft_recmp(line, "<<"))
 	{
 		printf("-bash: syntax error near unexpected token `%s'\n", line);
-		return (data()->exit_status = 258);
+		return (data()->exit_status = 2);
 	}
 	return (0);
 }

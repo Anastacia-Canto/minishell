@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 02:17:46 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/10 19:34:12 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/11 12:37:41 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	open_inputs(t_heredoc *file, char **line)
 		if (file->in < 0)
 		{
 			printf("%s: No such file or directory\n", file->all_inputs[file->i]);
-			return (1);
+			return (data()->exit_status = 1);
 		}
 	}
 	else if (!ft_recmp(line[file->index - 1], "<<"))

@@ -33,3 +33,9 @@ https://github.com/t0mm4rx/minishell_tests
 -> echo |
 
 -> cat > >
+
+
+echo 'x'~'x'
+echo ~
+echo '"/home/araiva"'
+echo "'/home/araiva'"
