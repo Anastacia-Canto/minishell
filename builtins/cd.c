@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 12:19:09 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/02/07 18:39:23 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/11 12:11:28 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_cd(char **line)
 		write(1, "bash: cd: too many arguments\n", 29);
 		return (1);
 	}
-	if (len == 1)
+	if (len == 1 || (len == 2 && !ft_strncmp(line[1], "~", sizeof(line[1]))))
 	{
 		path = getenv("HOME");
 		chdir(path);
