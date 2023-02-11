@@ -6,20 +6,20 @@
 /*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 16:22:39 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/11 12:13:33 by ansilva-         ###   ########.fr       */
+/*   Updated: 2023/02/11 12:23:00 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	check_pipe_on_args(char **args)
+int	check_pipe_on_args(char **args, int len)
 {
 	int	i;
-	int	len;
 
+	if (len == 0)
+		return (1);
 	if (ft_strncmp(args[0], "|", sizeof(args[0]) || args[0][0] != '|'))
 	{
-		len = array_len(args);
 		i = 1;
 		while (i < len)
 		{

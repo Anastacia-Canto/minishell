@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ansilva- <ansilva-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 16:41:46 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/10 20:15:22 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/11 12:23:23 by ansilva-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	copy_arg(char *line, int *i);
 void	ft_ignore(char *line, int k);
 int		count_cmds(char **args);
 //Parser3------------------------------------------------------------
-int		check_pipe_on_args(char **args);
+int		check_pipe_on_args(char **args, int len);
 char	***list_cmds(char **args, int nbr_cmds);
 void	free_cmds_list(char ***cmds, int nbr_cmds);
 char	**split_cmds(char **line, int start, int len);
