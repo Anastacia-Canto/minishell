@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_fun.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde-mull@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 14:22:53 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/10 17:35:52 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/11 12:04:20 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,8 @@ void	ft_double_less(char **line, t_heredoc *file)
 		while (check_here_args(file))
 		{
 			if (data()->stop_wr == 0)
-			{
 				save_heredoc(file->line2, file->h_file);
-				data()->stop_wr = 0;
-			}
+			data()->stop_wr = 0;
 			free(file->line2);
 			file->line2 = readline(">");
 			if (file->line2 == NULL)
