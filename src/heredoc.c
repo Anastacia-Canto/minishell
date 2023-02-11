@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 13:55:21 by sde-mull          #+#    #+#             */
-/*   Updated: 2023/02/10 20:03:27 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/11 00:31:35 by sde-mull         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	check_is_heredoc(char **line)
 	{
 		if (!ft_recmp(line[index], "<<") && !ft_recmp(line[index + 1], "<<"))
 		{
-			printf("-bash: syntax error near unexpected token `<<'\n");
 			if (flg == 1)
 				return (1);
 			else if (flg == 0)
