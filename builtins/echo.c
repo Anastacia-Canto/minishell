@@ -6,7 +6,7 @@
 /*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:31:56 by ansilva-          #+#    #+#             */
-/*   Updated: 2023/02/10 11:52:34 by anastacia        ###   ########.fr       */
+/*   Updated: 2023/02/12 19:16:18 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	ft_echo_n(char **line, int fd)
 {
 	int	j;
 
+	if (array_len(line) == 2)
+		return (0);
 	j = 1;
 	if (!ft_strncmp(line[2], "$?", sizeof(line[1])))
 	{
@@ -66,8 +68,10 @@ int	check_n(char *arg)
 {
 	int	i;
 
-	i = 1;
-	while (arg[i])
+	i = 0;
+	if (arg[i] == '-')
+		i++;
+	while (i < (int)ft_strlen(arg))
 	{
 		if (arg[i] != 'n')
 			return (1);
