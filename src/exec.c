@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sde-mull <sde.mull@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: anastacia <anastacia@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 09:07:01 by anastacia         #+#    #+#             */
-/*   Updated: 2023/02/11 00:29:59 by sde-mull         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:21:59 by anastacia        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	exec_prog(char **line, int *fd)
 		free (path);
 		path = get_path(line[0]);
 	}
-	execve(path, line, data()->env);
+	if (path)
+		execve(path, line, data()->env);
 	ret = get_cmd_error(line[0]);
 	free (path);
 	write(fd[1], &ret, sizeof(int));
@@ -67,12 +68,14 @@ char	*get_path(char *cmd_line)
 	char	**buffer;
 	int		i;
 
-	i = 0;
-	path = getenv("PATH");
+	i = -1;
+	path = get_var("PATH", data()->env);
+	if (!path)
+		return (NULL);
 	buffer = ft_split(path, ':');
 	path = NULL;
 	cmd_line = ft_strjoin("/", cmd_line);
-	while (i < array_len(buffer) - 1)
+	while (++i < array_len(buffer) - 1)
 	{
 		temp = ft_strjoin(buffer[i], cmd_line);
 		if (access(temp, F_OK) == 0)
@@ -81,7 +84,6 @@ char	*get_path(char *cmd_line)
 			break ;
 		}
 		free(temp);
-		i++;
 	}
 	free_array(buffer);
 	free(cmd_line);
