@@ -9,3 +9,14 @@ dealing with simultaneous process to return the correct final result, as Bash do
 
 Analyzing the results, I believe it could be very helpful to write unit tests during development. It is a complex program, what make it very easy to create new errors when trying to solve 
 a specific problem. And it showed the importance of writing clean and organized code, regarding the complexity and the need for clear communication between group members. 
+
+Some of commands recreated on our shell:
+- cd
+- echo
+- pwd
+- env
+- exit
+- export
+- unset
+- Heredoc and redirections
+- pipe
